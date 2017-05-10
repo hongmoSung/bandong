@@ -1,8 +1,5 @@
 .metadata/
 Servers/
-petCafe/.settings/
 RemoteSystemsTempFiles/.project
-petCafe/.classpath
-petCafe/.project
 petCafe/WebContent/META-INF/
 *.xml
