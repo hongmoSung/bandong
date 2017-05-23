@@ -10,7 +10,7 @@
 	<typeAliases>
 		<typeAlias alias="Member" type="kr.co.ggori.member.vo.MemberVO" />
 		<typeAlias alias="Board" type="kr.co.ggori.board.vo.BoardVO" />
-		<typeAlias alias="Login" type="kr.co.ggori.board.vo.LoginVO" />
+		<typeAlias alias="Login" type="kr.co.ggori.login.vo.LoginVO" />
 	</typeAliases>
 	
 	<environments default="development">
@@ -26,7 +26,6 @@
 	</environments>
 
 	<mappers>
-<!-- 		<mapper resource="config/sqlmap/oracle/board.xml"/> -->
 		<mapper resource="config/sqlmap/oracle/board.xml"/>
 		<mapper resource="config/sqlmap/oracle/member.xml"/>
 		<mapper resource="config/sqlmap/oracle/main.xml"/>
