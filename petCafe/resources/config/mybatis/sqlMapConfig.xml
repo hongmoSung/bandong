@@ -8,9 +8,9 @@
 	
 	<!-- SQL의 결과를 담을 VO 객체들의 별칭을 설정하여 사용의 편의를 도모  -->
 	<typeAliases>
-		<typeAlias alias="Member" type="kr.co.ggori.member.vo.MemberVO" />
-		<typeAlias alias="Board" type="kr.co.ggori.board.vo.BoardVO" />
-		<typeAlias alias="Login" type="kr.co.ggori.login.vo.LoginVO" />
+		<typeAlias alias="Member" type="kr.co.ggori.repository.vo.MemberVO" />
+		<typeAlias alias="Board" type="kr.co.ggori.repository.vo.BoardVO" />
+		<typeAlias alias="Login" type="kr.co.ggori.repository.vo.LoginVO" />
 	</typeAliases>
 	
 	<environments default="development">
