@@ -29,4 +29,8 @@ public class MyAppSqlConfig {
 	public static SqlSession getSqlSessionInstance() {
 		return sqlMapper;
 	}
+	
+	public static void main(String[] args) {
+		System.out.println(sqlMapper);
+	}
 }
