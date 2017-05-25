@@ -46,20 +46,30 @@
 		   and rownum &lt; 7
 	</select>
 	
-	<select id="cafeInfo" resultType="string">
+	<select id="cafeMaster" resultType="string">
 		select m.nick_name
 		  from member m
 		 where m.rank='운영자'
 	</select>
 	
+	<select id="cafeBoardCount" resultType="int">
+		select count(*)
+		  from board_type
+	</select>
+	
 	<select id="myMiniInfo" resultMap="memberMap">
-		select m.nick_name, m.reg_date, count(*)
-		  from member m,
-		  	   board_form b
+		select m.nick_name, m.reg_date
+		  from member m
 		 where m.member_id = #{memberId}
 		   and m.member_id = b.member_id
 	</select>
 	
+	<select id="myMiniBoardCount" parameterType="S" resultType="int">
+		select count(*)
+		  from board_type
+		 where member_id = #{memberId}
+	</select>
+
 	<select id="boardList" resultType="string">
 		select distinct b.board_type
 		  from board_form b
