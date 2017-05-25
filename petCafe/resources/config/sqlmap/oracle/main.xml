@@ -29,21 +29,12 @@
 	</resultMap>
 	
 	<select id="recentBoard" parameterType="string" resultMap="boardMap">
-		select Board.title, Board.member_id
+		select Board.title, Board.member_id, Board.file_path
 		  from (select *
 		  		  from board_form
 		  		 order by no desc) Board
 		 where board_type = #{boardType}
 		   and rownum &lt; 9
-	</select>
-	
-	<select id="recentImageBoard" resultMap="boardMap">
-		select Board.title, Board.member_id, Board.reg_date, Board.file_path
-		  from (select *
-		  		  from board_form
-		  		 order by no desc) Board
-		 where board_type = 'image'
-		   and rownum &lt; 7
 	</select>
 	
 	<select id="cafeMaster" resultType="string">
@@ -54,24 +45,41 @@
 	
 	<select id="cafeBoardCount" resultType="int">
 		select count(*)
-		  from board_type
+		  from board_form
 	</select>
 	
-	<select id="myMiniInfo" resultMap="memberMap">
+	<select id="cafeMemberCount" resultType="int">
+		select count(*)
+		  from member
+	</select>
+	
+	<select id="myMiniInfo" parameterType="string" resultMap="memberMap">
 		select m.nick_name, m.reg_date
 		  from member m
 		 where m.member_id = #{memberId}
-		   and m.member_id = b.member_id
 	</select>
 	
-	<select id="myMiniBoardCount" parameterType="S" resultType="int">
+	<select id="myMiniBoardCount" parameterType="string" resultType="int">
 		select count(*)
-		  from board_type
+		  from board_form
+		 where member_id = #{memberId}
+	</select>
+	
+	<select id="myMiniReplyCount" parameterType="string" resultType="int">
+		select count(*)
+		  from reply_form
 		 where member_id = #{memberId}
 	</select>
 
 	<select id="boardList" resultType="string">
 		select distinct b.board_type
 		  from board_form b
+	</select>
+	
+	<select id="search" parameterType="Board" resultMap="boardMap">
+		select #{boardType}
+		  from board_form
+		 where board_type = #{boardType}
+		   and #{boardType} like '%#{data}%'
 	</select>
 </mapper>
