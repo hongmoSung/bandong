@@ -80,6 +80,6 @@
 		select #{boardType}
 		  from board_form
 		 where board_type = #{boardType}
-		   and #{boardType} like '%#{data}%'
+		   and #{boardType} like '%#{content}%'
 	</select>
 </mapper>
