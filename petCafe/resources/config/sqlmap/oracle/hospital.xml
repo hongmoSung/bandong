@@ -16,6 +16,11 @@
 	</resultMap>
 	
 	<insert id="insertHospital" parameterType="Hospital">
+		<selectKey keyProperty="memberId" resultType="string" order="BEFORE">
+			select member_id
+			  from dual
+			 where member_id = #{memberId}
+		</selectKey>
 		insert into hospital (
 			hospital_id, 
 			license_no, 
@@ -33,7 +38,7 @@
 			#{address},
 			#{latitude},
 			#{longitude},
-			#{member_id}
+			#{memberId}
 		)
 	</insert>
 	

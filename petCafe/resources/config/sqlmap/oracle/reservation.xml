@@ -28,6 +28,11 @@
 	</select>
 	
 	<insert id="insertReservation" parameterType="Reservation">
+		<selectKey keyProperty="memberId" resultType="string" order="BEFORE">
+			select member_id
+			  from member
+			 where member_id = #{memberId}
+		</selectKey>
 		insert into reservation (
 			reser_id,
 			reser_date,
@@ -44,7 +49,7 @@
 			#{careType},
 			#{detail},
 			#{reserName},
-			#{hospital_id},
+			#{hospitalId},
 			#{memberId}
 		)
 	</insert>
