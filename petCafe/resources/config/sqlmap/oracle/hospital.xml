@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.ggori.repository.mapper.IHospitalMapper">
+	
+	<resultMap type="Hospital" id="hospitalMap">
+		<result column="hospitalId" property="hospital_id"/>
+		<result column="licenseNo" property="license_no"/>
+		<result column="name" property="name"/>
+		<result column="telNumber" property="tel_number"/>
+		<result column="address" property="address"/>
+		<result column="latitude" property="latitude"/>
+		<result column="longitude" property="longitude"/>
+		<result column="MemberId" property="Member_id"/>
+	</resultMap>
+	
+	<insert id="insertHospital" parameterType="Hospital">
+		<selectKey keyProperty="memberId" resultType="string" order="BEFORE">
+			select member_id
+			  from dual
+			 where member_id = #{memberId}
+		</selectKey>
+		insert into hospital (
+			hospital_id, 
+			license_no, 
+			name, 
+			tel_number, 
+			address, 
+			latitude, 
+			longitude, 
+			member_id
+		) values (
+			s_hospital_id.nextval,
+			#{licenseNo},
+			#{name},
+			#{telNumber},
+			#{address},
+			#{latitude},
+			#{longitude},
+			#{memberId}
+		)
+	</insert>
+	
+	<update id="updateHospital" parameterType="Hospital">
+		update hospital
+		   set license_no = #{licenseNo}, 
+			   name = #{name}, 
+			   tel_number = #{telNumber}, 
+			   address = #{address}, 
+			   latitude = #{latitude}, 
+			   longitude = #{longitude}, 
+			   member_id = #{member_id}
+		 where hospital_id = #{hospitalId}
+	</update>
+	
+	<delete id="deleteHospital" parameterType="int">
+		delete 
+		  from hospital
+		 where hospital_id = #{hospitalId}
+	</delete>
+	
+	<select id="searchHospital" parameterType="Hospital" resultMap="hospitalMap">
+		select name, telNumber, address, latitude, longitude
+		  from hospital
+		 where (latitude - #{latitude}) *  (latitude - #{latitude})
+	           + (longitude - #{longitude}) * (longitude - #{longitude})
+	           &lt; 1 * 1
+	</select>
+
+</mapper>
