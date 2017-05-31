@@ -6,6 +6,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div>
+	<jsp:include page="/view/include/topMenu.jsp"/>
+</div>
+<div>
 	main
+</div>
+<div>
+	<jsp:include page="/view/include/footer.jsp"/>
+</div>
 </body>
 </html>
