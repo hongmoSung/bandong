@@ -4,82 +4,82 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.ggori.repository.mapper.IMainMapper">
 
-	<resultMap type="Board" id="boardMap">
-		<result column="board_no" property="boardNo"/>
-		<result column="board_type" property="boardType"/>
-		<result column="title" property="title"/>
-		<result column="content" property="content"/>
-		<result column="reg_date" property="regDate"/>
-		<result column="file_path" property="filePath"/>
-		<result column="hits" property="hits"/>
-		<result column="recommends" property="recommends"/>
-		<result column="member_id" property="memberId"/>
-	</resultMap>
+<!-- 	<resultMap type="Board" id="boardMap"> -->
+<!-- 		<result column="board_no" property="boardNo"/> -->
+<!-- 		<result column="board_type" property="boardType"/> -->
+<!-- 		<result column="title" property="title"/> -->
+<!-- 		<result column="content" property="content"/> -->
+<!-- 		<result column="reg_date" property="regDate"/> -->
+<!-- 		<result column="file_path" property="filePath"/> -->
+<!-- 		<result column="hits" property="hits"/> -->
+<!-- 		<result column="recommends" property="recommends"/> -->
+<!-- 		<result column="member_id" property="memberId"/> -->
+<!-- 	</resultMap> -->
 	
-	<resultMap type="Member" id="memberMap">
-		<result column="member_id" property="memberId"/>
-		<result column="pass" property="pass"/>
-		<result column="nick_name" property="nickName"/>
-		<result column="email" property="email"/>
-		<result column="phone_num" property="phoneNum"/>
-		<result column="rank" property="rank"/>
-		<result column="reg_date" property="regDate"/>
-		<result column="file_path" property="filePath"/>
-		<result column="leave" property="leave"/>
-	</resultMap>
+<!-- 	<resultMap type="Member" id="memberMap"> -->
+<!-- 		<result column="member_id" property="memberId"/> -->
+<!-- 		<result column="pass" property="pass"/> -->
+<!-- 		<result column="nick_name" property="nickName"/> -->
+<!-- 		<result column="email" property="email"/> -->
+<!-- 		<result column="phone_num" property="phoneNum"/> -->
+<!-- 		<result column="rank" property="rank"/> -->
+<!-- 		<result column="reg_date" property="regDate"/> -->
+<!-- 		<result column="file_path" property="filePath"/> -->
+<!-- 		<result column="leave" property="leave"/> -->
+<!-- 	</resultMap> -->
 	
-	<select id="recentBoard" parameterType="string" resultMap="boardMap">
-		select Board.title, Board.member_id, Board.file_path
-		  from (select *
-		  		  from board_form
-		  		 order by no desc) Board
-		 where board_type = #{boardType}
-		   and rownum &lt; 9
-	</select>
+<!-- 	<select id="recentBoard" parameterType="string" resultMap="boardMap"> -->
+<!-- 		select Board.title, Board.member_id, Board.file_path -->
+<!-- 		  from (select * -->
+<!-- 		  		  from board_form -->
+<!-- 		  		 order by no desc) Board -->
+<!-- 		 where board_type = #{boardType} -->
+<!-- 		   and rownum &lt; 9 -->
+<!-- 	</select> -->
 	
-	<select id="cafeMaster" resultType="string">
-		select m.nick_name
-		  from member m
-		 where m.rank='운영자'
-	</select>
+<!-- 	<select id="cafeMaster" resultType="string"> -->
+<!-- 		select m.nick_name -->
+<!-- 		  from member m -->
+<!-- 		 where m.rank='운영자' -->
+<!-- 	</select> -->
 	
-	<select id="cafeBoardCount" resultType="int">
-		select count(*)
-		  from board_form
-	</select>
+<!-- 	<select id="cafeBoardCount" resultType="int"> -->
+<!-- 		select count(*) -->
+<!-- 		  from board_form -->
+<!-- 	</select> -->
 	
-	<select id="cafeMemberCount" resultType="int">
-		select count(*)
-		  from member
-	</select>
+<!-- 	<select id="cafeMemberCount" resultType="int"> -->
+<!-- 		select count(*) -->
+<!-- 		  from member -->
+<!-- 	</select> -->
 	
-	<select id="myMiniInfo" parameterType="string" resultMap="memberMap">
-		select m.nick_name, m.reg_date
-		  from member m
-		 where m.member_id = #{memberId}
-	</select>
+<!-- 	<select id="myMiniInfo" parameterType="string" resultMap="memberMap"> -->
+<!-- 		select m.nick_name, m.reg_date -->
+<!-- 		  from member m -->
+<!-- 		 where m.member_id = #{memberId} -->
+<!-- 	</select> -->
 	
-	<select id="myMiniBoardCount" parameterType="string" resultType="int">
-		select count(*)
-		  from board_form
-		 where member_id = #{memberId}
-	</select>
+<!-- 	<select id="myMiniBoardCount" parameterType="string" resultType="int"> -->
+<!-- 		select count(*) -->
+<!-- 		  from board_form -->
+<!-- 		 where member_id = #{memberId} -->
+<!-- 	</select> -->
 	
-	<select id="myMiniReplyCount" parameterType="string" resultType="int">
-		select count(*)
-		  from reply_form
-		 where member_id = #{memberId}
-	</select>
+<!-- 	<select id="myMiniReplyCount" parameterType="string" resultType="int"> -->
+<!-- 		select count(*) -->
+<!-- 		  from reply_form -->
+<!-- 		 where member_id = #{memberId} -->
+<!-- 	</select> -->
 
-	<select id="boardList" resultType="string">
-		select distinct b.board_type
-		  from board_form b
-	</select>
+<!-- 	<select id="boardList" resultType="string"> -->
+<!-- 		select distinct b.board_type -->
+<!-- 		  from board_form b -->
+<!-- 	</select> -->
 	
-	<select id="search" parameterType="Board" resultMap="boardMap">
-		select #{boardType}
-		  from board_form
-		 where board_type = #{boardType}
-		   and #{boardType} like '%#{content}%'
-	</select>
+<!-- 	<select id="search" parameterType="Board" resultMap="boardMap"> -->
+<!-- 		select #{boardType} -->
+<!-- 		  from board_form -->
+<!-- 		 where board_type = #{boardType} -->
+<!-- 		   and #{boardType} like '%#{content}%' -->
+<!-- 	</select> -->
 </mapper>

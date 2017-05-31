@@ -4,5 +4,6 @@ import kr.co.ggori.repository.vo.MemberVO;
 
 public interface IMemberMapper {
 	
-	public void insertMember(MemberVO member) throws Exception;
+	public int insertMember(MemberVO member) throws Exception;
+	public MemberVO selectMemberOne(MemberVO member) throws Exception;
 }

@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +10,12 @@
 	<jsp:include page="/view/include/topMenu.jsp"/>
 </div>
 <div>
-	main<br>
-	<c:out value="${member.nickName}"/>
+로그인
+	<form method="POST" action="login">
+		id : <input type="text" name="memberId"><br>
+		pass : <input type="text" name="pass"><br>
+		<button>로그인 하기</button>
+	</form>
 </div>
 <div>
 	<jsp:include page="/view/include/footer.jsp"/>
