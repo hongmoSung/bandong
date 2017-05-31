@@ -34,7 +34,6 @@ public class Login extends HttpServlet{
 		
 		try {
 			member = mapper.selectMemberOne(member);
-			System.out.println(member.toString());
 			if (member != null) {
 				HttpSession s = request.getSession();
 				s.setAttribute("member", member);

@@ -12,7 +12,14 @@
 </div>
 <div>
 	main<br>
-	<c:out value="${member.nickName}"/>
+	<c:choose>
+		<c:when test="${not empty member}">
+			<c:out value="${member.nickName} 님 환영합니다 ^^"/>
+		</c:when>
+		<c:otherwise>
+			<c:out value="로그인해주세요"/>
+		</c:otherwise>
+	</c:choose>
 </div>
 <div>
 	<jsp:include page="/view/include/footer.jsp"/>
