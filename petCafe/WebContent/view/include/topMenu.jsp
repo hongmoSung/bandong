@@ -8,6 +8,7 @@
 	</c:when>
 	<c:otherwise>
 		<a href="${pageContext.request.contextPath}/login/logout">로그아웃</a>
+		<a href="${pageContext.request.contextPath}/login/logout">로그아웃</a>
 	</c:otherwise>
 </c:choose>
 <hr>
