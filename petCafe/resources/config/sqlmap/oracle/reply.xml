@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.mlec.board.mapper.IReplyMapper">
+
+    <resultMap type="Board" id="boardMap">
+    	<result column="Board_No" property="no"/>
+    	<result column="Reply_Id" property="replyId"/>
+    	<result column="Comment" property="comment"/>
+    	<result column="Reg_Date" property="regDate"/>
+    	<result column="Member_Id" property="member"/>
+    </resultMap>
+    
+    <select id="replyList" resultMap="boardMap">
+    	select *
+    	  from REPLY_FORM
+    	 order by no desc
+    </select>
+    
+    <insert id="insertReply" parameterType="Board">
+    	insert into REPLY_FORM(
+    		no, replyId, comment, regDate, member
+    	) values (
+    		#{no}, #{replyId}, #{comment}, #{regDate}, #{member}
+    	)
+    </insert>
+    
+    <update id="updateReply" parameterType="Board">
+    	update REPLY_FORM
+    	   set comment = #{comment}
+    	 where no = #{no}
+    </update>
+    
+    <delete id="deleteReply" parameterType="int">
+    	delete
+    	  from REPLY_FORM
+    	 where no = #{no}
+    </delete>
+    
+</mapper>
