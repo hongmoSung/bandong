@@ -8,7 +8,7 @@ public class MemberVO {
 	private int phoneNum;
 	private String rank;
 	private String regDate;
-	private String filePath;
+	private String fileId;
 	private int leave;
 	
 	public String getMemberId() {
@@ -53,11 +53,11 @@ public class MemberVO {
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
-	public String getFilePath() {
-		return filePath;
+	public String getFileId() {
+		return fileId;
 	}
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
+	public void setFileId(String fileId) {
+		this.fileId = fileId;
 	}
 	public int getLeave() {
 		return leave;
@@ -68,7 +68,7 @@ public class MemberVO {
 	@Override
 	public String toString() {
 		return "MemberVO [memberId=" + memberId + ", pass=" + pass + ", nickName=" + nickName + ", email=" + email
-				+ ", phoneNum=" + phoneNum + ", rank=" + rank + ", regDate=" + regDate + ", filePath=" + filePath
+				+ ", phoneNum=" + phoneNum + ", rank=" + rank + ", regDate=" + regDate + ", fileId=" + fileId
 				+ ", leave=" + leave + "]";
 	}
 }
