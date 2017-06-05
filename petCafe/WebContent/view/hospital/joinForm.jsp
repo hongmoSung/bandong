@@ -6,24 +6,60 @@
 <title>Insert title here</title>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="//apis.daum.net/maps/maps3.js?apikey=b3aef8f92a8bdd9510a7905608389df3&libraries=services"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>s
 </head>	
 <body>
 <div>
 	<jsp:include page="/view/include/topMenu.jsp"/>
 </div>
-<div>
-	<h1>병원등록</h1>
-	<form method="post" action="join">
-		<input type="text" placeholder="주소"  id="address" name="address">
-		<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
-		<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
-		병원명 : <input type="text" id="name" name="name"><br>
-		전화번호 : <input type="text" id="telNumber" name="telNumber"><br>
-		위도: <input type="text" id="lat" name="latitude"><br>
-		경도 : <input type="text" id="lng" name="longitude"><br>
-		회원아이디 : <input type="text" id="memberId" name="memberId" value="${member.memberId}"><br>
-		<button>등록하기</button>
-	</form>
+<div class="container">
+	<div class="center-block text-center" style="width: 500px;">
+		<h1>병원등록</h1>
+	</div>
+	<div class="center-block" style="width: 500px;">
+		<form class="form-horizontal" method="post" action="join">
+			<div class="form-group">
+				<input class="col-sm-9" type="text" placeholder="주소"  id="address" name="address">
+				<input class="col-sm-3" type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
+			</div>
+			<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
+			<div class="form-group">
+				<label class="control-label col-sm-3">병원이름</label>
+				<div class="col-sm-9">
+					<input class="form-control" type="text" id="name" name="name">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3">전화번호</label>
+				<div class="col-sm-9">
+					<input class="form-control" type="text" id="telNumber" name="telNumber">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3">위도</label>
+				<div class="col-sm-9">
+					<input class="form-control" type="text" id="lat" name="latitude">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3">경도</label>
+				<div class="col-sm-9">
+					<input class="form-control" type="text" id="lng" name="longitude">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3">회원아이디</label>
+				<div class="col-sm-9">
+					<input class="form-control" type="text" id="memberId" name="memberId" value="${member.memberId}">
+				</div>
+			</div>
+			<div class="text-center">
+				<button class="btn btn-success btn-lg">등록하기</button>
+			</div>
+		</form>
+	</div>
 	<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
 </div>
 <div>

@@ -3,23 +3,47 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>병원정보</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div>
 	<jsp:include page="/view/include/topMenu.jsp"/>
 </div>
-<div>
-	<h1>나의 병원정보</h1>
-	<input type="text" value="${hospital.hospitalId}"><br>
-	<input type="text" value="${hospital.name}"><br>
-	<input type="text" value="${hospital.telNumber}"><br>
-	<input type="text" value="${hospital.address}"><br>
-	<input type="text" value="${hospital.longitude}" id="longitude"><br>
-	<input type="text" value="${hospital.latitude}" id="latitude"><br>
+<div class="container">
+		<input type="text" value="${hospital.hospitalId}" hidden="true"><br>
+		<input type="text" value="${hospital.longitude}" id="longitude" hidden="true"><br>
+		<input type="text" value="${hospital.latitude}" id="latitude" hidden="true"><br>
+	<div class="center-block text-center" style="width: 500px;">
+		<h1>나의 병원정보</h1>
+	</div>
+	<div class="center-block text-center" style="width: 500px;">
+		<table style="width: 100%">
+			<tr>
+				<th>이름</th>
+				<td>
+					<input type="text" value="${hospital.name}"><br>
+				</td>
+			</tr>
+			<tr>
+				<th>전화번호</th>
+				<td>
+					<input type="text" value="${hospital.telNumber}"><br>
+				</td>
+			</tr>
+			<tr>
+				<th>주소</th>
+				<td>
+					<input type="text" value="${hospital.address}"><br>
+				</td>
+			</tr>
+		</table>
+	</div>
 	
 	
-	<div id="map" style="width:50%;height:350px;"></div>
+	<div class="center-block" id="map" style="width:1000px;height:350px;"></div>
 	
 	<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=b3aef8f92a8bdd9510a7905608389df3"></script>
 	<script>
