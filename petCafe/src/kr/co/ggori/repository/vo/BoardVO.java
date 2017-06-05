@@ -12,7 +12,14 @@ public class BoardVO {
 	private int recommends;
 	private String memberId;
 	private int fileId;
+	private String nickName;
 	
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
 	public int getBoardNo() {
 		return boardNo;
 	}

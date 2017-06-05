@@ -42,13 +42,14 @@ public class MainServlet  extends HttpServlet{
 		int allBoardCount = -1;
 		int memberCount = -1;
 		
-//		String memberId = ((MemberVO)hSession.getAttribute("member")).getMemberId();
+		MemberVO member = (MemberVO)hSession.getAttribute("member");
+		
 		
 		int myBoardCount = -1;
 		int myReplyCount = -1;
 		try {
-			boardListNotice = mainMap.recentBoard("test");
-			boardListSale = mainMap.recentBoard("taejun");
+			boardListNotice = mainMap.recentBoard("notice");
+			boardListSale = mainMap.recentBoard("sale");
 			boardListTip = mainMap.recentBoard("tip");
 			boardListImage = mainMap.recentBoard("image");
 			
@@ -56,8 +57,16 @@ public class MainServlet  extends HttpServlet{
 			allBoardCount = mainMap.cafeBoardCount();
 			memberCount = mainMap.cafeMemberCount();
 			
-//			myBoardCount = mainMap.myMiniBoardCount( memberId );
-//			myReplyCount = mainMap.myMiniReplyCount( memberId );
+			setNickName(boardListNotice);
+			setNickName(boardListSale);
+			setNickName(boardListTip);
+			setNickName(boardListImage);
+			
+			if(member != null) {
+				String memberId = member.getMemberId();
+				myBoardCount = mainMap.myMiniBoardCount( memberId );
+				myReplyCount = mainMap.myMiniReplyCount( memberId );
+			}
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -76,5 +85,13 @@ public class MainServlet  extends HttpServlet{
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/view/main/main.jsp");
 		rd.forward(request, response);
+	}
+	
+	public void setNickName(List<BoardVO> list) throws Exception {
+		for(int i = 0; i < list.size(); i++) {
+			list.get(i).setNickName( 
+					mainMap.myNickName( list.get(i).getMemberId() ) 
+					);
+		}
 	}
 }

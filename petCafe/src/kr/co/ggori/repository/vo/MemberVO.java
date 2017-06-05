@@ -1,5 +1,7 @@
 package kr.co.ggori.repository.vo;
 
+import java.util.Date;
+
 public class MemberVO {
 	private String memberId;
 	private String pass;
@@ -7,7 +9,7 @@ public class MemberVO {
 	private String email;
 	private int phoneNum;
 	private String rank;
-	private String regDate;
+	private Date regDate;
 	private String fileId;
 	private int leave;
 	
@@ -47,10 +49,10 @@ public class MemberVO {
 	public void setRank(String rank) {
 		this.rank = rank;
 	}
-	public String getRegDate() {
+	public Date getRegDate() {
 		return regDate;
 	}
-	public void setRegDate(String regDate) {
+	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
 	public String getFileId() {
