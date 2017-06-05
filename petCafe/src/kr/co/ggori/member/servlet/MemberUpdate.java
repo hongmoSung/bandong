@@ -1,4 +1,4 @@
-package kr.co.ggori.login.servlet;
+package kr.co.ggori.member.servlet;
 
 import java.io.IOException;
 
@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -16,33 +15,44 @@ import common.db.MyAppSqlConfig;
 import kr.co.ggori.repository.mapper.IMemberMapper;
 import kr.co.ggori.repository.vo.MemberVO;
 
-@WebServlet("/login/login")
-public class Login extends HttpServlet{
+@WebServlet("/member/update")
+public class MemberUpdate extends HttpServlet{
 	private SqlSession session;
 	private IMemberMapper mapper;
 	
-	public Login () {
+	public MemberUpdate() {
 		session = MyAppSqlConfig.getSqlSessionInstance();
 		this.mapper = session.getMapper(IMemberMapper.class);
 	}
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		MemberVO member = new MemberVO();
-		member.setMemberId(request.getParameter("memberId"));
-		member.setPass(request.getParameter("pass"));
 		
 		try {
+			MemberVO member = new MemberVO();
+			member.setPass(request.getParameter("pass"));
+			member.setMemberId(request.getParameter("memberId"));
 			member = mapper.selectMemberOne(member);
+			
 			if (member != null) {
-				HttpSession s = request.getSession();
-				s.setAttribute("member", member);
-				RequestDispatcher rd = request.getRequestDispatcher("/main/Main");
-				rd.forward(request, response);
+				member.setNickName(request.getParameter("nickName"));
+				member.setEmail(request.getParameter("email"));
+				member.setPhoneNum(Integer.parseInt(request.getParameter("phoneNum")));
+				
+				int result = mapper.updateMember(member);
+				RequestDispatcher rd = null;
+				if (result != 0) {
+					session.commit();
+					rd = request.getRequestDispatcher("updateForm");
+					rd.forward(request, response);
+				} else {
+					rd = request.getRequestDispatcher("updateForm");
+					rd.forward(request, response);
+				}
 			} else {
-				response.sendRedirect("/petcafe/main/main.jsp");
+				System.out.println("error");
 			}
-		} catch (Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}

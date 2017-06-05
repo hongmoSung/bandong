@@ -1,4 +1,4 @@
-package kr.co.ggori.member.servlet;
+package kr.co.ggori.login.servlet;
 
 import java.io.IOException;
 
@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/member/myPage")
-public class MemberMyPage extends HttpServlet{
+@WebServlet("/login/findPassForm")
+public class FindPassForm extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/view/member/myPage.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/view/member/findPassForm.jsp");
 		rd.forward(request, response);
 	}
 }

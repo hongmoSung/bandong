@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/member/myPage")
-public class MemberMyPage extends HttpServlet{
+@WebServlet("/member/authForm")
+public class MemberAuthForm extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/view/member/myPage.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/view/member/authForm.jsp");
 		rd.forward(request, response);
 	}
 }

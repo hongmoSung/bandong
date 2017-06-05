@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,19 +10,12 @@
 	<jsp:include page="/view/include/topMenu.jsp"/>
 </div>
 <div>
-	<h1>main</h1>
-	<br>
-	
-	<c:choose>
-		<c:when test="${not empty member}">
-			<c:out value="${member.nickName} 님 환영합니다 ^^"/>
-		</c:when>
-		<c:otherwise>
-			<c:out value="로그인해주세요"/>
-		</c:otherwise>
-	</c:choose>
-	
-	
+	<h1>비밀번호 찾기</h1>
+	<form method="post" action="findPass">
+		email : <input type="text" name="email"><br>
+		id : <input type="text" name="memberId"><br>
+		<button>찾기</button>
+	</form>
 </div>
 <div>
 	<jsp:include page="/view/include/footer.jsp"/>

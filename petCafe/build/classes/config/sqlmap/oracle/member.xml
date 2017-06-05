@@ -34,4 +34,22 @@
 		<result column="Leave" property="leave"/>
 	</resultMap>
 	
+	<select id="selectMemberByEmail" parameterType="String" resultType="String">
+		select member_id
+		  from member
+		 where email = #{email} 
+	</select>
+	
+	<update id="updateMemberPass" parameterType="Member">
+		update member 
+		   set pass = #{pass} 
+		 where member_id = #{memberId} and email = #{email} 
+	</update>
+	
+	<update id="updateMember" parameterType="Member">
+		update member 
+		   set nick_name = #{nickName}, email = #{email}, phone_num = #{phoneNum}
+		 where member_id = #{memberId} 
+	</update>
+	
 </mapper>

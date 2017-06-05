@@ -15,7 +15,7 @@
 		id : <input type="text" name="memberId"><br>
 		pass : <input type="text" name="pass"><br>
 		nickName : <input type="text" name="nickName"><br>
-		email : <input type="text" name="email"><br>
+		email : <input type="text" name="email" id="email"><br>
 		phoneNum : <input type="text" name="phoneNum"><br>
 		<button>가입하기</button>
 	</form>
