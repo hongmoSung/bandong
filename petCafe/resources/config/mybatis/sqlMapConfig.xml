@@ -10,6 +10,7 @@
 	<typeAliases>
 		<typeAlias alias="Member" type="kr.co.ggori.repository.vo.MemberVO" />
 		<typeAlias alias="Board" type="kr.co.ggori.repository.vo.BoardVO" />
+		<typeAlias alias="File" type="kr.co.ggori.repository.vo.FileVO"/>
 <!-- 		<typeAlias alias="Login" type="kr.co.ggori.repository.vo.LoginVO" /> -->
 <!-- 		<typeAlias alias="Hospital" type="kr.co.ggori.repository.vo.HospitalVO" /> -->
 <!-- 		<typeAlias alias="Care" type="kr.co.ggori.repository.vo.CareTypeVO" /> -->
