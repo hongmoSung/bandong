@@ -29,7 +29,7 @@
 	</environments>
 
 	<mappers>
-<!-- 		<mapper resource="config/sqlmap/oracle/board.xml"/> -->
+		<mapper resource="config/sqlmap/oracle/board.xml"/>
 		<mapper resource="config/sqlmap/oracle/member.xml"/>
 		<mapper resource="config/sqlmap/oracle/main.xml"/>
 <!-- 		<mapper resource="config/sqlmap/oracle/login.xml"/> -->

@@ -1,47 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.mlec.board.mapper.IBoardMapper">
+<mapper namespace="kr.co.ggori.repository.mapper.IBoardMapper">
 
-    <resultMap type="Board" id="boardMap">
-    	<result column="no" property="no"/>
-    	<result column="title" property="title"/>
-    	<result column="writer" property="writer"/>
-    	<result column="content" property="content"/>
-    	<result column="reg_date" property="regDate"/>
-    </resultMap>
+	<resultMap type="Board" id="boardMap">
+		<result column="board_no" property="boardNo"/>
+		<result column="board_type" property="boardType"/>
+		<result column="title" property="title"/>
+		<result column="content" property="content"/>
+		<result column="reg_date" property="regDate"/>
+		<result column="file_id" property="fileId"/>
+		<result column="hits" property="hits"/>
+		<result column="recommends" property="recommends"/>
+		<result column="member_id" property="memberId"/>
+	</resultMap>
     
     <select id="selectAll" resultMap="boardMap">
     	select *
-    	  from tb_board
-    	 order by no desc
+    	  from board_form
+    	 order by boardNo desc
     </select>
     
     <select id="selectOneBoard" parameterType="int" resultMap="boardMap">
     	select *
-    	  from tb_board
-    	 where no = #{no}
+    	  from board_form
+    	 where boardNo = #{boardNo}
     </select>
     
     <insert id="insertBoard" parameterType="Board">
-    	insert into tb_board(
-    		no, title, writer, content
+    	insert into board_form(
+    		boardNo, title, content, boardType, memberId
     	) values (
-    		s_board_no.nextval, #{title}, #{writer}, #{content}
+    		s_board_boardNo.nextval, #{title}, #{content}, #{boardType}, #{memberId}
     	)
     </insert>
     
     <update id="updateBoard" parameterType="Board">
-    	update tb_board
+    	update board_form
     	   set title = #{title},
     	   	   content = #{content}
-    	 where no = #{no}
+    	 where boardNo = #{boardNo}
     </update>
     
     <delete id="deleteBoard" parameterType="int">
     	delete
-    	  from tb_board
-    	 where no = #{no}
+    	  from board_form
+    	 where boardNo = #{boardNo}
     </delete>
     
 </mapper>
