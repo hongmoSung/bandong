@@ -8,6 +8,7 @@ public class FileVO {
 	private int size;
 	private int boardNo;
 	private int recommends;
+	
 	public int getFileId() {
 		return fileId;
 	}
@@ -51,6 +52,4 @@ public class FileVO {
 		this.recommends = recommends;
 	}
 
-	
-	
 }
