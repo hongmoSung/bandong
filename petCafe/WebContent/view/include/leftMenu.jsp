@@ -12,7 +12,7 @@
 <c:choose>
 	<c:when test="${not empty member}">
 		<div>
-			아이디 : <c:out value="${member.memberId}"/>
+			닉네임 : <c:out value="${member.nickName}"/>
 			<br>
 			가입일 : <c:out value="${member.regDate}"/>
 			<br>
@@ -20,7 +20,17 @@
 			<br>
 			작성 댓글 수 : <c:out value="${myReplyCount}"/>
 		</div>
+		<div>
+			<a href="">카페 글쓰기</a>
+		</div>
 	</c:when>
+	<c:otherwise>
+		<div>
+		</div>
+		<div>
+			<a href="${pageContext.request.contextPath}/member/join">카페 가입하기</a>
+		</div>
+	</c:otherwise>
 </c:choose>
 
 <ul>

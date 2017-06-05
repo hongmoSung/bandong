@@ -17,5 +17,6 @@ public interface IMainMapper {
 	public int myMiniReplyCount(String memberId) throws Exception;
 	public List<String> boardList() throws Exception;
 	public BoardVO search(BoardVO board) throws Exception;
+	public String myNickName(String memberId) throws Exception;
 	
 }
