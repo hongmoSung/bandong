@@ -17,7 +17,7 @@ public class SendMail {
 	String host = "smtp.gmail.com";
 	String subject = "PetCafe 인증번호 전달";
 	String fromName = "petCafe관리자";
-	String form = "sung.hongmo3@gmail.com";
+	String form = "";
 	String id = "";
 	String pass = "";
 	

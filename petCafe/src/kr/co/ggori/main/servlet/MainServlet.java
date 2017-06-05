@@ -42,7 +42,7 @@ public class MainServlet  extends HttpServlet{
 		int allBoardCount = -1;
 		int memberCount = -1;
 		
-		String memberId = ((MemberVO)hSession.getAttribute("member")).getMemberId();
+//		String memberId = ((MemberVO)hSession.getAttribute("member")).getMemberId();
 		
 		int myBoardCount = -1;
 		int myReplyCount = -1;
@@ -71,8 +71,8 @@ public class MainServlet  extends HttpServlet{
 		hSession.setAttribute("allBoardCount", allBoardCount);
 		hSession.setAttribute("memberCount", memberCount);
 		
-//		hSession.setAttribute("myBoardCount", myBoardCount);
-//		hSession.setAttribute("myReplyCount", myReplyCount);
+		hSession.setAttribute("myBoardCount", myBoardCount);
+		hSession.setAttribute("myReplyCount", myReplyCount);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/view/main/main.jsp");
 		rd.forward(request, response);
