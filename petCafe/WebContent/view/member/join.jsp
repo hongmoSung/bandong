@@ -49,7 +49,7 @@
 				</div>
 			</div>
 			<div class="text-center">
-				<button>가입하기</button>
+				<button class="btn btn-success btn-lg">가입하기</button>
 			</div>
 		</form>
 	</div>

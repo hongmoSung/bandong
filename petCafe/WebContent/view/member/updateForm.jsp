@@ -55,9 +55,9 @@
 				</div>
 			</div>
 			<div class="text-center">
-				<button>수정</button>
+				<button class="btn btn-success btn-lg">수정</button>
 			</div>
-	</form>	
+		</form>	
 	</div>
 </div>
 <div>

@@ -33,29 +33,29 @@
 			<div class="form-group">
 				<label class="control-label col-sm-3" for="nickName">nickName</label>
 				<div class="col-sm-9">
-					<input class="form-control" type="text" value="${member.nickName}" id="nickName">
+					<input class="form-control" type="text" value="${member.nickName}" readonly="readonly" id="nickName">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-3" for="email">e-mail</label>
 				<div class="col-sm-9">
-					<input class="form-control" type="text" value = "${member.email}" id="email">
+					<input class="form-control" type="text" value = "${member.email}" readonly="readonly" id="email">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-3" for="phoneNum">phone-number</label>
 				<div class="col-sm-9">
-					<input class="form-control" type="text" value="${member.phoneNum}" id="phoneNum">
+					<input class="form-control" type="text" value="${member.phoneNum}" readonly="readonly" id="phoneNum">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-3" for="rank">회원 등급</label>
 				<div class="col-sm-9">
-					<input class="form-control" type="text" value="${member.rank}" id="rank">
+					<input class="form-control" type="text" value="${member.rank}" readonly="readonly" id="rank">
 				</div>
 			</div>
 			<div class="text-center">
-				<button>수정</button>
+				<button class="btn btn-success btn-lg">수정하기</button>
 			</div>
 		</form>
 	</div>

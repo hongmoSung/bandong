@@ -43,10 +43,10 @@ public class MemberUpdate extends HttpServlet{
 				RequestDispatcher rd = null;
 				if (result != 0) {
 					session.commit();
-					rd = request.getRequestDispatcher("updateForm");
+					rd = request.getRequestDispatcher("myPage");
 					rd.forward(request, response);
 				} else {
-					rd = request.getRequestDispatcher("updateForm");
+					rd = request.getRequestDispatcher("myPage");
 					rd.forward(request, response);
 				}
 			} else {

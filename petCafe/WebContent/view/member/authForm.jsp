@@ -49,7 +49,7 @@
 			</div>
 		</form>
 		<form class="text-center" action="joinForm" method="post">
-			<button hidden="true" id="joinButton">가입하러가기</button>
+			<button class="btn btn-success btn-lg" hidden="true" id="joinButton">가입하러가기</button>
 		</form>
 	</div>
 	
