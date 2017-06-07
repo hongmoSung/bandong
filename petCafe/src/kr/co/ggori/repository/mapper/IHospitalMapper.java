@@ -6,9 +6,9 @@ import kr.co.ggori.repository.vo.HospitalVO;
 
 public interface IHospitalMapper {
 	
-	public void insertHospital(HospitalVO hospital) throws Exception;
+	public int insertHospital(HospitalVO hospital) throws Exception;
 	public void updateHospital(HospitalVO hospital) throws Exception;
 	public void deleteHospital(int delId) throws Exception;
 	public List<HospitalVO> searchHospital(HospitalVO hospital) throws Exception;
-
+	public HospitalVO selectHospital(String memberId) throws Exception;
 }

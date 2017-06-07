@@ -32,9 +32,10 @@ public class FindID extends HttpServlet{
 			String email = request.getParameter("email");
 			String userId = mapper.selectMemberByEmail(email);
 			
-			if (userId != null) {
-				new SendMail().sendEmailForID(email, userId);
+			if (userId != "") {
+				String result = new SendMail().sendEmailForID(email, userId);
 				rd = request.getRequestDispatcher("/view/member/loginForm.jsp");
+				request.setAttribute("result", result);
 				System.out.println("메일보내기 성공");
 			} else {
 				System.out.println("해당하는 이메일로 등록된 아이디가 없습니다.");
@@ -43,6 +44,7 @@ public class FindID extends HttpServlet{
 			rd.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("여기여긴");
 		}
 	}
 }

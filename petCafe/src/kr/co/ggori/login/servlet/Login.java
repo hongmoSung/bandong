@@ -37,11 +37,11 @@ public class Login extends HttpServlet{
 			if (member != null) {
 				HttpSession s = request.getSession();
 				s.setAttribute("member", member);
-				RequestDispatcher rd = request.getRequestDispatcher("/main/Main");
-				rd.forward(request, response);
 			} else {
-				response.sendRedirect("/petcafe/main/main.jsp");
+				request.setAttribute("loginError", "로그인 실패");
 			}
+			RequestDispatcher rd = request.getRequestDispatcher("/main/Main");
+			rd.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

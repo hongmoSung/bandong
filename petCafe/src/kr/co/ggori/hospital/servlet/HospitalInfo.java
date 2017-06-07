@@ -1,4 +1,4 @@
-package kr.co.ggori.member.servlet;
+package kr.co.ggori.hospital.servlet;
 
 import java.io.IOException;
 
@@ -13,28 +13,34 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 
 import common.db.MyAppSqlConfig;
-import kr.co.ggori.repository.mapper.IMemberMapper;
+import kr.co.ggori.repository.mapper.IHospitalMapper;
+import kr.co.ggori.repository.vo.HospitalVO;
 import kr.co.ggori.repository.vo.MemberVO;
 
-@WebServlet("/member/myPage")
-public class MemberMyPage extends HttpServlet{
+@WebServlet("/hospital/hospitalInfo")
+public class HospitalInfo extends HttpServlet{
 	private SqlSession session;
-	private IMemberMapper mapper;
+	private IHospitalMapper mapper;
 	
-	public MemberMyPage() {
+	public HospitalInfo () {
 		session = MyAppSqlConfig.getSqlSessionInstance();
-		this.mapper = session.getMapper(IMemberMapper.class);
+		this.mapper = session.getMapper(IHospitalMapper.class);
 	}
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession s = request.getSession();
 		MemberVO member = (MemberVO)s.getAttribute("member");
+		String memberId = member.getMemberId();
+		
 		try {
-			member = mapper.selectMemberOne(member);
-			request.setAttribute("member", member);
-			RequestDispatcher rd = request.getRequestDispatcher("/view/member/myPage.jsp");
-			rd.forward(request, response);
+			HospitalVO hospital = mapper.selectHospital(memberId);
+			request.setAttribute("hospital", hospital);
+			
+			if (hospital != null) {
+				RequestDispatcher rd = request.getRequestDispatcher("/view/hospital/hospitalInfo.jsp");
+				rd.forward(request, response);
+			}
 			
 		} catch(Exception e) {
 			e.printStackTrace();

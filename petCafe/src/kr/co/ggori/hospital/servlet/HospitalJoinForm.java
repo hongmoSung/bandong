@@ -1,4 +1,4 @@
-package kr.co.ggori.member.servlet;
+package kr.co.ggori.hospital.servlet;
 
 import java.io.IOException;
 
@@ -9,13 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/member/joinForm")
-public class MemberJoinForm extends HttpServlet{
+@WebServlet("/hospital/joinForm")
+public class HospitalJoinForm extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("email", request.getParameter("email"));
-		RequestDispatcher rd = request.getRequestDispatcher("/view/member/join.jsp");
-		rd.forward(request, response);	
+		RequestDispatcher rd = request.getRequestDispatcher("/view/hospital/joinForm.jsp");
+		rd.forward(request, response);
 	}
 }

@@ -18,7 +18,7 @@
 		현재 비밀번호 : <input type="text" name="tempPass"><br>
 		바꿀 비밀번호 : <input type="text" name="pass"><br>
 		비밀번호 확인 : <input type="text" name="pass2"><br>
-		<button>바꾸기</button>
+		<button class="btn btn-success btn-lg">바꾸기</button>
 	</form>	
 </div>
 <div>
