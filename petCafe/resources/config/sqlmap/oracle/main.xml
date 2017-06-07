@@ -88,11 +88,11 @@
 		 where member_id = #{memberId}
 	</select>
 	
-<!-- 	<select id="" parameterType="int" resultType="File"> -->
-<!-- 		select * -->
-<!-- 		  from file_form -->
-<!-- 		 where board_no = #{boardNo} -->
-<!-- 	</select> -->
+	<select id="imageBoard" parameterType="int" resultType="File">
+		select *
+		  from file_form
+		 where board_no = #{boardNo}
+	</select>
 
 <!-- 	<select id="boardList" resultType="string"> -->
 <!-- 		select distinct b.board_type -->
