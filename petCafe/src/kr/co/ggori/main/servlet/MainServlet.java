@@ -44,7 +44,6 @@ public class MainServlet  extends HttpServlet{
 		
 		MemberVO member = (MemberVO)hSession.getAttribute("member");
 		
-		
 		int myBoardCount = -1;
 		int myReplyCount = -1;
 		try {

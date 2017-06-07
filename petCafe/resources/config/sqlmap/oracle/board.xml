@@ -13,25 +13,27 @@
 		<result column="hits" property="hits"/>
 		<result column="recommends" property="recommends"/>
 		<result column="member_id" property="memberId"/>
+		<result column="nick_name" property="nickName"/>
 	</resultMap>
     
-    <select id="selectAll" resultMap="boardMap">
+    <select id="selectAll" parameterType="string" resultMap="boardMap">
     	select *
     	  from board_form
-    	 order by boardNo desc
+    	 where board_type = #{boardType}
+    	 order by board_No desc
     </select>
     
     <select id="selectOneBoard" parameterType="int" resultMap="boardMap">
     	select *
     	  from board_form
-    	 where boardNo = #{boardNo}
+    	 where board_No = #{boardNo}
     </select>
     
     <insert id="insertBoard" parameterType="Board">
     	insert into board_form(
-    		boardNo, title, content, boardType, memberId
+    		board_No, title, content, boardType, memberId
     	) values (
-    		s_board_boardNo.nextval, #{title}, #{content}, #{boardType}, #{memberId}
+    		s_board_board_No.nextval, #{title}, #{content}, #{boardType}, #{memberId}
     	)
     </insert>
     
@@ -39,13 +41,20 @@
     	update board_form
     	   set title = #{title},
     	   	   content = #{content}
-    	 where boardNo = #{boardNo}
+    	 where board_No = #{boardNo}
     </update>
     
     <delete id="deleteBoard" parameterType="int">
     	delete
     	  from board_form
-    	 where boardNo = #{boardNo}
+    	 where board_No = #{boardNo}
     </delete>
+    
+    <select id="myNickName" parameterType="string" resultType="string">
+		select nick_name
+		  from member
+		 where member_id = #{memberId}
+	</select>
+    
     
 </mapper>
