@@ -1,9 +1,11 @@
 package kr.co.ggori.main.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +18,7 @@ import org.apache.ibatis.session.SqlSession;
 import common.db.MyAppSqlConfig;
 import kr.co.ggori.repository.mapper.IMainMapper;
 import kr.co.ggori.repository.vo.BoardVO;
+import kr.co.ggori.repository.vo.FileVO;
 import kr.co.ggori.repository.vo.MemberVO;
 
 @WebServlet("/main/Main")
@@ -38,9 +41,13 @@ public class MainServlet  extends HttpServlet{
 		List<BoardVO> boardListTip = null;
 		List<BoardVO> boardListImage = null;
 		
+		List<FileVO> fileList = null;
+		
 		String master = null;
 		int allBoardCount = -1;
 		int memberCount = -1;
+		
+		String uploadPath = null;
 		
 		MemberVO member = (MemberVO)hSession.getAttribute("member");
 		
@@ -51,6 +58,8 @@ public class MainServlet  extends HttpServlet{
 			boardListSale = mainMap.recentBoard("sale");
 			boardListTip = mainMap.recentBoard("tip");
 			boardListImage = mainMap.recentBoard("image");
+
+			fileList = getFileList(boardListImage);
 			
 			master = mainMap.cafeMaster();
 			allBoardCount = mainMap.cafeBoardCount();
@@ -66,6 +75,8 @@ public class MainServlet  extends HttpServlet{
 				myBoardCount = mainMap.myMiniBoardCount( memberId );
 				myReplyCount = mainMap.myMiniReplyCount( memberId );
 			}
+			
+			uploadPath = request.getContextPath() + "/upload";
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -75,12 +86,16 @@ public class MainServlet  extends HttpServlet{
 		request.setAttribute("boardListTip", boardListTip);
 		request.setAttribute("boardListImage", boardListImage);
 		
+		request.setAttribute("fileList", fileList);
+		
 		hSession.setAttribute("master", master);
 		hSession.setAttribute("allBoardCount", allBoardCount);
 		hSession.setAttribute("memberCount", memberCount);
 		
 		hSession.setAttribute("myBoardCount", myBoardCount);
 		hSession.setAttribute("myReplyCount", myReplyCount);
+		
+		hSession.setAttribute("uploadPath", uploadPath);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/view/main/main.jsp");
 		rd.forward(request, response);
@@ -89,8 +104,17 @@ public class MainServlet  extends HttpServlet{
 	public void setNickName(List<BoardVO> list) throws Exception {
 		for(int i = 0; i < list.size(); i++) {
 			list.get(i).setNickName( 
-					mainMap.myNickName( list.get(i).getMemberId() ) 
-					);
+				mainMap.myNickName( list.get(i).getMemberId() ) 
+			);
 		}
 	}
+	
+	public List<FileVO> getFileList(List<BoardVO> list) throws Exception {
+		List<FileVO> fileList = new ArrayList<>();
+		for(int i = 0; i < list.size(); i++) {
+			fileList.add( mainMap.imageList(list.get(i).getBoardNo()) );
+		}
+		return fileList;
+	}
+	
 }

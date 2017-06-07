@@ -2,12 +2,12 @@ package kr.co.ggori.repository.vo;
 
 public class FileVO {
 	private int fileId;
-	private String path;
+	private String filePath;
 	private String originName;
 	private String systemName;
-	private int size;
+	private int fileSize;
 	private int boardNo;
-	private int recommends;
+	private String memberId;
 	
 	public int getFileId() {
 		return fileId;
@@ -15,11 +15,11 @@ public class FileVO {
 	public void setFileId(int fileId) {
 		this.fileId = fileId;
 	}
-	public String getPath() {
-		return path;
+	public String getFilePath() {
+		return filePath;
 	}
-	public void setPath(String path) {
-		this.path = path;
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
 	}
 	public String getOriginName() {
 		return originName;
@@ -33,11 +33,11 @@ public class FileVO {
 	public void setSystemName(String systemName) {
 		this.systemName = systemName;
 	}
-	public int getSize() {
-		return size;
+	public int getFileSize() {
+		return fileSize;
 	}
-	public void setSize(int size) {
-		this.size = size;
+	public void setFileSize(int fileSize) {
+		this.fileSize = fileSize;
 	}
 	public int getBoardNo() {
 		return boardNo;
@@ -45,11 +45,11 @@ public class FileVO {
 	public void setBoardNo(int boardNo) {
 		this.boardNo = boardNo;
 	}
-	public int getRecommends() {
-		return recommends;
+	public String getMemberId() {
+		return memberId;
 	}
-	public void setRecommends(int recommends) {
-		this.recommends = recommends;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
-
+		
 }

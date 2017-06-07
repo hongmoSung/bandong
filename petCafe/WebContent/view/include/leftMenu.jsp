@@ -3,8 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <ul class="nav nav-tabs">
-	<li class="active"><a href="#cafe" data-toggle="tab">카페정보</a></li>
-	<li><a href="#member" data-toggle="tab">회원정보</a></li>
+	<li class="active"><a href="#cafe" data-toggle="tab">Cafe</a></li>
+	<li><a href="#member" data-toggle="tab">MyInfo</a></li>
 </ul>
 <div class="tab-content">
 	<div class="tab-pane active fade in" id="cafe">
