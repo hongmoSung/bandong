@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@
 		<h1>찾기 페이지</h1>
 	</div>
 	<div class="center-block" style="width: 500px;">
-		<form class="form-inline" method="POST" action="findId">
+		<form class="form-inline" method="POST" action="findId" onsubmit="return doAction()">
 			<div class="form-group">
 				<label for="email">E-mail</label>
 				<input type="text" name="email" id="email">
@@ -29,6 +30,20 @@
 		<a href="${pageContext.request.contextPath}/login/findPassForm">비밀번호 찾기</a>
 	</div>
 </div>
+
+<script>
+	function doAction() {
+		var email = document.querySelector("#email");
+		
+		if (email.value == "") {
+			alert("email을 입력해주세요")
+			return false;
+		}
+		return true;		
+	}
+		
+</script>
+
 <div>
 	<jsp:include page="/view/include/footer.jsp"/>
 </div>

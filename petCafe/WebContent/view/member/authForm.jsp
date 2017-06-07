@@ -13,55 +13,79 @@
 <div>
 	<jsp:include page="/view/include/topMenu.jsp"/>
 </div>
+<!-- 메일전송 성공여부 매세지 -->
+<input type="text" value="<c:out value="${result}"/>" id="result" name="result" hidden="true">
+
 <div class="container">
 	<div class="center-block text-center" style="width: 500px;">
 		<h1>mail인증 페이지</h1>
 	</div>
 	<div class="center-block" style="width: 500px;">
-		<form class="form-horizontal" method="post" action="authEmail">
+		<form class="form-horizontal" method="post" action="authEmail" onsubmit="return doAction()">
 			<c:choose>
 				<c:when test="${not empty authEmail}">
 					<div class="form-group">
 						<label class="control-label col-sm-3" for="authedMail">email</label>
 						<div class="col-sm-9">
-							<input class="form-contorl" type="text" name="authedMail" id="authedMail" value="${authEmail}"><br>
+							<input class="form-control" type="text" name="authedMail" id="authedMail" value="${authEmail}" readonly="readonly"><br>
 						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-3">인증번호</label>
+						<div class="col-sm-9">
+							<input type="text" id="a"><button type="button" onclick="auth()">인증하기</button><br>
+						</div>
+					</div>
+					<div class="text-center">
+						<input type="text" value="${authNum}" id="b"><br>
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="form-group">
 						<label class="control-label col-sm-3">email 인증</label>
 						<div class="col-sm-9">
-							<input type="text" name="authMail"><button>메일인증</button>
+							<input type="text" name="authMail" id="authMail"><button>메일인증</button>
 						</div>
 					</div>
 				</c:otherwise>
 			</c:choose>
-			
-			<div class="form-group">
-				<label class="control-label col-sm-3">인증번호</label>
-				<div class="col-sm-9">
-					<input type="text" id="a"><button type="button" onclick="auth()">인증하기</button><br>
-				</div>
-			</div>
-			<div class="text-center">
-				<input type="text" value="${authNum}" id="b"><br>
-			</div>
 		</form>
 		<form class="text-center" action="joinForm" method="post">
-			<button class="btn btn-success btn-lg" hidden="true" id="joinButton">가입하러가기</button>
+			<input type="text" value="${authEmail}" name="email" id="email"/><br>
+			<button hidden="true" id="joinButton">가입하러가기</button>
 		</form>
 	</div>
 	
 	
 	<script>
+		var result = document.querySelector("#result");
+		console.log(result.value);
+		if(result.value != "") {
+			alert(result.value);
+		}
+		function doAction() {
+			
+			var email = document.querySelector("#authMail");
+			
+			if(email.value == "") {
+				alert("email을 입력해주세요");
+				return false;
+			}
+			return true;			
+		}
 		function auth() {
 			var inputNum = document.querySelector("#a");
 			var authNum = document.querySelector("#b")
 			var joinButton = document.querySelector("#joinButton");
+			console.dir(joinButton);
 			console.log(inputNum);
+			if(inputNum.value == "") {
+				alert("인증번호를 넣어주세요");
+				return
+			}
 			if(inputNum.value != authNum.value) {
 				alert("인증 실패");
+				return
 			}
 			else if (inputNum.value == authNum.value) {
 				alert("인증 성공");

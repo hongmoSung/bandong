@@ -23,15 +23,21 @@ import common.db.SendMail;
 
 @WebServlet("/member/authEmail")
 public class MemerAuthEmail extends HttpServlet {
-
+	private String result = "";
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("authMail");
 		String authNum = randomNum();
 		System.out.println(email);
-		sendEmail(email.toString(), authNum);
-		request.setAttribute("authNum", authNum);
-		request.setAttribute("authEmail", email);
+		result = sendEmail(email.toString(), authNum);
+		
+		if (result.equals("성공")) {
+			request.setAttribute("authNum", authNum);
+			request.setAttribute("authEmail", email);
+		} else {
+			System.out.println("인증전송 실패...");
+		}
+		request.setAttribute("result", result);
 		
 		// 메일인증을 위해 주소바꿈
 //		RequestDispatcher rd = r	quest.getRequestDispatcher("/view/member/join.jsp");
@@ -40,8 +46,8 @@ public class MemerAuthEmail extends HttpServlet {
 	}
 	
 	//
-	private void sendEmail(String email, String authNum) {
-		new SendMail().sendEmail(email, authNum);
+	private String sendEmail(String email, String authNum) {
+		return new SendMail().sendEmail(email, authNum);
 	}
 	
 	// 난수 발생

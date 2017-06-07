@@ -21,7 +21,8 @@ public class SendMail {
 	String id = "";
 	String pass = "";
 	
-	public void sendEmail(String email, String authNum) {
+	public String sendEmail(String email, String authNum) {
+		String result = "성공";
 		
 		String to1 = email;
 		String content = "인증번호 [" + authNum + "]";
@@ -59,11 +60,13 @@ public class SendMail {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("sendMail에서 에러");
+			return result = "실패";
 		}
+		return result;
 	}
 	
-	public void sendEmailForID(String email, String userId) {
-		
+	public String sendEmailForID(String email, String userId) {
+		String result = "매일 전송 성공!";
 		String to1 = email;
 		
 		String content = "회원님의 아이디 [" + userId + "]";
@@ -99,9 +102,11 @@ public class SendMail {
 			Transport.send(msg);
 			
 		} catch (Exception e) {
-			e.printStackTrace();
 			System.out.println("sendMail에서 에러");
+			e.printStackTrace();
+			return result = "실패..";
 		}
+		return result;
 	}
 
 	public void requestTempPass(String email, String memberId, String tempPass) {

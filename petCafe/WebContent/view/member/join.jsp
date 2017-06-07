@@ -17,7 +17,7 @@
 		<h1>회원가입</h1>
 	</div>
 	<div class="center-block" style="width: 500px;">
-		<form class="form-horizontal" method="POST" action="join">
+		<form class="form-horizontal" method="POST" action="join" onsubmit="return doAction()">
 			<div class="form-group">
 				<label class="control-label col-sm-3">id</label>
 				<div class="col-sm-9">
@@ -27,19 +27,19 @@
 			<div class="form-group">
 				<label class="control-label col-sm-3">pass</label>
 				<div class="col-sm-9">
-					<input class="form-control" class="form-control" type="text" name="pass">
+					<input class="form-control" class="form-control" type="text" name="pass" id="pass">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-3">nickName</label>
 				<div class="col-sm-9">
-					<input class="form-control" type="text" name="nickName">
+					<input class="form-control" type="text" name="nickName" id="nickName">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-3">email</label>
 				<div class="col-sm-9">
-					<input class="form-control" type="text" name="email" id="email">
+					<input class="form-control" type="text" name="email" id="email" value="${email}" readonly="readonly">
 				</div>
 			</div>
 			<div class="form-group">
@@ -54,6 +54,38 @@
 		</form>
 	</div>
 </div>
+
+<script>
+	function doAction() {
+		var id = document.querySelector("#memberId");
+		var pass = document.querySelector("#pass");
+		var nickName = document.querySelector("#nickName");
+		var email = document.querySelector("#email");
+		var phoneNum = document.querySelector("#phoneNum");
+		
+		if(id.value == "") {
+			alert("id를 입력하세요");
+			return false;
+		} 
+		if(pass.value == "") {
+			alert("pass를 입력하세요");
+			return false;
+		} 
+		if(nickName.value == "") {
+			alert("nickName를 입력하세요");
+			return false;
+		} 
+		if(email.value == "") {
+			alert("email를 입력하세요");
+			return false;
+		} 
+		if(phoneNum.value == "") {
+			alert("phoneNum를 입력하세요");
+			return false;
+		} 
+		return true;
+	}
+</script>
 <div>
 	<jsp:include page="/view/include/footer.jsp"/>
 </div>

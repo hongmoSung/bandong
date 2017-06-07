@@ -14,6 +14,7 @@ public class MemberJoinForm extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("email", request.getParameter("email"));
 		RequestDispatcher rd = request.getRequestDispatcher("/view/member/join.jsp");
 		rd.forward(request, response);	
 	}
