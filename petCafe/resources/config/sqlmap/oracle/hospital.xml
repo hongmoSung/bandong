@@ -10,6 +10,11 @@
 		 where member_id = #{memberId}
 	</select>
 	
+	<select id="selectHospitalList" resultMap="hospitalMap">
+		select *
+		  from hospital
+	</select>
+	
 	<resultMap type="Hospital" id="hospitalMap">
 		<result column="hospital_id" property="hospitalId"/>
 		<result column="license_no" property="licenseNo"/>

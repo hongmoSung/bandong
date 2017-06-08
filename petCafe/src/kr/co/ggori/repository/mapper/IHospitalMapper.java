@@ -11,4 +11,5 @@ public interface IHospitalMapper {
 	public void deleteHospital(int delId) throws Exception;
 	public List<HospitalVO> searchHospital(HospitalVO hospital) throws Exception;
 	public HospitalVO selectHospital(String memberId) throws Exception;
+	public List<HospitalVO> selectHospitalList() throws Exception;
 }

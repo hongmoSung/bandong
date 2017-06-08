@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +14,11 @@
 	<jsp:include page="/view/include/topMenu.jsp"/>
 </div>
 <div class="container">
+<c:forEach items="${hospitals}" var="hospital">
 		<input type="text" value="${hospital.hospitalId}" hidden="true"><br>
 		<input type="text" value="${hospital.longitude}" id="longitude" hidden="true"><br>
 		<input type="text" value="${hospital.latitude}" id="latitude" hidden="true"><br>
+</c:forEach>
 	<div class="center-block text-center" style="width: 500px;">
 		<h1>나의 병원정보</h1>
 	</div>

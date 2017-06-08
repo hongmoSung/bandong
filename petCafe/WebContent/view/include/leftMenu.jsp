@@ -70,7 +70,8 @@
 		<div id="hospitalList" class="panel-collapse collapse">
 			<div class="panel-body">
 				<a href="${pageContext.request.contextPath}/hospital/joinForm">우리 병원 등록</a><br>
-				<a href="${pageContext.request.contextPath}/hospital/hospitalInfo">병원 정보 확인</a>
+				<a href="${pageContext.request.contextPath}/hospital/hospitalInfo">병원 정보 확인</a><br>
+				<a href="${pageContext.request.contextPath}/hospital/hospitalList">모든병원</a><br>
 			</div>
 		</div>
 	</div>
