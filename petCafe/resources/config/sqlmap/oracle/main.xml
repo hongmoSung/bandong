@@ -17,15 +17,15 @@
 		<result column="nick_name" property="nickName"/>
 	</resultMap>
 	
-<!-- 	<resultMap type="File" id="fileMap"> -->
-<!-- 		<result column="file_id" property="fileId"/> -->
-<!-- 		<result column="file_path" property="filePath"/> -->
-<!-- 		<result column="origin_name" property="originName"/> -->
-<!-- 		<result column="system_name" property="systemName"/> -->
-<!-- 		<result column="file_size" property="fileSize"/> -->
-<!-- 		<result column="board_no" property="boardNo"/> -->
-<!-- 		<result column="member_id" property="memberId"/> -->
-<!-- 	</resultMap> -->
+	<resultMap type="File" id="fileMap">
+		<result column="file_id" property="fileId"/>
+		<result column="file_path" property="filePath"/>
+		<result column="origin_name" property="originName"/>
+		<result column="system_name" property="systemName"/>
+		<result column="file_size" property="fileSize"/>
+		<result column="board_no" property="boardNo"/>
+		<result column="member_id" property="memberId"/>
+	</resultMap>
 	
 <!-- 	<resultMap type="Member" id="memberMap"> -->
 <!-- 		<result column="member_id" property="memberId"/> -->
@@ -88,11 +88,12 @@
 		 where member_id = #{memberId}
 	</select>
 	
-<!-- 	<select id="" parameterType="int" resultType="File"> -->
-<!-- 		select * -->
-<!-- 		  from file_form -->
-<!-- 		 where board_no = #{boardNo} -->
-<!-- 	</select> -->
+	<select id="imageList" parameterType="int" resultMap="fileMap">
+		select *
+		  from file_form
+		 where board_no = #{boardNo}
+		   and rownum &lt; 2
+	</select>
 
 <!-- 	<select id="boardList" resultType="string"> -->
 <!-- 		select distinct b.board_type -->
