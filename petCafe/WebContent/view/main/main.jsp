@@ -142,7 +142,7 @@
 										</div>
 									</c:when>
 									<c:otherwise>
-										<img class="imgList" src="${uploadPath}/defaultImage.JPG"/>
+										<img class="imgList" src="${pageContext.request.contextPath}/images/no-image.jpg"/>
 										<div class="caption">
 											<p><c:out value="등록된 이미지가 없습니다"/></p>
 											<p></p>
