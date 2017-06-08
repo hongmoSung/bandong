@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -7,7 +9,7 @@
 <title>풀캘린더</title>
 <style type="text/css">
     body {
-        margin :40px 10px;
+        margin : 40px 10px;
         padding : 0;
         font-family : "Lucida Grande", Helvetica, Arial, Verdana,sans-serif;
         font-size : 14px;
@@ -16,65 +18,48 @@
         max-width : 900px;
         margin : 0 auto;
     }
+    img {
+    	width : 120px;
+    	height : 80px;
+    }
     
     .fc-day-top.fc-sat.fc-past { color:#0000FF; }
     .fc-day-top.fc-sat.fc-future { color:#0000FF; }
     .fc-day-top.fc-sun.fc-past { color:#FF0000; }
     .fc-day-top.fc-sun.fc-future { color:#FF0000; }
 </style>
-<link href="../../css/fullcalendar.css" rel="stylesheet"/>
-<link href="../../css/fullcalendar.print.css" rel="stylesheet" media="print"/>
-<script type="text/javascript" src="../../css/moment.min.js"></script>
-<script type="text/javascript" src="../../css/jquery.min.js"></script>
-<script type="text/javascript" src="../../css/fullcalendar.js"></script>
-<script type="text/javascript" src="../../css/locale-all.js"></script>
-<script type="text/javascript">
-// 	$(function () {
-// 		calendarEvent();
-// 	});
-// 	function calendarEvent(eventData) {
-// 		$("#calendar").html("");
-// 		var date = new Date();
-// 		var d = date.getDate();
-// 		var m = date.getMonth();
-// 		var y =  date.getFullYear();
-// 		var calendar = $('#calendar').fullCalendar({
-// 			header: {
-// 				left: "",
-// 				center: "title",
-// 				right: "today prev,next"
-// 			},
-// 			titleFormat: {
-// 				month: "yyyy년 MMMM",
-// 				week: "[yyyy] MMM dd일{[yyyy] MMM dd일}",
-// 				day: "yyyy년 MMM d일 dddd"
-// 			},
-// 			monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-// 			monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-// 		    dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
-// 		    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-// 			buttonText: {
-// 				today: "오늘",
-// 				month: "월별",
-// 				week: "주별",
-// 				day: "일별"
-// 			},
-// 			events: eventData,
-// 			timeFormat: "HH:mm"
-// 		});
-// 		alert("test");
-// 	}
+<link href="${pageContext.request.contextPath}/css/fullcalendar.css" rel="stylesheet"/>
+<link href="${pageContext.request.contextPath}/css/fullcalendar.print.css" rel="stylesheet" media="print"/>
+<script type="text/javascript" src="${pageContext.request.contextPath}/css/moment.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/css/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/css/fullcalendar.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/css/locale-all.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/css/gcal.js"></script>
 
-	var testObj = {
-		"title": "testtesttest",
-		"start": "2017-06-20"
-	};
+<script type="text/javascript">
+	var testObj = [{
+			  start : "2017-06-16"
+			, title : "휴원일"
+			, color : "#FF0000"
+	}];
+	
+	var testArr = [
+		<c:forEach var="index" begin="0" end="${fn:length(list) - 1}" varStatus="loop">
+			<c:if test="${not loop.first}">,</c:if>
+			{
+				<c:if test="${not empty list[index].reserDate}">
+					"start":"<c:out value='${list[index].reserDate}'/>T<c:out value='${list[index].reserTime}'/>",
+					
+				</c:if>
+				"title": "테스트 중임"
+			}
+		</c:forEach>
+	];
+	
 // 	testObj["backgroundColor"] = "#99CCFF";
 // 	testObj["rendering"] = "background";
-	testObj["end"] = "2017-06-22";
-	
-	
-	
+
+/*
 	jQuery(document).ready(function() {
 		jQuery("#calendar").fullCalendar({
 			  locale : "ko"
@@ -138,11 +123,63 @@
 //                     , start : "2016-05-28"
 //                 },
                 testObj
+                
+//                 if(true) {
+//                 	console.log("console test");
+//                 }
+                
+//                 if(testArr.length != 0) {
+//                 	console.log("if enter");
+//                 	for(var arrIndex = 0; arrIndex < testArr.length; arrIndex++) {
+//                 		console.log("arrIndex", arrIndex);
+//                 	}
+//                 }
             ]
         });
+*/
+	jQuery(document).ready(function() {
+		jQuery("#calendar").fullCalendar({
+			  locale : "ko"
+			, editable : true
+	        , eventLimit : true
+	        , eventSources : [
+				{	
+					  events : testArr
+				},
+				{
+					  events : testObj
+// 				 	, imageurl : "${pageContext.request.contextPath}/images/no-diagnosis.jpg"
+// 				 	, backgroundColor : "#99CCFF"
+// 					, rendering : "background"
+				},
+				{
+					  events : [{
+							imageurl : "${pageContext.request.contextPath}/images/no-diagnosis.jpg"
+							, start : "2017-06-23"
+							, color : "#FFFFFF"
+					  }]
+				},
+				{
+					  googleCalendarId : "ko.south_korea#holiday@group.v.calendar.google.com"
+					, className : "koHolidays"
+					, color : "#FF0000"
+				}
+	        ]
+			, eventRender : function (event, eventElement) {
+				if(event.imageurl) {
+					eventElement.find("span.fc-title").prepend("<center><img src='" + event.imageurl + "'><center>");
+				}
+			}
+			, dayClick : function(date, jsEvent, view) {
+				alert(date.format("YYYY/MM/DD"));
+				$(this).css('background-color', '#99CCFF');
+			}
+			, googleCalendarApiKey : "AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE" 
+
+    	});
     });
 </script>
 <body>
-    <div id="calendar"></div>
+	<div id="calendar"></div>
 </body>
 </html>
