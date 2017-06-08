@@ -45,7 +45,7 @@
 		</tr>
 		</c:forEach>
 	</table>
-	<a href="WriteFormServlet">글쓰기</a>
+	<a href="BoardInsertForm">글쓰기</a>
 </div>
 <div><c:import url="/view/include/footer.jsp"/> </div>
 </div>

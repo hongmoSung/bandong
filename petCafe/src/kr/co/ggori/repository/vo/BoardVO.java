@@ -74,6 +74,11 @@ public class BoardVO {
 	public void setFileId(int fileId) {
 		this.fileId = fileId;
 	}
-	
+	@Override
+	public String toString() {
+		return "BoardVO [boardNo=" + boardNo + ", boardType=" + boardType + ", title=" + title + ", content=" + content
+				+ ", regDate=" + regDate + ", hits=" + hits + ", recommends=" + recommends + ", memberId=" + memberId
+				+ ", fileId=" + fileId + ", nickName=" + nickName + "]";
+	}
 }
 

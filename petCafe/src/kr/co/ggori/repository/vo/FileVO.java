@@ -5,10 +5,9 @@ public class FileVO {
 	private String filePath;
 	private String originName;
 	private String systemName;
-	private int fileSize;
-	private int boardNo;
+	private long fileSize;
 	private String memberId;
-	
+	private int boardNo;
 	public int getFileId() {
 		return fileId;
 	}
@@ -33,17 +32,11 @@ public class FileVO {
 	public void setSystemName(String systemName) {
 		this.systemName = systemName;
 	}
-	public int getFileSize() {
+	public long getFileSize() {
 		return fileSize;
 	}
-	public void setFileSize(int fileSize) {
+	public void setFileSize(long fileSize) {
 		this.fileSize = fileSize;
-	}
-	public int getBoardNo() {
-		return boardNo;
-	}
-	public void setBoardNo(int boardNo) {
-		this.boardNo = boardNo;
 	}
 	public String getMemberId() {
 		return memberId;
@@ -51,5 +44,12 @@ public class FileVO {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-		
+	public int getBoardNo() {
+		return boardNo;
+	}
+	public void setBoardNo(int boardNo) {
+		this.boardNo = boardNo;
+	}
+	
+	
 }
