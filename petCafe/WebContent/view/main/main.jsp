@@ -8,7 +8,8 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
+<title>꼬리 카페</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 <!-- Bootstrap -->
 <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -20,14 +21,28 @@
 		margin-top: 10px;
 	}
 	.thumbnail {
- 		border: none;
+		border: none; 
 		font-size: 12px;
+		width: 120px;
+		height: 160px;
+		margin-botton: 0px;
 	}
-	.thumnail>img {
-		max-width: 100%; 
-		height: 140px;
+	.imgList {
+		width: 140px;
+		height: auto;
 	}
-	.col-sm-8.
+
+	#main-carousel {
+		margin-top: 40px;
+	}
+	.carousel-control {
+		text-shadow: none;
+		opacity: 0;
+	}
+	.col-sm-8.col-md-4 {
+		padding-right: 4px;
+		padding-left: 4px;
+	}
 	
 </style>
 
@@ -73,7 +88,7 @@
 	
 		<div class="col-md-5 cont">
 			<div>
-				공지사항<br>
+				<a href="${pageContext.request.contextPath}/board/noticeList">공지사항</a><br>
 				<table class="table table-condensed">
 					<c:forEach var="board" items="${boardListNotice}">
 						<tr>
@@ -123,7 +138,7 @@
 			</div>
 		</div>
 		<div class="col-md-5 cont">
-			<div>
+		
 				이미지 게시판<br>
 				<div class="row">
 					<c:forEach var="index" begin="0" end="5">
@@ -137,8 +152,8 @@
 									<c:when test="${not empty fileList[index]}">
 										<img class="imgList" src="${uploadPath}${fileList[index].filePath}/${fileList[index].systemName}"/>
 										<div class="caption">
-											<p><c:out value="${boardListImage[index].title}"/><p>
-											<p><c:out value="${boardListImage[index].nickName}"/></p>
+											<c:out value="${boardListImage[index].title}"/><br>
+											<c:out value="${boardListImage[index].nickName}"/>
 										</div>
 									</c:when>
 									<c:otherwise>
@@ -161,6 +176,20 @@
 		<c:import url="/view/include/footer.jsp"/>
 	</div>
 </div>
+
+<script>
+	var divObj = $(".thumbnail");
+	var imgObj = $(".imgList");
+	var divAspect = 110 / 140;
+	for(var index = 0; index < imgObj.length; index++) {
+		var imgAspect = imgObj[index].height / imgObj[index].width;
+		var imgWidthActual = divObj.offsetHeight / imgAspect;
+	    var imgWidthToBe = divObj.offsetHeight / divAspect;
+	    var marginLeft = -Math.round((imgWidthActual - imgWidthToBe) / 2);
+	    imgObj[index].style.cssText = 'width: auto; height: 110px; margin-left: '
+	                      + marginLeft + 'px;';
+	}
+</script>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
