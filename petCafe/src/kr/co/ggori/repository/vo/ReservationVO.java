@@ -4,13 +4,13 @@ public class ReservationVO {
 	
 	private int reserId;
 	private String reserDate;
-	private int reserTime;
-	private String careType;
+	private String reserTime;
 	private String detail;
 	private String reserName;
 	private int hospitalId;
 	private String memberId;
-
+	private String careTypeId;
+	
 	public int getReserId() {
 		return reserId;
 	}
@@ -23,17 +23,11 @@ public class ReservationVO {
 	public void setReserDate(String reserDate) {
 		this.reserDate = reserDate;
 	}
-	public int getReserTime() {
+	public String getReserTime() {
 		return reserTime;
 	}
-	public void setReserTime(int reserTime) {
+	public void setReserTime(String reserTime) {
 		this.reserTime = reserTime;
-	}
-	public String getCareType() {
-		return careType;
-	}
-	public void setCareType(String careType) {
-		this.careType = careType;
 	}
 	public String getDetail() {
 		return detail;
@@ -58,6 +52,12 @@ public class ReservationVO {
 	}
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
+	}
+	public String getCareTypeId() {
+		return careTypeId;
+	}
+	public void setCareTypeId(String careTypeId) {
+		this.careTypeId = careTypeId;
 	}
 
 }

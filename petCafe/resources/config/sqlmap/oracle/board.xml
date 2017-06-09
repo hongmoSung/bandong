@@ -31,9 +31,9 @@
     
     <insert id="insertBoard" parameterType="Board">
     	insert into board_form(
-    		board_No, title, content, boardType, memberId
+    		board_No, title, content, board_Type, member_Id
     	) values (
-    		s_board_board_No.nextval, #{title}, #{content}, #{boardType}, #{memberId}
+    		S_BOARD_NO.nextval, #{title}, #{content}, #{boardType}, #{memberId}
     	)
     </insert>
     
@@ -55,6 +55,39 @@
 		  from member
 		 where member_id = #{memberId}
 	</select>
+	
+   	<resultMap type="File" id="fileMap">
+		<result column="File_Id" property="fileId"/>
+		<result column="File_Path" property="filePath"/>
+		<result column="Origin_Name" property="originName"/>
+		<result column="System_name" property="systemName"/>
+		<result column="File_Size" property="FileSize"/>
+		<result column="member_id" property="memberId"/>
+		<result column="board_no" property="boardNo"/>
+	</resultMap>
+	
+	<insert id="insertFile" parameterType="File">
+	   	<selectKey resultType="integer" keyProperty="no" order="BEFORE">
+	   		select s_board_board_No.currval from dual
+	   	</selectKey>
+	    insert into file_form(           
+		    File_Id, file_path, origin_name, system_name, file_size, board_no, member_id
+		) values (                       
+		    s_board_file_id.nextval, #{filePath}, #{originName}, #{systemName}, #{fileSize} , #{boardNo}, #{memberID}
+		)                               
+	</insert>
+	
+	<select id="selectFile" parameterType="integer" resultMap="fileMap">
+		select *
+		  from file_form
+		 where board_no=#{boardNo} 
+	</select>
+	
+	<delete id="deleteFile" parameterType="int">
+	    delete
+	      from file_form
+	     where board_no=#{boardNo} 
+	</delete>
     
     
 </mapper>

@@ -19,7 +19,7 @@ import kr.co.ggori.repository.mapper.IMainMapper;
 import kr.co.ggori.repository.vo.BoardVO;
 import kr.co.ggori.repository.vo.MemberVO;
 
-@WebServlet("/servlet/NoticeList")
+@WebServlet("/board/noticeList")
 public class NoticeList extends HttpServlet{
 	private SqlSession session;
 	private IBoardMapper mapper;

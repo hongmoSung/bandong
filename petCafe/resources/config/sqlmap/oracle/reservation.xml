@@ -8,11 +8,11 @@
 		<result column="reser_id" property="reserId"/>
 		<result column="reser_date" property="reserDate"/>
 		<result column="reser_time" property="reserTime"/>
-		<result column="care_type" property="careType"/>
 		<result column="detail" property="detail"/>
 		<result column="reser_name" property="reserName"/>
 		<result column="hospital_id" property="hospitalId"/>
 		<result column="member_id" property="memberId"/>
+		<result column="care_type_id" property="careTypeId"/>
 	</resultMap>
 	
 	<select id="myReservation" parameterType="string" resultMap="reserMap">
