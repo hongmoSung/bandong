@@ -41,7 +41,7 @@ public class HospitalJoin extends HttpServlet{
 			int result = mapper.insertHospital(hospital);
 			if (result != 0) {
 				session.commit();
-				RequestDispatcher rd = request.getRequestDispatcher("/main/Main");
+				RequestDispatcher rd = request.getRequestDispatcher("/hospital/hospitalInfo");
 				rd.forward(request, response);
 			}
 		} catch(Exception e) {

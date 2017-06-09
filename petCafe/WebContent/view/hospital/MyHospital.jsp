@@ -41,14 +41,9 @@
 		<hr>
 	</c:forEach>
 	
-	<!-- 주소 검색을 위한 태그와 버튼-->
-	<input type="text" id="sample5_address" placeholder="주소">
-	<input type="button" onclick="ffffff()" value="주소 검색"><br>
-	<!-- 맵이 나오는 위치 -->
 	<div id="map" style="width:100%;height:350px;"></div>
-	<!-- 우편검색을 위한 창 -->
-	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-	<script src="//apis.daum.net/maps/maps3.js?apikey=b3aef8f92a8bdd9510a7905608389df3&libraries=services"></script>
+
+	<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=b3aef8f92a8bdd9510a7905608389df3"></script>
 	<script>
 		var hospitalId = document.querySelectorAll("#hospitalId");
 		var hospitalName = document.querySelectorAll("#name");
@@ -73,8 +68,8 @@
 		
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 		    mapOption = { 
-		        center: new daum.maps.LatLng(37.4921822193, 127.057411875), // 지도의 중심좌표
-		        level: 3 // 지도의 확대 레벨
+		        center: new daum.maps.LatLng(35.5549272063, 129.3204590667), // 지도의 중심좌표
+		        level: 16 // 지도의 확대 레벨
 		    };
 		
 		var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -125,8 +120,7 @@
 		    iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 			// 인포윈도우를 생성합니다
 			infowindow[i] = new daum.maps.InfoWindow({
-			    content : "<div>" + infos[i].title + "<br>" + infos[i].hospitalName + "<br>" + infos[i].address + 
-			    "<br><a href='${pageContext.request.contextPath}/reservation/insert?hospitalId=" + infos[i].title +"'>예약하기</a></div>",
+			    content : "<div>" + infos[i].title + "<br>" + infos[i].hospitalName + "<br>" + infos[i].address + "</div>",
 			    removable : iwRemoveable
 			});
 			// 마커에 클릭이벤트를 등록합니다
@@ -140,54 +134,6 @@
 			      infowindow[i].open(map, marker[i]);  
 			});
 		}
-		
-		
-		
-		//주소-좌표 변환 객체를 생성
-	    var geocoder = new daum.maps.services.Geocoder();
-		//검색을 위한 함수
-		function ffffff() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var fullAddr = data.address; // 최종 주소 변수
-                var extraAddr = ''; // 조합형 주소 변수
-
-                // 기본 주소가 도로명 타입일때 조합한다.
-                if(data.addressType === 'R'){
-                    //법정동명이 있을 경우 추가한다.
-                    if(data.bname !== ''){
-                        extraAddr += data.bname;
-                    }
-                    // 건물명이 있을 경우 추가한다.
-                    if(data.buildingName !== ''){
-                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
-                }
-
-                // 주소 정보를 해당 필드에 넣는다.
-                document.getElementById("sample5_address").value = fullAddr;
-                // 주소로 좌표를 검색
-                geocoder.addr2coord(data.address, function(status, result) {
-                    // 정상적으로 검색이 완료됐으면
-                    if (status === daum.maps.services.Status.OK) {
-                        // 해당 주소에 대한 좌표를 받아서
-                        var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
-                        // 지도를 보여준다.
-                        mapContainer.style.display = "block";
-                        map.relayout();
-                        // 지도 중심을 변경한다.
-                        map.setCenter(coords);
-                        // 마커를 결과값으로 받은 위치로 옮긴다.
-//                         marker.setPosition(coords)
-                    }
-                });
-            }
-        }).open();
-    }
 	</script>
 </body>
 </html>

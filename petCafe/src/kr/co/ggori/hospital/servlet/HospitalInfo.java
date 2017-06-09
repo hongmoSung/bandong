@@ -35,12 +35,13 @@ public class HospitalInfo extends HttpServlet{
 		String memberId = member.getMemberId();
 		
 		try {
-			HospitalVO hospital = mapper.selectHospital(memberId);
+			List<HospitalVO> hospitals = mapper.selectHospital(memberId);
 //			List<HospitalVO> hospitals = mapper.selectHospital(memberId);
-			request.setAttribute("hospital", hospital);
+			request.setAttribute("hospitals", hospitals);
 			
-			if (hospital != null) {
-				RequestDispatcher rd = request.getRequestDispatcher("/view/hospital/hospitalInfo.jsp");
+			if (hospitals != null) {
+//				RequestDispatcher rd = request.getRequestDispatcher("/view/hospital/hospitalInfo.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/view/hospital/MyHospital.jsp");
 				rd.forward(request, response);
 			}
 			

@@ -8,7 +8,7 @@
 <script src="//apis.daum.net/maps/maps3.js?apikey=b3aef8f92a8bdd9510a7905608389df3&libraries=services"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>s
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>	
 <body>
 <div>
@@ -90,7 +90,7 @@
                 // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
                 var fullAddr = data.address; // 최종 주소 변수
                 var extraAddr = ''; // 조합형 주소 변수
-				alert(fullAddr);
+// 				alert(fullAddr);
                 // 기본 주소가 도로명 타입일때 조합한다.
                 if(data.addressType === 'R'){
                     //법정동명이 있을 경우 추가한다.
@@ -113,8 +113,8 @@
                     if (status === daum.maps.services.Status.OK) {
                         // 해당 주소에 대한 좌표를 받아서
                         var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
-                       	alert(result.addr[0].lat);// 위도
-                       	alert(result.addr[0].lng);// 경도
+//                        	alert(result.addr[0].lat);// 위도
+//                        	alert(result.addr[0].lng);// 경도
                        	
                        	// 인풋텍스트에 넣어주기
                        	var lat = document.querySelector("#lat");
