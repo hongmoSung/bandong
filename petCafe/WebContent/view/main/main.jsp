@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -16,24 +17,9 @@
 <link href="../css/custom2.css" rel="stylesheet">
 
 <style>
-	.row {
-  		margin-bottom: 4px;
-		margin-top: 10px;
-	}
-	.thumbnail {
-		border: none; 
-		font-size: 12px;
-		width: 120px;
-		height: 160px;
-		margin-botton: 0px;
-	}
 	.imgList {
 		width: 140px;
 		height: auto;
-	}
-
-	#main-carousel {
-		margin-top: 40px;
 	}
 	.carousel-control {
 		text-shadow: none;
@@ -43,7 +29,12 @@
 		padding-right: 4px;
 		padding-left: 4px;
 	}
-	
+	.table > tbody > tr > td {
+		text-align: center;
+	}
+	.table > tbody > tr > #title {
+		text-align: left;
+	}
 </style>
 
 </head>
@@ -54,7 +45,7 @@
 		<c:import url="/view/include/topMenu.jsp"/>
 	</div>
 	
-	<div class="row">
+	<div class="row" id="firstDiv">
 		<div id="main-carousel" class="carousel slide">
 			<ol class="carousel-indicators">
 				<li data-target="#main-carousel" data-slide-to="0" class="active"></li>
@@ -87,13 +78,19 @@
 		</div>
 	
 		<div class="col-md-5 cont">
+			<jsp:useBean id="now" class="java.util.Date"/>
+			<fmt:formatDate value="${now}" var="today" pattern="d"/>
 			<div>
 				<a href="${pageContext.request.contextPath}/board/noticeList">공지사항</a><br>
-				<table class="table table-condensed">
+				<table class="table table-condensed table-hover">
 					<c:forEach var="board" items="${boardListNotice}">
 						<tr>
-							<td>
+							<td id="title">
+								<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="d"/>
 								<c:out value="${board.title}"/>
+								<c:if test="${today-writeDate == 0}">
+									<span class="new">new</span>
+								</c:if>
 							</td>
 							<td>
 								<c:out value="${board.nickName}"/>
@@ -106,11 +103,15 @@
 		<div class="col-md-5 cont">
 			<div>
 				분양 게시판<br>
-				<table class="table table-condensed">
+				<table class="table table-condensed table-hover">
 					<c:forEach var="board" items="${boardListSale}">
 						<tr>
-							<td>
+							<td id="title">
+								<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="d"/>
 								<c:out value="${board.title}"/>
+								<c:if test="${today-writeDate == 0}">
+									<span class="new">new</span>
+								</c:if>
 							</td>
 							<td>
 								<c:out value="${board.nickName}"/>
@@ -123,11 +124,15 @@
 		<div class="col-md-5 cont">
 			<div>
 				양육 TIP 게시판<br>
-				<table>
+				<table class="table table-condensed table-hover">
 					<c:forEach var="board" items="${boardListTip}">
 						<tr>
-							<td>
+							<td id="title">
+								<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="d"/>
 								<c:out value="${board.title}"/>
+								<c:if test="${today-writeDate == 0}">
+									<span class="new">new</span>
+								</c:if>
 							</td>
 							<td>
 								<c:out value="${board.nickName}"/>
@@ -138,7 +143,7 @@
 			</div>
 		</div>
 		<div class="col-md-5 cont">
-		
+			<div>
 				이미지 게시판<br>
 				<div class="row">
 					<c:forEach var="index" begin="0" end="5">
@@ -152,7 +157,22 @@
 									<c:when test="${not empty fileList[index]}">
 										<img class="imgList" src="${uploadPath}${fileList[index].filePath}/${fileList[index].systemName}"/>
 										<div class="caption">
-											<c:out value="${boardListImage[index].title}"/><br>
+											<c:set value="${boardListImage[index].title}" var="title"/>
+											<c:choose>
+												<c:when test="${fn:length(title) >= 8}">
+													<c:set value="${fn:substring(title, 0, 8)}..." var="subTitle"/>
+													<c:out value="${subTitle}"/>
+												</c:when>
+												<c:otherwise>
+													<c:out value="${title}"/>
+												</c:otherwise>
+											</c:choose>
+<%-- 											<c:out value="${boardListImage[index].title}"/> --%>
+											<fmt:formatDate value="${boardListImage[index].regDate}" var="writeDate" pattern="d"/>
+											<c:if test="${today-writeDate == 0}">
+												<span class="new">new</span>
+											</c:if>
+											<br>
 											<c:out value="${boardListImage[index].nickName}"/>
 										</div>
 									</c:when>

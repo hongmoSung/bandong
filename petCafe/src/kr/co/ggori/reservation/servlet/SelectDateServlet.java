@@ -54,9 +54,6 @@ public class SelectDateServlet extends HttpServlet {
 		reser3.setReserTime("13:00:00");
 		list.add(reser3);
 		
-		for(int i = 0; i < list.size(); i++) {
-			System.out.println( list.get(i).getReserDate() );
-		}
 		//------------------------------
 		try {
 //			list = reserMap.hospitalReservation( Integer.parseInt(hospitalId) );

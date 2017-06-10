@@ -34,13 +34,13 @@
 	</div>
 </div>
 
-<div>
+<div id="cafeBtn">
 	<c:choose>
 		<c:when test="${not empty member}">
-			<a href="${pageContext.request.contextPath}/board/write">카페 글쓰기</a>
+			<a href="${pageContext.request.contextPath}/board/write" class="btn btn-primary btn-xl page-scroll">카페 글쓰기</a>
 		</c:when>
 		<c:otherwise>
-			<a href="${pageContext.request.contextPath}/member/authForm">카페 가입하기</a>
+			<a href="${pageContext.request.contextPath}/member/authForm" class="btn btn-primary btn-xl page-scroll">카페 가입하기</a>
 		</c:otherwise>
 	</c:choose>
 </div>

@@ -7,6 +7,19 @@
 <head>
 <meta charset="UTF-8">
 <title>풀캘린더</title>
+
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/custom2.css" rel="stylesheet">
+
+<link href="${pageContext.request.contextPath}/css/fullcalendar.css" rel="stylesheet"/>
+<link href="${pageContext.request.contextPath}/css/fullcalendar.print.css" rel="stylesheet" media="print"/>
+<script type="text/javascript" src="${pageContext.request.contextPath}/css/moment.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/css/fullcalendar.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/css/locale-all.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/css/gcal.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+
 <style type="text/css">
     body {
         margin : 40px 10px;
@@ -28,13 +41,6 @@
     .fc-day-top.fc-sun.fc-past { color:#FF0000; }
     .fc-day-top.fc-sun.fc-future { color:#FF0000; }
 </style>
-<link href="${pageContext.request.contextPath}/css/fullcalendar.css" rel="stylesheet"/>
-<link href="${pageContext.request.contextPath}/css/fullcalendar.print.css" rel="stylesheet" media="print"/>
-<script type="text/javascript" src="${pageContext.request.contextPath}/css/moment.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/css/jquery.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/css/fullcalendar.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/css/locale-all.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/css/gcal.js"></script>
 
 <script type="text/javascript">
 	var testObj = [{
@@ -137,6 +143,7 @@
             ]
         });
 */
+	var selectedDate;
 	jQuery(document).ready(function() {
 		jQuery("#calendar").fullCalendar({
 			  locale : "ko"
@@ -160,6 +167,13 @@
 					  }]
 				},
 				{
+					  events : [{
+						  start : "2017-06-20"
+						  , title : "aaaaa"
+					  }]
+					  
+				},
+				{
 					  googleCalendarId : "ko.south_korea#holiday@group.v.calendar.google.com"
 					, className : "koHolidays"
 					, color : "#FF0000"
@@ -170,16 +184,52 @@
 					eventElement.find("span.fc-title").prepend("<center><img src='" + event.imageurl + "'><center>");
 				}
 			}
+			, eventMouseover : function (event, jsEvent) {
+// 				$(this).attr("title", "Popover title");
+// 				$(this).attr("data-container", "body"); 
+// 				$(this).attr("data-toggle", "popover");
+// 				$(this).attr("data-placement", "right"); 
+// 				$(this).attr("data-content", "test Text");
+// 				$(this).attr("data-trigger", "hover");
+				
+// 				$('[data-toggle="popover"]').popover({container: "body"});
+			}
 			, dayClick : function(date, jsEvent, view) {
-				alert(date.format("YYYY/MM/DD"));
+				if(selectedDate) {
+					$(selectedDate).css('background-color', '#FFFFFF');
+				}
+				selectedDate = this;
+				$(this).attr("title", date.format("YYYY-MM-DD"));
+				$(this).attr("data-container", "body"); 
+				$(this).attr("data-toggle", "popover");
+				$(this).attr("data-placement", "right"); 
+				$(this).attr("data-content", "test Text");
+				$(this).attr("data-trigger", "hover");
+				
+				$('[data-toggle="popover"]').popover({container: "body"});
 				$(this).css('background-color', '#99CCFF');
+				console.log(this);
 			}
 			, googleCalendarApiKey : "AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE" 
-
     	});
     });
 </script>
+<script>
+	$(document).ready(function() {
+		$('[data-toggle="popover"]').popover({container: "body"});
+	});
+</script>
 <body>
-	<div id="calendar"></div>
+	<div class="container">
+		<div>
+			<c:import url="/view/include/topMenu.jsp"/>
+		</div>
+		<div class="row" id="firstDiv">
+			<div class="col-md-2">
+				<c:import url="/view/include/leftMenu.jsp"/>
+			</div>
+			<div id="calendar" class="col-md-10 cont"></div>
+		</div>
+	</div>
 </body>
 </html>
