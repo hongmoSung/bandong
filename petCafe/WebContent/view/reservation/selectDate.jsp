@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -55,7 +56,6 @@
 			{
 				<c:if test="${not empty list[index].reserDate}">
 					"start":"<c:out value='${list[index].reserDate}'/>T<c:out value='${list[index].reserTime}'/>",
-					
 				</c:if>
 				"title": "테스트 중임"
 			}
@@ -144,10 +144,14 @@
         });
 */
 	var selectedDate;
+	<jsp:useBean id="now" class="java.util.Date"/>
+	<fmt:formatDate value="${now}" var="todayYear" pattern="yyyy"/>
+	<fmt:formatDate value="${now}" var="todayMonth" pattern="MM"/>
+	<fmt:formatDate value="${now}" var="todayDate" pattern="dd"/>
 	jQuery(document).ready(function() {
 		jQuery("#calendar").fullCalendar({
 			  locale : "ko"
-			, editable : true
+			, editable : false
 	        , eventLimit : true
 	        , eventSources : [
 				{	
@@ -166,13 +170,13 @@
 							, color : "#FFFFFF"
 					  }]
 				},
-				{
-					  events : [{
-						  start : "2017-06-20"
-						  , title : "aaaaa"
-					  }]
+// 				{
+// 					  events : [{
+// 						  start : "2017-06-20"
+// 						  , title : "aaaaa"
+// 					  }]
 					  
-				},
+// 				},
 				{
 					  googleCalendarId : "ko.south_korea#holiday@group.v.calendar.google.com"
 					, className : "koHolidays"
@@ -197,18 +201,59 @@
 			, dayClick : function(date, jsEvent, view) {
 				if(selectedDate) {
 					$(selectedDate).css('background-color', '#FFFFFF');
+					$(selectedDate).popover("destroy");
 				}
 				selectedDate = this;
-				$(this).attr("title", date.format("YYYY-MM-DD"));
-				$(this).attr("data-container", "body"); 
-				$(this).attr("data-toggle", "popover");
-				$(this).attr("data-placement", "right"); 
-				$(this).attr("data-content", "test Text");
-				$(this).attr("data-trigger", "hover");
-				
-				$('[data-toggle="popover"]').popover({container: "body"});
+				document.getElementById("reserBtn").disabled = true;
+				if(!$(this)["data-toggle"]) {
+					$(this).attr("title", date.format("YYYY-MM-DD"));
+					$(this).attr("data-container", "body"); 
+					$(this).attr("data-toggle", "popover");
+					$(this).attr("data-placement", "right"); 
+	
+					var todayReser;
+					var reserOK = false;
+					var reserCount = 0;
+					for(i = 0; i < testArr.length; i++) {
+						var testing = testArr[i].start;
+						var testing2 = "test";
+						if(${todayYear} - date.format("YYYY") < 0) {
+							document.getElementById("reserBtn").disabled = false;
+							reserOK = true;
+						}
+						else if(${todayYear} - date.format("YYYY") == 0) {
+							if(${todayMonth} - date.format("MM") <= 0) {
+								if(${todayDate} - date.format("DD") < 0) {
+				// 					$("#reserBtn").disabled = false;
+									document.getElementById("reserBtn").disabled = false;
+									reserOK = true;
+								}
+							}
+						}
+						if(reserOK) {
+							if(testing.substring(0, 10) == date.format("YYYY-MM-DD")) {
+								reserCount++;
+								if(!todayReser) {
+									todayReser = testing.substring(11, 16) + " " + testArr[i].title;
+								}
+								else {
+									todayReser += testing.substring(11, 16) + " " + testArr[i].title;
+								}
+							}
+						}
+						else {
+							todayReser = "지난 날짜에는 예약할 수 없습니다. T_T";
+						}
+						$(this).attr("data-content", todayReser);
+					}
+					if(reserCount >= 2) {
+						$(this).attr("data-content", "더이상 예약 할 수 없습니다");
+						document.getElementById("reserBtn").disabled = true;
+					}
+					$('[data-toggle="popover"]').popover({container: "body"});
+				}
 				$(this).css('background-color', '#99CCFF');
-				console.log(this);
+				
 			}
 			, googleCalendarApiKey : "AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE" 
     	});
@@ -228,7 +273,11 @@
 			<div class="col-md-2">
 				<c:import url="/view/include/leftMenu.jsp"/>
 			</div>
-			<div id="calendar" class="col-md-10 cont"></div>
+			<div id="calendar" class="col-md-10 cont">
+				<div>
+					<button class="btn btn-primary btn-xl page-scroll" disabled="true" id="reserBtn">예약하기</button>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

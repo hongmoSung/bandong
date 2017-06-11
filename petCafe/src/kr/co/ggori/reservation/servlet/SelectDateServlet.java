@@ -54,6 +54,23 @@ public class SelectDateServlet extends HttpServlet {
 		reser3.setReserTime("13:00:00");
 		list.add(reser3);
 		
+		ReservationVO reser4 = new ReservationVO();
+		reser4.setReserId(4);
+		reser4.setReserDate("2017-06-17");
+		reser4.setReserTime("13:00:00");
+		list.add(reser4);
+
+		ReservationVO reser5 = new ReservationVO();
+		reser5.setReserId(5);
+		reser5.setReserDate("2017-06-22");
+		reser5.setReserTime("13:00:00");
+		list.add(reser5);
+
+		ReservationVO reser6 = new ReservationVO();
+		reser6.setReserId(6);
+		reser6.setReserDate("2017-06-27");
+		reser6.setReserTime("13:00:00");
+		list.add(reser6);
 		//------------------------------
 		try {
 //			list = reserMap.hospitalReservation( Integer.parseInt(hospitalId) );
