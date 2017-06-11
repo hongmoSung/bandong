@@ -23,7 +23,9 @@
 </head>
 <body>
 <div class="container">
-	<div><c:import url="/view/include/topMenu.jsp"/> </div>
+	<div>
+		<c:import url="/view/include/topMenu.jsp"/>
+	</div>
 	<div class="row" id="firstDiv">
 		<div class="col-md-2">
 			<c:import url="/view/include/leftMenu.jsp"/>
@@ -89,9 +91,9 @@
 				</tr>
 				</c:forEach>
 			</table>
-		</div>
-		<div>
-			<a href="BoardInsertForm">글쓰기</a>
+			<div>
+				<a href="BoardInsertForm">글쓰기</a>
+			</div>
 		</div>
 	</div>
 	<div><c:import url="/view/include/footer.jsp"/> </div>
