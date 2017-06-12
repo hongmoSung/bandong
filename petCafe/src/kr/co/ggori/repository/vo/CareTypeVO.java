@@ -2,9 +2,16 @@ package kr.co.ggori.repository.vo;
 
 public class CareTypeVO {
 	
+	private int careTypeId;
 	private int hospitalId;
 	private String typeName;
 	
+	public int getCareTypeId() {
+		return careTypeId;
+	}
+	public void setCareTypeId(int careTypeId) {
+		this.careTypeId = careTypeId;
+	}
 	public int getHospitalId() {
 		return hospitalId;
 	}

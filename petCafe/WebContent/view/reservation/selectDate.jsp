@@ -10,12 +10,12 @@
 	<title>풀캘린더</title>
 	
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
-	<link href="../css/custom2.css" rel="stylesheet">
+<!-- 	<link href="../css/custom2.css" rel="stylesheet"> -->
 	<link href="${pageContext.request.contextPath}/css/fullcalendar.css" rel="stylesheet"/>
 	<link href="${pageContext.request.contextPath}/css/fullcalendar.print.css" rel="stylesheet" media="print"/>
 	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/css/moment.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/css/moment.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/css/fullcalendar.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/css/locale-all.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/css/gcal.js"></script>
@@ -46,28 +46,26 @@
 	
 	<script type="text/javascript">
 		var hospitalDayOff = [{
-			start: "2017-06-22",
+			start: "2017-06-23",
 			color: "transparent"
 		}];
-	
 		var reserList = [
 			<c:forEach var="index" begin="0" end="${fn:length(reservationList) - 1}" varStatus="loop">
 				<c:if test="${not loop.first}">,</c:if>
 				{
-					<c:if test="${not empty reservationList[index].reserDate}">
-						"start":"<c:out value='${reservationList[index].reserDate}'/>T<c:out value='${reservationList[index].reserTime}'/>",
-					</c:if>
+					"start":"<c:out value='${reservationList[index].reserDate}'/>T<c:out value='${reservationList[index].reserTime}'/>",
 					<c:set value="${reservationList[index].reserName}" var="reserName"/>
-					"title": "<c:out value='${reserName}'/>"
+					"title": "<c:out value='${reserName.charAt(0)}'/>*<c:out value='${reserName.charAt(2)}'/>"
 				}
 			</c:forEach>
 		];
+		
+
 		console.log("test01 : ", reserList[1].title);
 		console.log("test01 : ", reserList[1].start);
-		
+
 	// 	hospitalDayOff["backgroundColor"] = "#99CCFF";
 	// 	hospitalDayOff["rendering"] = "background";
-	
 		var selectedDate;
 		var holiday = [];
 		<jsp:useBean id="now" class="java.util.Date"/>
@@ -81,10 +79,10 @@
 				, eventLimit : true
 				, eventSources : [
 					{
-						  events : reserList
+						  events : hospitalDayOff
 					},
 					{
-						  events : hospitalDayOff
+						  events : reserList
 					},
 					{
 						  googleCalendarId : "ko.south_korea#holiday@group.v.calendar.google.com"
@@ -95,7 +93,7 @@
 				, eventRender : function (event, eventElement) {
 					for(var i = 0; i < hospitalDayOff.length; i++) {
 						if(event.start["_i"].substring(0, 10) == hospitalDayOff[i].start.substring(0, 10)) {
-							$("td[data-date='" + (event.start["_i"].substring(0,10)) + "']").addClass("fc-img111");
+							$("td[data-date='" + (event.start["_i"].substring(0,10)) + "']").addClass("no-diagnosis");
 						}
 					}
 					if(event.id) {
@@ -121,7 +119,7 @@
 						var reserOK = false;
 						var reserCount = 0;
 						for(i = 0; i < reserList.length; i++) {
-// 							var testing = reserList[i].start;
+							var reserListDate = reserList[i].start;
 							if(${todayYear} - date.format("YYYY") < 0) {
 								document.getElementById("reserBtn").disabled = false;
 								reserOK = true;
@@ -140,13 +138,13 @@
 								}
 							}
 							if(reserOK) {
-								if(testing.substring(0, 10) == date.format("YYYY-MM-DD")) {
+								if(reserListDate.substring(0, 10) == date.format("YYYY-MM-DD")) {
 									reserCount++;
 									if(!todayReser) {
-										todayReser = testing.substring(11, 16) + " " + reserList[i].title;
+										todayReser = reserListDate.substring(11, 16) + " " + reserList[i].title;
 									}
 									else {
-										todayReser += testing.substring(11, 16) + " " + reserList[i].title;
+										todayReser += reserListDate.substring(11, 16) + " " + reserList[i].title;
 									}
 								}
 							}
@@ -187,7 +185,7 @@
 		$(document).ready(function() {
 			$('[data-toggle="popover"]').popover({container: "body"});
 		});
-	</script>
+ 	</script>
 	<body>
 		<div class="container">
 			<div>
@@ -199,7 +197,8 @@
 				</div>
 				<div id="calendar" class="col-md-10 cont">
 					<div>
-						<form action="detailInfo" method="post">
+						<form action="detailInfoForm" method="post">
+							<input type="hidden" name="hospitalId" value="${hospitalId}"/>
 							<input type="hidden" name="userSelectDate" id="selectDate"/>
 							<button class="btn btn-primary btn-xl page-scroll" disabled="true" id="reserBtn">예약하기</button>
 						</form>

@@ -4,18 +4,19 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.ggori.repository.mapper.ICareTypeMapper">
 
-	<resultMap id="careMap" type="Care">
+	<resultMap id="careMap" type="CareType">
+		<result column="care_type_id" property="careTypeId"/>
 		<result column="hospital_id" property="hospitalId"/>
 		<result column="type_name" property="typeName"/>
 	</resultMap>
 	
-	<select id="SearchCare" parameterType="int" resultType="string">
-		select type_name
+	<select id="SearchCare" parameterType="int" resultMap="careMap">
+		select *
 		  from care_type
 		 where hospital_id = #{hospital_id}
 	</select>
 	
-	<insert id="insertCare" parameterType="Care">
+	<insert id="insertCare" parameterType="CareType">
 		insert into care_type (
 			type_name, hospital_id
 		) values (

@@ -14,7 +14,7 @@
 		<typeAlias alias="File" type="kr.co.ggori.repository.vo.FileVO"/>
 <!-- 		<typeAlias alias="Login" type="kr.co.ggori.repository.vo.LoginVO" /> -->
 		<typeAlias alias="Hospital" type="kr.co.ggori.repository.vo.HospitalVO" />
-<!-- 		<typeAlias alias="Care" type="kr.co.ggori.repository.vo.CareTypeVO" /> -->
+		<typeAlias alias="CareType" type="kr.co.ggori.repository.vo.CareTypeVO" />
 		<typeAlias alias="Reservation" type="kr.co.ggori.repository.vo.ReservationVO" />
 		<typeAlias alias="DayOff" type="kr.co.ggori.repository.vo.DayOffVO" />
 	</typeAliases>
@@ -39,6 +39,6 @@
 		<mapper resource="config/sqlmap/oracle/reservation.xml"/>
 <!-- 		<mapper resource="config/sqlmap/oracle/login.xml"/> -->
 		<mapper resource="config/sqlmap/oracle/hospital.xml"/>
-<!-- 		<mapper resource="config/sqlmap/oracle/care.xml"/> -->
+		<mapper resource="config/sqlmap/oracle/care.xml"/>
 	</mappers>
 </configuration>
