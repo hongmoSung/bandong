@@ -45,18 +45,11 @@
 	</style>
 	
 	<script type="text/javascript">
+		var hospitalDayOff = [{
+			start: "2017-06-22",
+			color: "transparent"
+		}];
 	
-// 		var hospitalDayOff = [
-// 			<c:forEach var="index" begin="0" end="${fn:length(dayOfflist) - 1}" varStatus="loop">
-// 				<c:if test="${not loop.first}">,</c:if>
-// 				{
-// 					  "start":"<c:out value='${dayOfflist[index].offDay}'/>",
-// 					, "color" : "transparent"
-					
-// 				}
-// 			</c:forEach>
-// 		];
-		
 		var reserList = [
 			<c:forEach var="index" begin="0" end="${fn:length(reservationList) - 1}" varStatus="loop">
 				<c:if test="${not loop.first}">,</c:if>
@@ -65,10 +58,12 @@
 						"start":"<c:out value='${reservationList[index].reserDate}'/>T<c:out value='${reservationList[index].reserTime}'/>",
 					</c:if>
 					<c:set value="${reservationList[index].reserName}" var="reserName"/>
-					"title": "<c:out value='reserName'/>"
+					"title": "<c:out value='${reserName}'/>"
 				}
 			</c:forEach>
 		];
+		console.log("test01 : ", reserList[1].title);
+		console.log("test01 : ", reserList[1].start);
 		
 	// 	hospitalDayOff["backgroundColor"] = "#99CCFF";
 	// 	hospitalDayOff["rendering"] = "background";
