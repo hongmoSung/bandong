@@ -86,7 +86,7 @@ public class SelectDateServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		request.setAttribute("list", reservationList);
+		request.setAttribute("reservationList", reservationList);
 		request.setAttribute("test", "test입니다");
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/view/reservation/selectDate.jsp");

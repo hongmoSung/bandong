@@ -29,6 +29,18 @@ public class DetailInfoServlet extends HttpServlet {
 		];
 		*/
 		
+// 		var hospitalDayOff = [
+//			<c:forEach var="index" begin="0" end="${fn:length(dayOfflist) - 1}" varStatus="loop">
+//				<c:if test="${not loop.first}">,</c:if>
+//				{
+//					  "start":"<c:out value='${dayOfflist[index].offDay}'/>",
+//					, "color" : "transparent"
+				
+//				}
+//			</c:forEach>
+//		];
+
+		
 	}
 	
 }
