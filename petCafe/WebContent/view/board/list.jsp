@@ -22,6 +22,7 @@
 	</style>
 </head>
 <body>
+<<<<<<< Updated upstream
 <div class="container">
 	<div>
 		<c:import url="/view/include/topMenu.jsp"/>
@@ -97,6 +98,48 @@
 		</div>
 	</div>
 	<div><c:import url="/view/include/footer.jsp"/> </div>
+=======
+<div>
+<div><c:import url="/view/include/topMenu.jsp"/> </div>
+<div>
+	<table>
+		<tr>
+			<td>타입</td>
+			<td>번호</td>
+			<td>제목</td>
+			<td>작성자</td>
+			<td>등록일</td>
+		</tr>
+		<c:forEach var="board" items="${list}">
+		<tr>
+			<td><c:out value='${board.boardType}'/></td>
+			<td><c:out value='${board.boardNo}'/></td>
+			<td>
+				<c:set var="type" value="${board.boardType}"/>
+				<c:choose>
+				<c:when test="${type eq 'notice'}">
+				<a href='noticeDetail?boardNo=<c:out value="${board.boardNo}"/>'><c:out value='${board.title}'/></a>
+				</c:when>
+				<c:when test="${type eq 'sale'}">
+				<a href='saleDetail?boardNo=<c:out value="${board.boardNo}"/>'><c:out value='${board.title}'/></a>
+				</c:when>
+				<c:when test="${type eq 'tip'}">
+				<a href='tipDetail?boardNo=<c:out value="${board.boardNo}"/>'><c:out value='${board.title}'/></a>
+				</c:when>
+				<c:when test="${type eq 'image'}">
+				<a href='imageDetail?boardNo=<c:out value="${board.boardNo}"/>'><c:out value='${board.title}'/></a>
+				</c:when>
+				</c:choose>
+			</td>
+			<td><c:out value='${board.nickName}'/></td>
+			<td><fmt:formatDate value="${board.regDate}" pattern="yyyy-MM-dd"/></td>
+		</tr>
+		</c:forEach>
+	</table>
+	<a href="boardInsertForm">글쓰기</a>
+</div>
+<div><c:import url="/view/include/footer.jsp"/> </div>
+>>>>>>> Stashed changes
 </div>
 </body>
 </html>

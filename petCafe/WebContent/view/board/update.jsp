@@ -10,8 +10,8 @@
 <div>
 <div><c:import url="/view/include/topMenu.jsp"></c:import> </div>
 <div>
-<h2>등록 완료</h2>
-
+<h2>수정 완료</h2>
+<a href="ListServlet">목록</a>
 </div>
 <div><c:import url="/view/include/footer.jsp"></c:import> </div>
 </div>
