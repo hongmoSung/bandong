@@ -16,6 +16,7 @@
 		<typeAlias alias="Hospital" type="kr.co.ggori.repository.vo.HospitalVO" />
 <!-- 		<typeAlias alias="Care" type="kr.co.ggori.repository.vo.CareTypeVO" /> -->
 		<typeAlias alias="Reservation" type="kr.co.ggori.repository.vo.ReservationVO" />
+		<typeAlias alias="DayOff" type="kr.co.ggori.repository.vo.DayOffVO" />
 	</typeAliases>
 	
 	<environments default="development">

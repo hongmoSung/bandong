@@ -2,6 +2,7 @@ package kr.co.ggori.repository.mapper;
 
 import java.util.List;
 
+import kr.co.ggori.repository.vo.DayOffVO;
 import kr.co.ggori.repository.vo.ReservationVO;
 
 public interface IReservationMapper {
@@ -11,5 +12,6 @@ public interface IReservationMapper {
 	public void insertReservation(ReservationVO reservation) throws Exception;
 	public void deleteReservation(int reserId) throws Exception;
 	public void updateReservation(ReservationVO reservation) throws Exception;
+	public List<DayOffVO> hospitalDayOff(int hospitalId) throws Exception;
 
 }

@@ -72,5 +72,9 @@
         }).open();
     }
 </script>
+
+<form action="selectDate" method="post">
+	<button>날짜선택</button>
+</form>
 </body>
 </html>

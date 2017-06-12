@@ -32,45 +32,53 @@ public class SelectDateServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String hospitalId = request.getParameter("hospitalId");
-		List<ReservationVO> list = null;
+		List<ReservationVO> reservationList = null;
 		//------------------------------
-		list = new ArrayList<>();
+		try {
+			reservationList = reserMap.hospitalReservation(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		/*
+		reservationlist = new ArrayList<>();
 		ReservationVO reser = new ReservationVO();
 		
 		reser.setReserId(1);
 		reser.setReserDate("2017-06-15");
 		reser.setReserTime("11:00:00");
-		list.add(reser);
+		reservationlist.add(reser);
 	
 		ReservationVO reser2 = new ReservationVO();
 		reser2.setReserId(2);
 		reser2.setReserDate("2017-06-17");
 		reser2.setReserTime("12:00:00");
-		list.add(reser2);
+		reservationlist.add(reser2);
 		
 		ReservationVO reser3 = new ReservationVO();
 		reser3.setReserId(3);
 		reser3.setReserDate("2017-06-19");
 		reser3.setReserTime("13:00:00");
-		list.add(reser3);
+		reservationlist.add(reser3);
 		
 		ReservationVO reser4 = new ReservationVO();
 		reser4.setReserId(4);
 		reser4.setReserDate("2017-06-17");
 		reser4.setReserTime("13:00:00");
-		list.add(reser4);
+		reservationlist.add(reser4);
 
 		ReservationVO reser5 = new ReservationVO();
 		reser5.setReserId(5);
 		reser5.setReserDate("2017-06-22");
 		reser5.setReserTime("13:00:00");
-		list.add(reser5);
+		reservationlist.add(reser5);
 
 		ReservationVO reser6 = new ReservationVO();
 		reser6.setReserId(6);
 		reser6.setReserDate("2017-06-27");
 		reser6.setReserTime("13:00:00");
-		list.add(reser6);
+		reservationlist.add(reser6);
+		*/
 		//------------------------------
 		try {
 //			list = reserMap.hospitalReservation( Integer.parseInt(hospitalId) );
@@ -78,7 +86,7 @@ public class SelectDateServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		request.setAttribute("list", list);
+		request.setAttribute("list", reservationList);
 		request.setAttribute("test", "test입니다");
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/view/reservation/selectDate.jsp");
