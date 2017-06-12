@@ -50,7 +50,7 @@
 						<c:choose>
 							<c:when test="${type eq 'notice'}">
 								<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="d"/>
-								<a href='NoticeDetail?boardNo=<c:out value="${board.boardNo}"/>'>
+								<a href='noticeDetail?boardNo=<c:out value="${board.boardNo}"/>'>
 									<c:out value='${board.title}'/>
 									<c:if test="${today-writeDate == 0}">
 										<span class="new">new</span>
@@ -59,7 +59,7 @@
 							</c:when>
 							<c:when test="${type eq 'sale'}">
 								<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="d"/>
-								<a href='SaleDetail?boardNo=<c:out value="${board.boardNo}"/>'>
+								<a href='saleDetail?boardNo=<c:out value="${board.boardNo}"/>'>
 									<c:out value='${board.title}'/>
 									<c:if test="${today-writeDate == 0}">
 										<span class="new">new</span>
@@ -68,7 +68,7 @@
 							</c:when>
 							<c:when test="${type eq 'tip'}">
 								<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="d"/>
-								<a href='TipDetail?boardNo=<c:out value="${board.boardNo}"/>'>
+								<a href='tipDetail?boardNo=<c:out value="${board.boardNo}"/>'>
 									<c:out value='${board.title}'/>
 									<c:if test="${today-writeDate == 0}">
 										<span class="new">new</span>
@@ -77,7 +77,7 @@
 							</c:when>
 							<c:when test="${type eq 'image'}">
 								<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="d"/>
-								<a href='ImageDetail?boardNo=<c:out value="${board.boardNo}"/>'>
+								<a href='imageDetail?boardNo=<c:out value="${board.boardNo}"/>'>
 									<c:out value='${board.title}'/>
 									<c:if test="${today-writeDate == 0}">
 										<span class="new">new</span>
@@ -92,7 +92,7 @@
 				</c:forEach>
 			</table>
 			<div>
-				<a href="BoardInsertForm">글쓰기</a>
+				<a href="boardInsertForm">글쓰기</a>
 			</div>
 		</div>
 	</div>

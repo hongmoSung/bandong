@@ -23,7 +23,7 @@ import kr.co.ggori.repository.mapper.IBoardMapper;
 import kr.co.ggori.repository.vo.BoardVO;
 import kr.co.ggori.repository.vo.FileVO;
 
-@WebServlet("/servlet/BoardInsert")
+@WebServlet("/board/boardInsert")
 public class BoardInsert extends HttpServlet{
 	private SqlSession session;
 	private IBoardMapper bmapper;

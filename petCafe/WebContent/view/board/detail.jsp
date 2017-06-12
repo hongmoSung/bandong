@@ -33,10 +33,30 @@
 		<td><fmt:formatDate value="${board.regDate}" pattern="yyyy-MM-dd"/></td>
 		</tr>
 	</table>
+	
+	<a href='boardUpdateForm?no=<c:out value="${board.boardno}" />'>수정</a>
+	<a href='boardDelete?no=<c:out value="${board.boardno}" />'>삭제</a>
+	
+		<c:set var="type" value="${board.boardType}"/>
+				<c:choose>
+				<c:when test="${type eq 'notice'}">
+				<a href="noticeList">목록</a>
+				</c:when>
+				<c:when test="${type eq 'sale'}">
+				<a href="saleList">목록</a>
+				</c:when>
+				<c:when test="${type eq 'tip'}">
+				<a href="tipList">목록</a>
+				</c:when>
+				<c:when test="${type eq 'image'}">
+				<a href="imageList">목록</a>
+				</c:when>
+				</c:choose>
+	
 	<h5>댓글</h5>
 	<hr>
 	<div id="reply">
-			<form method="post" action="ReplyRegist">
+			<form method="post" action="replyRegist">
 				<input type="hidden" name="boardNo" value="${board.boardNo}" />	
 				<table width="70%">
 				<tr>
@@ -48,7 +68,7 @@
 			</form>
 		</div>
 				
-		<form action="ReplyUpdate" method="post">
+		<form action="replyUpdate" method="post">
 			<input type="hidden" name="boardNo" value="${board.boardNo}" />
 			<input type="hidden" name="replyID" value="${replyId}" />
 		
@@ -90,7 +110,7 @@
 					  </td>
 					  <td>
 					  	  <a href="replyDelete?replyId=${reply.replyId}&boardNo=${reply.boardNo}">삭제</a>	
-					  	  <a href="Detail?replyId=${reply.replyId}&boardNo=${reply.boardNo}">수정</a>	
+					  	  <a href="detail?replyId=${reply.replyId}&boardNo=${reply.boardNo}">수정</a>	
 					  </td>
 					 </tr>
 			 	</c:otherwise>
