@@ -18,7 +18,7 @@ import kr.co.ggori.repository.mapper.IReplyMapper;
 import kr.co.ggori.repository.vo.BoardVO;
 import kr.co.ggori.repository.vo.ReplyVO;
 
-@WebServlet("/servlet/NoticeDetail")
+@WebServlet("/board/noticeDetail")
 public class NoticeDetail extends HttpServlet{
 	private SqlSession session;
 	private IBoardMapper bMapper;

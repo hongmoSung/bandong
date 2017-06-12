@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
-@WebServlet("/servlet/BoardInsertForm")
+@WebServlet("/board/boardInsertForm")
 public class BoardInsertForm  extends HttpServlet{
 	public BoardInsertForm() {
 	}
