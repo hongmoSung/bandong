@@ -18,7 +18,7 @@ import kr.co.ggori.repository.mapper.IReplyMapper;
 import kr.co.ggori.repository.vo.BoardVO;
 import kr.co.ggori.repository.vo.ReplyVO;
 
-@WebServlet("/servlet/saleDetail")
+@WebServlet("/servlet/SaleDetail")
 public class SaleDetail extends HttpServlet{
 
 	private SqlSession session;

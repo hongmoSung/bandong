@@ -10,7 +10,7 @@
 <div>
 <div><c:import url="/view/include/topMenu.jsp"></c:import> </div>
 <div>
-<form name='bForm' action="boardInsert" method="post" enctype="multipart/form-data" onsubmit="return chkForm();">
+<form name='bForm' action="BoardInsert" method="post" enctype="multipart/form-data" onsubmit="return chkForm();">
 
 	<c:set var="member" value="${member.memberId}"/>
 	
@@ -32,22 +32,7 @@
 <input type="submit" value="등록" />
 <input type='reset' value='재입력'/>
 </form>
-<c:set var="type" value="${board.boardType}"/>
-				<c:choose>
-				<c:when test="${type eq 'notice'}">
-				<a href="noticeList">목록</a>
-				</c:when>
-				<c:when test="${type eq 'sale'}">
-				<a href="saleList">목록</a>
-				</c:when>
-				<c:when test="${type eq 'tip'}">
-				<a href="tipList">목록</a>
-				</c:when>
-				<c:when test="${type eq 'image'}">
-				<a href="imageList">목록</a>
-				</c:when>
-				</c:choose>
-
+<a href="ListServlet">목록</a>
 </div>
 <div><c:import url="/view/include/footer.jsp"></c:import> </div>
 </div>

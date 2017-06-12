@@ -17,7 +17,7 @@ import kr.co.ggori.repository.mapper.IBoardMapper;
 import kr.co.ggori.repository.mapper.IMainMapper;
 import kr.co.ggori.repository.vo.BoardVO;
 
-@WebServlet("/servlet/saleList")
+@WebServlet("/servlet/SaleList")
 public class SaleList extends HttpServlet{
 	private SqlSession session;
 	private IBoardMapper mapper;
