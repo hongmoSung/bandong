@@ -5,47 +5,60 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<c:forEach items="${hospitals}" var="h">
-		<table>
-			<tr>
-				<th>id</th>
-				<td id="hospitalId">${h.hospitalId}</td>
-			</tr>
-			<tr>
-				<th>이름</th>
-				<td id="name">${h.name}</td>
-			</tr>
-			<tr>
-				<th>주소</th>
-				<td id="address">${h.address}</td>
-			</tr>
-			<tr>
-				<th>전화번호</th>
-				<td id="telNumber">${h.telNumber}</td>
-			</tr>
-			<tr>
-				<th>위도</th>
-				<td id="latitude">${h.latitude}</td>
-			</tr>
-			<tr>
-				<th>경도</th>
-				<td id="longitude">${h.longitude}</td>
-			</tr>
-			<tr>
-				<th>원장</th>
-				<td id="memberId">${h.memberId}</td>
-			</tr>
-		</table>
-		<hr>
-	</c:forEach>
-	
-	<!-- 주소 검색을 위한 태그와 버튼-->
-	<input type="text" id="sample5_address" placeholder="주소">
-	<input type="button" onclick="ffffff()" value="주소 검색"><br>
-	<!-- 맵이 나오는 위치 -->
-	<div id="map" style="width:100%;height:350px;"></div>
+<div>
+	<jsp:include page="/view/include/topMenu.jsp"/>
+</div>
+<div class="container">
+	<div class="row" id="firstDiv">
+		<div class="col-md-2">
+			<jsp:include page="/view/include/leftMenu.jsp"/>
+		</div>
+		<div class="col-md-10">
+			<c:forEach items="${hospitals}" var="h">
+				<table hidden="true">
+					<tr>
+						<th>id</th>
+						<td id="hospitalId">${h.hospitalId}</td>
+					</tr>
+					<tr>
+						<th>이름</th>
+						<td id="name">${h.name}</td>
+					</tr>
+					<tr>
+						<th>주소</th>
+						<td id="address">${h.address}</td>
+					</tr>
+					<tr>
+						<th>전화번호</th>
+						<td id="telNumber">${h.telNumber}</td>
+					</tr>
+					<tr>
+						<th>위도</th>
+						<td id="latitude">${h.latitude}</td>
+					</tr>
+					<tr>
+						<th>경도</th>
+						<td id="longitude">${h.longitude}</td>
+					</tr>
+					<tr>
+						<th>원장</th>
+						<td id="memberId">${h.memberId}</td>
+					</tr>
+				</table>
+				<hr>
+			</c:forEach>
+			
+			<!-- 주소 검색을 위한 태그와 버튼-->
+			<input type="text" id="sample5_address" placeholder="주소">
+			<input type="button" onclick="ffffff()" value="주소 검색"><br>
+			<!-- 맵이 나오는 위치 -->
+			<div id="map" style="width:100%;height:350px;"></div>
+	</div>
 	<!-- 우편검색을 위한 창 -->
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script src="//apis.daum.net/maps/maps3.js?apikey=b3aef8f92a8bdd9510a7905608389df3&libraries=services"></script>
@@ -189,5 +202,10 @@
         }).open();
     }
 	</script>
+	</div>
+</div>
+<div>
+	<jsp:include page="/view/include/footer.jsp"/>
+</div>
 </body>
 </html>

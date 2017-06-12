@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,9 +8,15 @@
 <title>Insert title here</title>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="//apis.daum.net/maps/maps3.js?apikey=b3aef8f92a8bdd9510a7905608389df3&libraries=services"></script>
-<link href="../css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+	
+</style>
+
 </head>	
 <body>
 <div>
@@ -16,57 +24,55 @@
 </div>
 <div class="container">
 	<div class="row" id="firstDiv">
-		<div class="center-block text-center" style="width: 500px;">
-			<h1>병원등록</h1>
-		</div>
-	</div>
-	<div class="row">
 		<div class="col-md-2">
 			<jsp:include page="/view/include/leftMenu.jsp"/>
 		</div>
-		<div class="center-block" style="width: 500px;">
+		<div class="col-md-10 text-center">
+		<div class="center-block text-center" style="width: 500px; margin-bottom: 25px;">
+			<h1>병원등록</h1>
+			<div style="margin-bottom: 15px;">
+				<input class="col-sm-9" type="text" placeholder="주소"  id="address" name="address">
+				<input class="col-sm-3" type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
+			</div>
+			<div id="map" style="width:100%;height:350px;margin-top:10px; margin-bottom:10px; display:none"></div>
 			<form class="form-horizontal" method="post" action="join">
 				<div class="form-group">
-					<input class="col-sm-9" type="text" placeholder="주소"  id="address" name="address">
-					<input class="col-sm-3" type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
-				</div>
-				<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">병원이름</label>
+					<label class="control-label col-sm-3" for="name">병원이름</label>
 					<div class="col-sm-9">
 						<input class="form-control" type="text" id="name" name="name">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-3">전화번호</label>
+					<label class="control-label col-sm-3" for="telNumber">전화번호</label>
 					<div class="col-sm-9">
 						<input class="form-control" type="text" id="telNumber" name="telNumber">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-3">위도</label>
+					<label class="control-label col-sm-3" for="lat">위도</label>
 					<div class="col-sm-9">
 						<input class="form-control" type="text" id="lat" name="latitude">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-3">경도</label>
+					<label class="control-label col-sm-3" for="lng">경도</label>
 					<div class="col-sm-9">
 						<input class="form-control" type="text" id="lng" name="longitude">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-3">회원아이디</label>
+					<label class="control-label col-sm-3" for="memberId">회원아이디</label>
 					<div class="col-sm-9">
 						<input class="form-control" type="text" id="memberId" name="memberId" value="${member.memberId}">
-					</div>
 				</div>
 				<div class="text-center">
-					<button class="btn btn-success btn-lg">등록하기</button>
+					<button class="btn btn-success btn-lg" style="margin-top: 20px;">등록하기</button>
+				</div>
 				</div>
 			</form>
-		</div>
 		<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
+		</div>
+	</div>
 	</div>
 </div>
 <div>

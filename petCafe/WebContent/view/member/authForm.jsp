@@ -5,16 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>매일 인증페이지</title>
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div>
 	<jsp:include page="/view/include/topMenu.jsp"/>
 </div>
 <div class="container">
-	<div class="row" id="firstDiv">
+	<div class="row">
 		<div class="col-md-2">
 			<c:import url="/view/include/leftMenu.jsp"/>
 		</div>
