@@ -33,31 +33,35 @@
 		<td><fmt:formatDate value="${board.regDate}" pattern="yyyy-MM-dd"/></td>
 		</tr>
 	</table>
+	<c:out value="${board.boardNo}"/>
+	<c:out value="${board.boardType}"/>
+	<a href='boardUpdateForm?boardType=${board.boardType}&boardNo=<c:out value="${board.boardNo}" />'>수정</a>
+	<a href='boardDelete?boardType=${board.boardType}&boardNo=<c:out value="${board.boardNo}" />'>삭제</a>
 	
-	<a href='boardUpdateForm?no=<c:out value="${board.boardno}" />'>수정</a>
-	<a href='boardDelete?no=<c:out value="${board.boardno}" />'>삭제</a>
 	
 		<c:set var="type" value="${board.boardType}"/>
 				<c:choose>
-				<c:when test="${type eq 'notice'}">
-				<a href="noticeList">목록</a>
-				</c:when>
-				<c:when test="${type eq 'sale'}">
-				<a href="saleList">목록</a>
-				</c:when>
-				<c:when test="${type eq 'tip'}">
-				<a href="tipList">목록</a>
-				</c:when>
-				<c:when test="${type eq 'image'}">
-				<a href="imageList">목록</a>
-				</c:when>
-				</c:choose>
+					<c:when test="${type eq 'notice'}">
+						<a href="noticeList">목록</a>
+					</c:when>
+					<c:when test="${type eq 'sale'}">
+						<a href="saleList">목록</a>
+					</c:when>
+					<c:when test="${type eq 'tip'}">
+						<a href="tipList">목록</a>
+					</c:when>
+					<c:when test="${type eq 'image'}">
+						<a href="imageList">목록</a>
+					</c:when>
+					</c:choose>
 	
 	<h5>댓글</h5>
 	<hr>
 	<div id="reply">
 			<form method="post" action="replyRegist">
 				<input type="hidden" name="boardNo" value="${board.boardNo}" />	
+				<input type="hidden" name="boardType" value="${board.boardType}" />
+				<input type="hidden" name="replyId" value="${reply.replyId}" />
 				<table width="70%">
 				<tr>
 					<td><input type="text" name="nickName" value="${member.nickName}" /></td>
@@ -67,55 +71,52 @@
 				</table>
 			</form>
 		</div>
-				
+			
 		<form action="replyUpdate" method="post">
 			<input type="hidden" name="boardNo" value="${board.boardNo}" />
-			<input type="hidden" name="replyID" value="${replyId}" />
+
+			<input type="hidden" name="boardType" value="${board.boardType}" />
 		
 		<div id="replyList">
-		<table width='80%' border='1'>
+		<table>
 		  <tr>
-			<c:forEach var="reply" items="${replyList}">
-			<c:choose>
-		  		<c:when test="${replyId eq reply.replyId}">	
 		  			<tr>
+		  			<td>댓글번호</td>
 		  			<td>닉네임</td>
 		  			<td>내용</td>
 		  			<td>등록일</td>
+		  			<td></td>
 		  			</tr>
+		<c:choose>
+  		<c:when test="${replyId eq reply.replyId}">	
+			<c:forEach var="reply" items="${replyList}">
+						<tr>
+							<td><input type="hidden" name="replyId" value="${reply.replyId}" /><c:out value="${reply.replyId}"/></td>
+					 	 	<td><c:out value="${reply.memberId}" /></td>
+					 	 	<td><textarea name="content" rows="2" cols="60"><c:out value="${reply.content}" /></textarea></td>
+						  	<td><fmt:formatDate var="regDate" value="${reply.regDate}" pattern="yyyy-MM-dd HH:mm:ss" />
+						  		<c:out value="${regDate}" /></td>
+						  	<td colspan="2">
+						  		<input type="submit" value="수정" />
+						  		<c:out value="${reply.replyId}"/>
+						  		<input type="button" name="버튼" value="삭제" onclick="window.open('replyDelete?boardType=${board.boardType}&replyId=${reply.replyId}&boardNo=${board.boardNo}')">
+						  		<a href="replyDelete?boardType=${board.boardType}&replyId=${reply.replyId}&boardNo=${board.boardNo}">삭제</a>		
+						 	</td>                  
+						 </tr>
+		 	</c:forEach>	
+	 	</c:when>
+		 <c:otherwise>
+		  		<c:forEach var="reply" items="${replyList}">
 					<tr>
+					  <td><input type="hidden" name="replyId" value="${reply.replyId}" /><c:out value="${reply.replyId}"/></td>
 					  <td><c:out value="${reply.memberId}" /></td>
-					  <td>
-					  	<textarea name="content" rows="2" cols="60"><c:out value="${reply.content}" /></textarea>
-					  </td>
-					  <td colspan="2">
-					  	  <input type="submit" value="수정" />	
-					  </td>
+					  <td><textarea name="content" rows="2" cols="60"><c:out value="${reply.content}" /></textarea></td>
+					  <td><fmt:formatDate var="regDate" value="${reply.regDate}" pattern="yyyy-MM-dd HH:mm:ss" />
+						  		<c:out value="${regDate}" /></td>
 					 </tr>
-			 	</c:when>
-			 	<c:otherwise>
-			 	<tr>
-		  			<td>닉네임</td>
-		  			<td>내용</td>
-		  			<td>등록일</td>
-		  			<td>변경</td>
-		  			</tr>
-					<tr>
-					  <td><c:out value="${reply.memberId}" /></td>
-					  <td>
-					  		<c:out value="${reply.content}" /></td>
-					  <td><fmt:formatDate var="regDate" value="${reply.regDate}" 
-					                      pattern="yyyy-MM-dd HH:mm:ss" />
-					      <c:out value="${regDate}" />
-					  </td>
-					  <td>
-					  	  <a href="replyDelete?replyId=${reply.replyId}&boardNo=${reply.boardNo}">삭제</a>	
-					  	  <a href="detail?replyId=${reply.replyId}&boardNo=${reply.boardNo}">수정</a>	
-					  </td>
-					 </tr>
-			 	</c:otherwise>
-			 </c:choose>	
-			 </c:forEach>
+		 		 </c:forEach>
+	 	</c:otherwise>
+		</c:choose>	
 			 <c:if test="${empty replyList}">
 			 <tr>
 			    <td colspan='4'>댓글이 존재하지 않습니다.</td>

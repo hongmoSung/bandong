@@ -11,7 +11,7 @@
 <div><c:import url="/view/include/topMenu.jsp"></c:import> </div>
 <div>
 <form name= "bForm" action="boardUpdate" method='post' onsubmit="return chkForm();">
-	  <input type='hidden' name='no' value='<c:out value="${board.boardno}" />'>
+	  <input type='hidden' name='no' value='<c:out value="${board.boardNo}" />'>
 	  <table>
 	  	<tr>
 	  	<td>게시판 유형</td>
@@ -40,7 +40,22 @@
 	  	<input type="submit" value="수정"/>
 	  	<input type='reset' value='재입력'/>
 </form>
-<a href="list">목록</a>
+		<c:set var="type" value="${board.boardType}"/>
+				<c:choose>
+					<c:when test="${type eq 'notice'}">
+						<a href="noticeList">목록</a>
+					</c:when>
+					<c:when test="${type eq 'sale'}">
+						<a href="saleList">목록</a>
+					</c:when>
+					<c:when test="${type eq 'tip'}">
+						<a href="tipList">목록</a>
+					</c:when>
+					<c:when test="${type eq 'image'}">
+						<a href="imageList">목록</a>
+					</c:when>
+					</c:choose>
+
 </div>
 <div><c:import url="/view/include/footer.jsp"></c:import> </div>
 </div>

@@ -13,6 +13,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import common.db.MyAppSqlConfig;
 import kr.co.ggori.repository.mapper.IBoardMapper;
+import kr.co.ggori.repository.mapper.IReplyMapper;
 
 @WebServlet("/board/boardDelete")
 public class BoardDelete extends HttpServlet{
@@ -23,10 +24,11 @@ public class BoardDelete extends HttpServlet{
 		mapper = session.getMapper(IBoardMapper.class);
 	}
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int no = Integer.parseInt(request.getParameter("boardno"));
+		int no = Integer.parseInt(request.getParameter("boardNo"));
+		System.out.println(no);
 		
 		try {
-			mapper.deleteFile(no);
+//			mapper.deleteFile(no);
 			mapper.deleteBoard(no);
 			session.commit();
 		} catch (Exception e) {
@@ -39,16 +41,16 @@ public class BoardDelete extends HttpServlet{
 		
 		RequestDispatcher rd = null;
 		switch (bType){
-		case "notice" : rd = request.getRequestDispatcher("/servlet/NoticeList");
+		case "notice" : rd = request.getRequestDispatcher("/board/noticeList");
 						rd.forward(request, response);
 						break;
-		case "sale" :   rd = request.getRequestDispatcher("/servlet/SaleList");
+		case "sale" :   rd = request.getRequestDispatcher("/board/saleList");
 						rd.forward(request, response);
 						break;
-		case "tip" :  rd = request.getRequestDispatcher("/servlet/TipList");
+		case "tip" :  rd = request.getRequestDispatcher("/board/tipList");
 					  rd.forward(request, response);
 					  break;
-		case "image" :  rd = request.getRequestDispatcher("/servlet/ImageList");
+		case "image" :  rd = request.getRequestDispatcher("/board/imageList");
 						rd.forward(request, response);
 						break;
 		}

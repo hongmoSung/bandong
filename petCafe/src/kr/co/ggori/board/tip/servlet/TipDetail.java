@@ -18,7 +18,7 @@ import kr.co.ggori.repository.mapper.IReplyMapper;
 import kr.co.ggori.repository.vo.BoardVO;
 import kr.co.ggori.repository.vo.ReplyVO;
 
-@WebServlet("/servlet/tipDetail")
+@WebServlet("/board/tipDetail")
 public class TipDetail extends HttpServlet {
 
 	private SqlSession session;

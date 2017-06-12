@@ -17,7 +17,7 @@ import kr.co.ggori.repository.mapper.IBoardMapper;
 import kr.co.ggori.repository.mapper.IMainMapper;
 import kr.co.ggori.repository.vo.BoardVO;
 
-@WebServlet("/servlet/tipList")
+@WebServlet("/board/tipList")
 public class TipList extends HttpServlet{
 	private SqlSession session;
 	private IBoardMapper mapper;

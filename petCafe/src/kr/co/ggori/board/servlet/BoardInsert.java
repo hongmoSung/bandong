@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -22,6 +23,7 @@ import common.db.MyAppSqlConfig;
 import kr.co.ggori.repository.mapper.IBoardMapper;
 import kr.co.ggori.repository.vo.BoardVO;
 import kr.co.ggori.repository.vo.FileVO;
+import kr.co.ggori.repository.vo.MemberVO;
 
 @WebServlet("/board/boardInsert")
 public class BoardInsert extends HttpServlet{
@@ -55,9 +57,11 @@ public class BoardInsert extends HttpServlet{
 		board.setBoardType(multi.getParameter("boardType"));
 		board.setTitle(multi.getParameter("title"));
 		board.setContent(multi.getParameter("content"));
-		board.setMemberId("sang");
-		System.out.println(multi.getParameter("boardNo"));
 		
+		HttpSession s = request.getSession();
+		MemberVO member = (MemberVO)s.getAttribute("member");
+		String memberId = member.getMemberId();
+		board.setMemberId(memberId);
 		try {
 			
 			
@@ -94,16 +98,16 @@ public class BoardInsert extends HttpServlet{
 		
 		RequestDispatcher rd = null;
 		switch (bType){
-		case "notice" : rd = request.getRequestDispatcher("/servlet/NoticeList");
+		case "notice" : rd = request.getRequestDispatcher("/board/noticeList");
 						rd.forward(request, response);
 						break;
-		case "sale" :   rd = request.getRequestDispatcher("/servlet/SaleList");
+		case "sale" :   rd = request.getRequestDispatcher("/board/saleList");
 						rd.forward(request, response);
 						break;
-		case "tip" :  rd = request.getRequestDispatcher("/servlet/TipList");
+		case "tip" :  rd = request.getRequestDispatcher("/board/tipList");
 					  rd.forward(request, response);
 					  break;
-		case "image" :  rd = request.getRequestDispatcher("/servlet/ImageList");
+		case "image" :  rd = request.getRequestDispatcher("/board/imageList");
 						rd.forward(request, response);
 						break;
 		}

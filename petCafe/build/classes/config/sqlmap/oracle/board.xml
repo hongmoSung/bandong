@@ -9,11 +9,11 @@
 		<result column="title" property="title"/>
 		<result column="content" property="content"/>
 		<result column="reg_date" property="regDate"/>
-		<result column="file_id" property="fileId"/>
 		<result column="hits" property="hits"/>
 		<result column="recommends" property="recommends"/>
 		<result column="member_id" property="memberId"/>
 		<result column="nick_name" property="nickName"/>
+		<result column="file_id" property="fileId"/>
 	</resultMap>
     
     <select id="selectAll" parameterType="string" resultMap="boardMap">
@@ -33,7 +33,7 @@
     	insert into board_form(
     		board_No, title, content, board_Type, member_Id
     	) values (
-    		S_BOARD_NO.nextval, #{title}, #{content}, #{boardType}, #{memberId}
+    		s_board_no.nextval, #{title}, #{content}, #{boardType}, #{memberId}
     	)
     </insert>
     
@@ -88,6 +88,5 @@
 	      from file_form
 	     where board_no=#{boardNo} 
 	</delete>
-    
-    
+	
 </mapper>

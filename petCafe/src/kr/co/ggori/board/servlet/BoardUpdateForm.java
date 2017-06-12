@@ -24,7 +24,7 @@ public class BoardUpdateForm extends HttpServlet{
 		mapper = session.getMapper(IBoardMapper.class);
 	}
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int no = Integer.parseInt(request.getParameter("boardno"));
+		int no = Integer.parseInt(request.getParameter("boardNo"));
 		BoardVO board = null;
 		try {
 			board = mapper.selectOneBoard(no);

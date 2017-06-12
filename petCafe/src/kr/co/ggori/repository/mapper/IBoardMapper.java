@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.co.ggori.repository.vo.BoardVO;
 import kr.co.ggori.repository.vo.FileVO;
+import kr.co.ggori.repository.vo.ReplyVO;
 
 public interface IBoardMapper {
 	public List<BoardVO> selectAll(String boardType) throws Exception;
@@ -20,5 +21,5 @@ public interface IBoardMapper {
 	public FileVO selectFile(int boardNo) throws Exception;
 	public int insertFile(FileVO file) throws Exception;
 	public int deleteFile(int boardNo) throws Exception;
-
+	
 }

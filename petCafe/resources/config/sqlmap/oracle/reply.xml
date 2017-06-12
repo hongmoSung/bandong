@@ -8,7 +8,7 @@
     	<result column="Reply_Id" property="replyId"/>
     	<result column="Content" property="content"/>
     	<result column="Reg_Date" property="regDate"/>
-    	<result column="Member_Id" property="memberId"/>
+    	<result column="member_Id" property="memberId"/>
     	<result column="nick_name" property="nickName"/>
     </resultMap>
     
@@ -19,24 +19,33 @@
     	 order by Reg_Date desc
     </select>
     
+<!--     <insert id="insertReply" parameterType="Reply"> -->
+<!--     	insert into REPLY_FORM( -->
+<!--     		Board_No, Reply_Id, Content, Reg_Date, member_Id -->
+<!--     	) values ( -->
+<!--     		#{boardNo}, s_board_replyId.nextVal, #{content}, #{regDate}, #{memberId} -->
+<!--     	) -->
+<!--     </insert> -->
+   
     <insert id="insertReply" parameterType="Reply">
     	insert into REPLY_FORM(
-    		Board_No, Reply_Id, Content, Reg_Date, member_Id
+    		Board_No, Reply_Id, Content, member_Id
     	) values (
-    		#{no}, #{replyId}, #{content}, #{regDate}, #{memberId}
+    		#{boardNo}, s_replyId.nextVal, #{content}, #{memberId}
     	)
     </insert>
     
     <update id="updateReply" parameterType="Reply">
     	update REPLY_FORM
     	   set content = #{content}
-    	 where board_no = #{board_no}
+    	 where reply_Id = #{replyId}
+    	 	   
     </update>
     
     <delete id="deleteReply" parameterType="int">
     	delete
     	  from REPLY_FORM
-    	 where board_no = #{board_no}
+    	 where reply_Id = #{replyId}
     </delete>
     
     <select id="myNickName" parameterType="string" resultType="string">

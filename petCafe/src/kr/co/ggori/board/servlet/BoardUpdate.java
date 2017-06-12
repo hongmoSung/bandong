@@ -26,7 +26,7 @@ public class BoardUpdate extends HttpServlet{
 	}
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BoardVO board = new BoardVO();
-		board.setBoardNo(Integer.parseInt(request.getParameter("boardno")));
+		board.setBoardNo(Integer.parseInt(request.getParameter("boardNo")));
 		board.setTitle(request.getParameter("title"));
 		board.setContent(request.getParameter("content"));
 		
@@ -43,16 +43,16 @@ public class BoardUpdate extends HttpServlet{
 		
 		RequestDispatcher rd = null;
 		switch (bType){
-		case "notice" : rd = request.getRequestDispatcher("/servlet/NoticeList");
+		case "notice" : rd = request.getRequestDispatcher("/board/noticeList");
 						rd.forward(request, response);
 						break;
-		case "sale" :   rd = request.getRequestDispatcher("/servlet/SaleList");
+		case "sale" :   rd = request.getRequestDispatcher("/board/saleList");
 						rd.forward(request, response);
 						break;
-		case "tip" :  rd = request.getRequestDispatcher("/servlet/TipList");
+		case "tip" :  rd = request.getRequestDispatcher("/board/tipList");
 					  rd.forward(request, response);
 					  break;
-		case "image" :  rd = request.getRequestDispatcher("/servlet/ImageList");
+		case "image" :  rd = request.getRequestDispatcher("/board/imageList");
 						rd.forward(request, response);
 						break;
 		}

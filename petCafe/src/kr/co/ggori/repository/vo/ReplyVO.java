@@ -48,7 +48,12 @@ public class ReplyVO {
 		this.regDate = regDate;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "replyVO [boardNo=" + boardNo + ", replyId=" + replyId + ", content=" + content
+				+ ", regDate=" + regDate + ", memberId=" + memberId
+				+ "]";
+	}
 
 
 }
