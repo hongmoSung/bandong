@@ -5,16 +5,23 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<style type="text/css">
+	
+</style>
 </head>
 <body>
 <div>
 	<jsp:include page="/view/include/topMenu.jsp"/>
 </div>
 <div class="container">
-	<div class="center-block text-center" style="width: 500px;">
+	<div class="row" id="firstDiv">
+		<div class="col-md-2">
+			<jsp:include page="/view/include/leftMenu.jsp"/>
+		</div>
+	<div class="center-block text-center" style="width: 500px; margin: 20px;">
 		<h1>찾기 페이지</h1>
 	</div>
 	<div class="center-block" style="width: 500px;">
@@ -28,6 +35,7 @@
 	</div>
 	<div class="center-block text-center" style="width: 500px;">
 		<a href="${pageContext.request.contextPath}/login/findPassForm">비밀번호 찾기</a>
+	</div>
 	</div>
 </div>
 

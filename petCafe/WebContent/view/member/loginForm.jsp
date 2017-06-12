@@ -5,8 +5,8 @@
 <meta charset="UTF-8">
 <title>Login page</title>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -17,7 +17,7 @@
 		<div class="col-md-2">
 			<jsp:include page="/view/include/leftMenu.jsp"/>
 		</div>
-		<div class="center-block" style="width: 500px;">
+		<div class="center-block" style="width: 500px; margin-bottom: 25px;">
 			<h1 class="text-center">로그인</h1>
 		</div>
 		<div class="center-block" style="width: 500px;">
@@ -27,23 +27,19 @@
 					<div class="col-sm-9">
 						<input class="form-control" type="text" name="memberId" id="memberId"><br>
 					</div>
-				</div>
-				<div class="form-group">
 					<label class="control-label col-sm-3" for="pass">pass</label>
 					<div class="col-sm-9">
 						<input class="form-control" type="text" name="pass" id="pass"><br>
 					</div>
-				</div>
-				<div class="text-center">
-					<button class="btn btn-success btn-lg">로그인 하기</button>
+					<div class="text-center">
+						<button class="btn btn-success btn-lg">로그인 하기</button>
+					</div>
+					<a class="col-sm-6" href="${pageContext.request.contextPath}/login/findForm">id, password 가 기억안나냐?</a>
+					<a class="col-sm-6" href="${pageContext.request.contextPath}/member/authForm">아이디가 아직도 없어?!</a>
 				</div>
 			</form>
-			<div>
-				<a class="col-sm-6" href="${pageContext.request.contextPath}/login/findForm">id, password 가 기억안나냐?</a>
-				<a class="col-sm-6" href="${pageContext.request.contextPath}/member/authForm">아이디가 아직도 없어?!</a>
-			</div>
 		</div>
-	</div>
+	</div>	
 </div>
 <div>
 	<jsp:include page="/view/include/footer.jsp"/>

@@ -30,12 +30,12 @@
 		<result column="Phone_Num" property="phoneNum"/>
 		<result column="Rank" property="rank"/>
 		<result column="Reg_Date" property="regDate"/>
-		<result column="File_Path" property="filePath"/>
+<!-- 		<result column="File_Path" property="filePath"/> -->
 		<result column="Leave" property="leave"/>
 	</resultMap>
 	
-	<select id="selectMemberByEmail" parameterType="String" resultType="String">
-		select member_id
+	<select id="selectMemberByEmail" parameterType="String" resultMap="memberMap">
+		select *
 		  from member
 		 where email = #{email} 
 	</select>

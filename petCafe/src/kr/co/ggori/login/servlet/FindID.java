@@ -1,6 +1,7 @@
 package kr.co.ggori.login.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import org.apache.ibatis.session.SqlSession;
 import common.db.MyAppSqlConfig;
 import common.db.SendMail;
 import kr.co.ggori.repository.mapper.IMemberMapper;
+import kr.co.ggori.repository.vo.MemberVO;
 
 @WebServlet("/login/findId")
 public class FindID extends HttpServlet{
@@ -28,12 +30,14 @@ public class FindID extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = null;
+		List<MemberVO> member = null;
 		try {
 			String email = request.getParameter("email");
-			String userId = mapper.selectMemberByEmail(email);
+//			String userId = mapper.selectMemberByEmail(email);
+			member = mapper.selectMemberByEmail(email);
 			
-			if (userId != "") {
-				String result = new SendMail().sendEmailForID(email, userId);
+			if (member != null) {
+				String result = new SendMail().sendEmailForID(email, member);
 				rd = request.getRequestDispatcher("/view/member/loginForm.jsp");
 				request.setAttribute("result", result);
 				System.out.println("메일보내기 성공");

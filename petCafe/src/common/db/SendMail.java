@@ -1,6 +1,8 @@
 package common.db;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -11,6 +13,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeUtility;
+
+import kr.co.ggori.repository.vo.MemberVO;
 
 public class SendMail {
 	
@@ -65,11 +69,17 @@ public class SendMail {
 		return result;
 	}
 	
-	public String sendEmailForID(String email, String userId) {
+	public String sendEmailForID(String email, List<MemberVO> member) {
 		String result = "매일 전송 성공!";
 		String to1 = email;
+		String idList = "회원님의 아이디/ 회원가입일<br>";
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:dd");
 		
-		String content = "회원님의 아이디 [" + userId + "]";
+		for(int i = 0; i < member.size(); i ++) {
+			idList +=  member.get(i).getMemberId() + "/" + sdf.format(member.get(i).getRegDate()) + "<br>";
+		}
+		
+		String content = idList;
 		
 		try {
 			
