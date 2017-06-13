@@ -255,13 +255,19 @@
 		var time = f.userSelectDate;
 		var care = f.careType;
 		var name = f.reserName;
+		console.log("time1 : ", time.value);
 		
 		$("#insertBtn").on("click", function () {
+			time = f.userSelectDate;
+			care = f.careType;
+			name = f.reserName;
+			console.log("time2 : ", time.value);
+			
 			$.ajax({
-// 				type: "post",
+				type: "post",
 // 				dataType: 
-// 				data: {time: time.value},
-				url: "formCheck.jsp",
+				data: {time: time.value},
+				url: "${pageContext.request.contextPath}/view/reservation/formCheck.jsp",
 				success: function (data) {
 					$("#checkResult").html(data);
 				}
