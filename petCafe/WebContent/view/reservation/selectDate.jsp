@@ -108,6 +108,7 @@
 					
 					var reserOK = false;
 					var popContent;
+					var reserTimeArr = [];
 					if(${todayYear} - date.format("YYYY") < 0) {
 						reserOK = true;
 					}
@@ -141,13 +142,9 @@
 									else {
 										popContent += reserListDate.substring(11, 16) + " " + reserList[i].title;
 									}
-									for(var time = 10; time <= 18; time++) {
-										if( parseInt(reserListDate.substring(11, 13)) == time )
-											continue;
-										$("#reserSelect").html($("#reserSelect").html() + "<option value='" + reserListDate.substring(11, 13) + "'>" + time + "</option>");
-									}
+									reserTimeArr.push( reserListDate.substring(11, 13) );
 								}
-								if(reserCount >= 2) {
+								if(reserCount >= 3) {
 									popContent = "더이상 예약 할 수 없습니다";
 									reserOK = false;
 									break;
@@ -184,6 +181,18 @@
 						$(this).css('background-color', '#99CCFF');
 // 					}
 					$('[data-toggle="popover"]').popover({container: "body"});
+					for(var time = 10; time <= 18; time++) {
+						var addCheck = true;
+						for(var index = 0; index < reserTimeArr.length; index++) {
+							if(parseInt( reserTimeArr[index] ) == time) {
+								addCheck = false;
+								break;
+							}
+						}
+						if(addCheck) {
+							$("#reserSelect").html($("#reserSelect").html() + "<option value='" + time + "'>" + time + "</option>");
+						}
+					}
 				}
 				, googleCalendarApiKey : "AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE" 
 	    	});
@@ -222,8 +231,9 @@
 						<h4 class="modal-title">예약 상세 페이지</h4>
 				    </div>
 				    <div class="modal-body">
-				    	<form method="post" name="rForm" onsubmit="false;">
-					    	예약 날짜 : <input type="text" name="userSelectDate" id="selectDate" disabled="true"/>
+				    	<form method="post" name="rForm" onsubmit="return chkForm();" action="reserInsert">
+				    		<input type="hidden" name="hospitalId" value="${hospitalId}"/>
+					    	예약 날짜 : <input type="text" name="userSelectDate" id="selectDate" readonly/>
 					    	예약 시간 : <select name="reserTime" id="reserSelect">
 									</select>시<br>
 
@@ -233,13 +243,13 @@
 										</c:forEach>
 									</select><br>
 									
+							예약자 이름 : <input type="text" name="reserName" id="reserName"/><br>
 							상세 내용 : <textarea rows="5" cols="60" name="detail" style="resize: none;"></textarea><br>
-							예약자 이름 : <input type="text" name="reserName"/><br>
-							<div id="checkResult">aaa</div>
-							<button id="insertBtn" type="button" class="btn btn-default">insert</button>
+							<div id="checkResult"></div>
+							<button id="insertBtn" type="button" class="btn btn-default" onclick="chkForm();">예약</button>
 							<!--  data-dismiss="modal" 
-							action="reserInsert" -->
-				    	</form>
+							 -->
+						</form>
 					</div>
 <!-- 					<div class="modal-footer"> -->
 <!-- 					</div> -->
@@ -252,39 +262,34 @@
 	<script>
 		var f = document.rForm;
 		
-		var time = f.userSelectDate;
-		var care = f.careType;
-		var name = f.reserName;
-		console.log("time1 : ", time.value);
-		
-		$("#insertBtn").on("click", function () {
-			time = f.userSelectDate;
-			care = f.careType;
-			name = f.reserName;
-			console.log("time2 : ", time.value);
-			
+		$("#reserName").on("keyup", function () {
+// 			var time = f.userSelectDate;
+// 			var care = f.careType;
+			var reserName = f.reserName;
+			var detail = f.detail;
 			$.ajax({
-				type: "post",
-// 				dataType: 
-				data: {time: time.value},
-				url: "${pageContext.request.contextPath}/view/reservation/formCheck.jsp",
+				data: {
+					  "name": reserName.value
+					, "detail": detail.value
+// 					, "time": time.value
+// 				    , "care": care.value
+				},
+				url: "formCheck",
 				success: function (data) {
 					$("#checkResult").html(data);
 				}
 			});
 		});
+
 		function chkForm() {
-			
-			
-			if(time.value == "") {
-				return ;
+			var reserName = f.reserName;
+			if( $("#checkResult>p").text() == ("예약 하시려면 예약 버튼을 누르세요") ) {
+				f.submit();
 			}
-			
-			if(care.value == "") {
-				return ;
-			}
-			
-			if(name.value == "") {
+			else {
+				alert("예약자 이름을 확인해 주세요..");
+				reserName.focus();
+				
 				return ;
 			}
 		}

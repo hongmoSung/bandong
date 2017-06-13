@@ -40,29 +40,51 @@
 	</select>
 	
 	<insert id="insertReservation" parameterType="Reservation">
+	<!-- 
 		<selectKey keyProperty="memberId" resultType="string" order="BEFORE">
 			select member_id
 			  from member
 			 where member_id = #{memberId}
 		</selectKey>
+	 -->
 		insert into reservation (
 			reser_id,
 			reser_date,
 			reser_time,
-			care_type,
 			detail,
 			reser_name,
 			hospital_id,
-			member_id
+			member_id, 
+			care_type_id
 		) values (
 			s_reservation_id.nextval,
 			#{reserDate},
 			#{reserTime},
-			#{careType},
 			#{detail},
 			#{reserName},
 			#{hospitalId},
-			#{memberId}
+			#{memberId},
+			#{careTypeId}
+		)
+	</insert>
+
+	<insert id="insertReservationNoDetail" parameterType="Reservation">
+		insert into reservation (
+			reser_id,
+			reser_date,
+			reser_time,
+			reser_name,
+			hospital_id,
+			member_id, 
+			care_type_id
+		) values (
+			s_reservation_id.nextval,
+			#{reserDate},
+			#{reserTime},
+			#{reserName},
+			#{hospitalId},
+			#{memberId},
+			#{careTypeId}
 		)
 	</insert>
 	
@@ -81,5 +103,5 @@
 		       reser_name = #{reserName}
 		 where reser_id = #{reserId}
 	</update>
-
+	
 </mapper>
