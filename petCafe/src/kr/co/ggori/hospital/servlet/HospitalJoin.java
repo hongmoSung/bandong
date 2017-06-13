@@ -36,12 +36,19 @@ public class HospitalJoin extends HttpServlet{
 		hospital.setMemberId(request.getParameter("memberId"));
 		
 		System.out.println(hospital.toString());
-		
+		String msg = "실패";
 		try {
 			int result = mapper.insertHospital(hospital);
 			if (result != 0) {
+				msg = "성공";
 				session.commit();
-				RequestDispatcher rd = request.getRequestDispatcher("/hospital/hospitalInfo");
+//				RequestDispatcher rd = request.getRequestDispatcher("/hospital/hospitalInfo");
+				RequestDispatcher rd = request.getRequestDispatcher("/hospital/joinForm");
+				request.setAttribute("msg", msg);
+				rd.forward(request, response);
+			} else {
+				RequestDispatcher rd = request.getRequestDispatcher("/hospital/joinForm");
+				request.setAttribute("msg", msg);
 				rd.forward(request, response);
 			}
 		} catch(Exception e) {

@@ -19,6 +19,9 @@
 			<jsp:include page="/view/include/leftMenu.jsp"/>
 		</div>
 		<div class="col-md-10">
+			<div style="text-align: center;">
+				<h1>모든 병원</h1>
+			</div>
 			<c:forEach items="${hospitals}" var="h">
 				<table hidden="true">
 					<tr>
@@ -50,7 +53,6 @@
 						<td id="memberId">${h.memberId}</td>
 					</tr>
 				</table>
-				<hr>
 			</c:forEach>
 			
 			<!-- 주소 검색을 위한 태그와 버튼-->
@@ -138,8 +140,8 @@
 		    iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 			// 인포윈도우를 생성합니다
 			infowindow[i] = new daum.maps.InfoWindow({
-			    content : "<div>" + infos[i].title + "<br>" + infos[i].hospitalName + "<br>" + infos[i].address + 
-			    "<br><a href='${pageContext.request.contextPath}/reservation/insert?hospitalId=" + infos[i].title +"'>예약하기</a></div>",
+// 			    content : "<div style='padding:5px;'>" + infos[i].hospitalName + "<br>" + infos[i].address + "<br><a href='${pageContext.request.contextPath}/reservation/insert?hospitalId=" + infos[i].title +"'>예약하기</a></div>",
+			    content : '<div style="padding:5px;"><a href=${pageContext.request.contextPath}/reservation/insert?hospitalId=' + infos[i].title +'>예약하기</a><br><p>병원이름 : ' + infos[i].hospitalName + '</p><p>주소 : ' + infos[i].address + '</p><br></div>',
 			    removable : iwRemoveable
 			});
 			// 마커에 클릭이벤트를 등록합니다

@@ -23,6 +23,17 @@
 	<jsp:include page="/view/include/topMenu.jsp"/>
 </div>
 <div class="container">
+	<input type="text" value="${msg}" id="zz">
+	<script>
+		console.log($("#zz").value);
+		
+		if($("#zz").attr("value") == "실패") {
+			alert("등록 실패");
+		} 
+		if($("#zz").attr("value") == "성공") {
+			alert("등록 성공");
+		} 
+	</script>
 	<div class="row" id="firstDiv">
 		<div class="col-md-2">
 			<jsp:include page="/view/include/leftMenu.jsp"/>
@@ -30,12 +41,12 @@
 		<div class="col-md-10 text-center">
 		<div class="center-block text-center" style="width: 500px; margin-bottom: 25px;">
 			<h1>병원등록</h1>
+			<div id="map" style="width:100%;height:350px;margin-top:10px; margin-bottom:10px; display:none"></div>
+			<form class="form-horizontal" method="post" action="join">
 			<div style="margin-bottom: 15px;">
 				<input class="col-sm-9" type="text" placeholder="주소"  id="address" name="address">
 				<input class="col-sm-3" type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
 			</div>
-			<div id="map" style="width:100%;height:350px;margin-top:10px; margin-bottom:10px; display:none"></div>
-			<form class="form-horizontal" method="post" action="join">
 				<div class="form-group">
 					<label class="control-label col-sm-3" for="name">병원이름</label>
 					<div class="col-sm-9">
@@ -63,7 +74,7 @@
 				<div class="form-group">
 					<label class="control-label col-sm-3" for="memberId">회원아이디</label>
 					<div class="col-sm-9">
-						<input class="form-control" type="text" id="memberId" name="memberId" value="${member.memberId}">
+						<input class="form-control" type="text" id="memberId" name="memberId" value="${member.memberId}" readonly="readonly">
 				</div>
 				<div class="text-center">
 					<button class="btn btn-success btn-lg" style="margin-top: 20px;">등록하기</button>
