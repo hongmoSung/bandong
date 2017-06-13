@@ -18,9 +18,9 @@
 	
 	<insert id="insertCare" parameterType="CareType">
 		insert into care_type (
-			type_name, hospital_id
+			care_type_id, type_name, hospital_id
 		) values (
-			#{typeName}, #{hospitalId}
+			S_CARETYPE_ID.nextval, #{typeName}, #{hospitalId}
 		)
 	</insert>
 

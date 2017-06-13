@@ -24,5 +24,8 @@ public class CareTypeVO {
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
 	}
-
+	@Override
+	public String toString() {
+		return "CareTypeVO [careTypeId=" + careTypeId + ", hospitalId=" + hospitalId + ", typeName=" + typeName + "]";
+	}
 }
