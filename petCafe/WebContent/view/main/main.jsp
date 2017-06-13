@@ -10,11 +10,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>꼬리 카페</title>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
 
-<!-- Bootstrap -->
 <link href="../css/bootstrap.min.css" rel="stylesheet">
-<link href="../css/custom2.css" rel="stylesheet">
+<!-- <link href="../css/custom2.css" rel="stylesheet"> -->
 
 <style>
 	.imgList {

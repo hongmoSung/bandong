@@ -60,10 +60,6 @@
 			</c:forEach>
 		];
 		
-
-		console.log("test01 : ", reserList[1].title);
-		console.log("test01 : ", reserList[1].start);
-
 	// 	hospitalDayOff["backgroundColor"] = "#99CCFF";
 	// 	hospitalDayOff["rendering"] = "background";
 		var selectedDate;
@@ -107,75 +103,87 @@
 						$(selectedDate).popover("destroy");
 					}
 					selectedDate = this;
-					document.getElementById("reserBtn").disabled = true;
+					$("#reserBtn").attr("disabled", true);
+					$("#reserSelect").html("");
 					
-					if(!$(this)["data-toggle"]) {
+					var reserOK = false;
+					var popContent;
+					if(${todayYear} - date.format("YYYY") < 0) {
+						reserOK = true;
+					}
+					else if(${todayYear} - date.format("YYYY") == 0) {
+						if(${todayMonth} - date.format("MM") < 0) {
+							reserOK = true;
+						}
+						else if(${todayMonth} - date.format("MM") == 0) {
+							if(${todayDate} - date.format("DD") < 0) {
+								reserOK = true;
+							}
+						}
+					}
+					
+// 					if( !($(this).attr("data-toggle")) ) {
 						$(this).attr("title", date.format("YYYY-MM-DD"));
 						$(this).attr("data-container", "body"); 
 						$(this).attr("data-toggle", "popover");
 						$(this).attr("data-placement", "right"); 
-						
-						var todayReser;
-						var reserOK = false;
-						var reserCount = 0;
-						for(i = 0; i < reserList.length; i++) {
-							var reserListDate = reserList[i].start;
-							if(${todayYear} - date.format("YYYY") < 0) {
-								document.getElementById("reserBtn").disabled = false;
-								reserOK = true;
-							}
-							else if(${todayYear} - date.format("YYYY") == 0) {
-								if(${todayMonth} - date.format("MM") == 0) {
-									if(${todayDate} - date.format("DD") < 0) {
-					// 					$("#reserBtn").disabled = false;
-										document.getElementById("reserBtn").disabled = false;
-										reserOK = true;
-									}
-								}
-								else if(${todayMonth} - date.format("MM") < 0) {
-										document.getElementById("reserBtn").disabled = false;
-										reserOK = true;
-								}
-							}
-							if(reserOK) {
+							
+						if(reserOK) {
+							var todayReser;
+							var reserCount = 0;
+							for(var i = 0; i < reserList.length; i++) {
+								var reserListDate = reserList[i].start;
 								if(reserListDate.substring(0, 10) == date.format("YYYY-MM-DD")) {
 									reserCount++;
-									if(!todayReser) {
-										todayReser = reserListDate.substring(11, 16) + " " + reserList[i].title;
+									if(!popContent) {
+										popContent = reserListDate.substring(11, 16) + " " + reserList[i].title;
 									}
 									else {
-										todayReser += reserListDate.substring(11, 16) + " " + reserList[i].title;
+										popContent += reserListDate.substring(11, 16) + " " + reserList[i].title;
+									}
+									for(var time = 10; time <= 18; time++) {
+										if( parseInt(reserListDate.substring(11, 13)) == time )
+											continue;
+										$("#reserSelect").html($("#reserSelect").html() + "<option value='" + reserListDate.substring(11, 13) + "'>" + time + "</option>");
 									}
 								}
+								if(reserCount >= 2) {
+									popContent = "더이상 예약 할 수 없습니다";
+									reserOK = false;
+									break;
+								}
 							}
-							else {
-								todayReser = "지난 날짜에는 예약할 수 없습니다. T_T";
+							if(!popContent) {
+								popContent = "등록된 예약이 없습니다!";
 							}
-							$(this).attr("data-content", (todayReser) ? todayReser : "등록된 예약이 없습니다!");
+							
+							for(var i = 0; i < holiday.length; i++) {
+								if( holiday[i] == date.format("YYYYMMDD") ) {
+									popContent = "공휴일 입니다.";
+									reserOK = false;
+									break;
+								}
+							}
+							for(var i = 0; i < hospitalDayOff.length; i++) {
+								if( hospitalDayOff[i].start == date.format("YYYY-MM-DD") ) {
+									popContent = "오늘은 진료가 없습니다..";
+									reserOK = false;
+									break;
+								}
+							}
+						}
+						else {
+							popContent = "지난 날짜에는 예약할 수 없습니다. T_T";
+						}
+
+						if(reserOK) {
+							$("#reserBtn").attr("disabled", false);
 							$("#selectDate").attr("value", date.format("YYYY-MM-DD"));
 						}
-						if(reserCount >= 2) {
-							$(this).attr("data-content", "더이상 예약 할 수 없습니다");
-							document.getElementById("reserBtn").disabled = true;
-						}
-						for(var i = 0; i < holiday.length; i++) {
-							if( holiday[i] == date.format("YYYYMMDD") ) {
-								$(this).attr("data-content", "공휴일 입니다.");
-								document.getElementById("reserBtn").disabled = true;
-								break;
-							}
-						}
-						for(var i = 0; i < hospitalDayOff.length; i++) {
-							if( hospitalDayOff[i].start == date.format("YYYY-MM-DD") ) {
-								$(this).attr("data-content", "진료가 없습니다..");
-								document.getElementById("reserBtn").disabled = true;
-								break;
-							}
-						}
-						$('[data-toggle="popover"]').popover({container: "body"});
-					}
-					$(this).css('background-color', '#99CCFF');
-					
+						$(this).attr("data-content", popContent);
+						$(this).css('background-color', '#99CCFF');
+// 					}
+					$('[data-toggle="popover"]').popover({container: "body"});
 				}
 				, googleCalendarApiKey : "AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE" 
 	    	});
@@ -183,7 +191,9 @@
 	</script>
 	<script>
 		$(document).ready(function() {
-			$('[data-toggle="popover"]').popover({container: "body"});
+		    $("#reserBtn").on("click", function () {
+		        $("#reserModal").modal();
+		    });
 		});
  	</script>
 	<body>
@@ -197,14 +207,80 @@
 				</div>
 				<div id="calendar" class="col-md-10 cont">
 					<div>
-						<form action="detailInfoForm" method="post">
-							<input type="hidden" name="hospitalId" value="${hospitalId}"/>
-							<input type="hidden" name="userSelectDate" id="selectDate"/>
-							<button class="btn btn-primary btn-xl page-scroll" disabled="true" id="reserBtn">예약하기</button>
-						</form>
+						<button class="btn btn-primary btn-xl page-scroll" disabled="true" id="reserBtn"
+								data-toggle="modal" data-target="#myModal">예약하기</button>
 					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="reserModal">
+				<div class="modal-dialog">
+				
+				  <!-- Modal content-->
+				  <div class="modal-content">
+				    <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">X</button>
+						<h4 class="modal-title">예약 상세 페이지</h4>
+				    </div>
+				    <div class="modal-body">
+				    	<form method="post" name="rForm" onsubmit="false;">
+					    	예약 날짜 : <input type="text" name="userSelectDate" id="selectDate" disabled="true"/>
+					    	예약 시간 : <select name="reserTime" id="reserSelect">
+									</select>시<br>
+
+							진료 분야 : <select name="careType">
+										<c:forEach var="type" items="${careTypeList}">
+											<option value="${type.careTypeId}"><c:out value="${type.typeName}"/></option>
+										</c:forEach>
+									</select><br>
+									
+							상세 내용 : <textarea rows="5" cols="60" name="detail" style="resize: none;"></textarea><br>
+							예약자 이름 : <input type="text" name="reserName"/><br>
+							<div id="checkResult">aaa</div>
+							<button id="insertBtn" type="button" class="btn btn-default">insert</button>
+							<!--  data-dismiss="modal" 
+							action="reserInsert" -->
+				    	</form>
+					</div>
+<!-- 					<div class="modal-footer"> -->
+<!-- 					</div> -->
+				  </div>
+				  
 				</div>
 			</div>
 		</div>
 	</body>
+	<script>
+		var f = document.rForm;
+		
+		var time = f.userSelectDate;
+		var care = f.careType;
+		var name = f.reserName;
+		
+		$("#insertBtn").on("click", function () {
+			$.ajax({
+// 				type: "post",
+// 				dataType: 
+// 				data: {time: time.value},
+				url: "formCheck.jsp",
+				success: function (data) {
+					$("#checkResult").html(data);
+				}
+			});
+		});
+		function chkForm() {
+			
+			
+			if(time.value == "") {
+				return ;
+			}
+			
+			if(care.value == "") {
+				return ;
+			}
+			
+			if(name.value == "") {
+				return ;
+			}
+		}
+	</script>
 </html>

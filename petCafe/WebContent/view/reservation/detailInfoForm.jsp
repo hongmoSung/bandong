@@ -35,7 +35,7 @@
 								</c:forEach>
 							</select><br>
 					
-					상세 내용 : <textarea rows="8" cols="100" name="detail"></textarea><br>
+					상세 내용 : <textarea rows="5" cols="40" name="detail"></textarea><br>
 					예약자 이름 : <input type="text" name="reserName"/><br>
 					<input type="hidden" value="${hospitalId}" name="hospitalId"/><br>
 					
