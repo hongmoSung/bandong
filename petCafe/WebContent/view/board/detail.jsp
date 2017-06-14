@@ -22,7 +22,7 @@
 		</tr>
 		<tr>
 		<td>작성자</td>
-		<td><c:out value="${board.memberId}"/></td>
+		<td><c:out value="${board.nickName}"/></td>
 		</tr>
 		<tr>
 		<td>내용</td>
@@ -31,13 +31,6 @@
 		<tr>
 		<td>등록일</td>
 		<td><fmt:formatDate value="${board.regDate}" pattern="yyyy-MM-dd"/></td>
-		</tr>
-		<tr>
-		<td>이미지</td>
-		<td>		
- 			<a href="${pageContext.request.contextPath}/servlet/DownloadServlet?path=${file.filePath}&sName=${file.sysName}&dName=${file.oriName}">${file.oriName}</a>
-				(<c:out value='${file.fileSize}'/> byte)
-		</td>
 		</tr>
 	</table>
 	<c:out value="${board.boardNo}"/>
@@ -94,9 +87,8 @@
 		  			<td>등록일</td>
 		  			<td></td>
 		  			</tr>
-		<c:set var="replyId" value="${reply.memberId}"/>
 		<c:choose>
-  		<c:when test="${member.memberId eq replyId}">	
+  		<c:when test="${replyId eq reply.replyId}">	
 			<c:forEach var="reply" items="${replyList}">
 						<tr>
 							<td><input type="hidden" name="replyId" value="${reply.replyId}" /><c:out value="${reply.replyId}"/></td>
@@ -106,7 +98,9 @@
 						  		<c:out value="${regDate}" /></td>
 						  	<td colspan="2">
 						  		<input type="submit" value="수정" />
+						  		<c:out value="${reply.replyId}"/>
 						  		<input type="button" name="버튼" value="삭제" onclick="window.open('replyDelete?boardType=${board.boardType}&replyId=${reply.replyId}&boardNo=${board.boardNo}')">
+						  		<a href="replyDelete?boardType=${board.boardType}&replyId=${reply.replyId}&boardNo=${board.boardNo}">삭제</a>		
 						 	</td>                  
 						 </tr>
 		 	</c:forEach>	

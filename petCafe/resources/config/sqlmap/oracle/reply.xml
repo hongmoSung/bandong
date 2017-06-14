@@ -31,7 +31,7 @@
     	insert into REPLY_FORM(
     		Board_No, Reply_Id, Content, member_Id
     	) values (
-    		#{boardNo}, s_reply_Id.nextVal, #{content}, #{memberId}
+    		#{boardNo}, s_replyId.nextVal, #{content}, #{memberId}
     	)
     </insert>
     

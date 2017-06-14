@@ -61,41 +61,36 @@ public class BoardInsert extends HttpServlet{
 		HttpSession s = request.getSession();
 		MemberVO member = (MemberVO)s.getAttribute("member");
 		String memberId = member.getMemberId();
-		String nickName = member.getNickName();
-		board.setNickName(nickName);
 		board.setMemberId(memberId);
-		
-		
 		try {
-			int result = bmapper.insertBoard(board);
-
-			File files = multi.getFile("attachFile");
 			
-			if(files != null){
+			
+						
+			int result = bmapper.insertBoard(board);
+			if (result == 1){
 				
-				String originFile = multi.getOriginalFileName("attachFile");
-				System.out.println(originFile);
-				String sysFile = multi.getFilesystemName("attachFile");
-				System.out.println(sysFile);
-				long size = files.length();
-				
-				FileVO file = new FileVO();
-				file.setBoardNo(board.getBoardNo());
-				file.setFilePath(datePath);
-				System.out.println(datePath);
-				file.setFileSize(size);
-				file.setOriginName(originFile);
-				file.setSystemName(sysFile);
-				
-				
-				bmapper.insertFile(file);
-				if (result == 1){
-					session.commit();
-					
-			}
+			
+				session.commit();
+//			File files = multi.getFile("attachName");
+//			if(files != null){
+//
+//				String originFile = multi.getOriginalFileName("attachFile");
+//				String sysFile = multi.getFilesystemName("attachFile");
+//				long size = files.length();
+//				
+//				FileVO file = new FileVO();
+//				file.setBoardNo(board.getBoardNo());
+//				file.setFilePath(datePath);
+//				file.setFileSize(size);
+//				file.setOriginName(originFile);
+//				file.setSystemName(sysFile);
+//				
+//				bmapper.insertFile(file);
+//			
+//			}
 			}
 		}catch (Exception e) {
-			throw new ServletException(e);
+				e.printStackTrace();
 			}
 		String bType = multi.getParameter("boardType");
 		System.out.println(bType);

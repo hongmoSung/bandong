@@ -75,6 +75,15 @@
 									</c:if>
 								</a>
 							</c:when>
+							<c:when test="${type eq 'image'}">
+								<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="d"/>
+								<a href='imageDetail?boardNo=<c:out value="${board.boardNo}"/>'>
+									<c:out value='${board.title}'/>
+									<c:if test="${today-writeDate == 0}">
+										<span class="new">new</span>
+									</c:if>
+								</a>
+							</c:when>
 						</c:choose>
 					</td>
 					<td><c:out value='${board.nickName}'/></td>

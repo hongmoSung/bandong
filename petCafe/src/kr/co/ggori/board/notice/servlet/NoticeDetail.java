@@ -9,17 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 
 import common.db.MyAppSqlConfig;
 import kr.co.ggori.repository.mapper.IBoardMapper;
-import kr.co.ggori.repository.mapper.IMainMapper;
-import kr.co.ggori.repository.mapper.IMemberMapper;
 import kr.co.ggori.repository.mapper.IReplyMapper;
 import kr.co.ggori.repository.vo.BoardVO;
-import kr.co.ggori.repository.vo.MemberVO;
 import kr.co.ggori.repository.vo.ReplyVO;
 
 @WebServlet("/board/noticeDetail")
@@ -27,28 +23,20 @@ public class NoticeDetail extends HttpServlet{
 	private SqlSession session;
 	private IBoardMapper bMapper;
 	private IReplyMapper rMapper;
-	private IMemberMapper mMapper;
-	private IMainMapper iMapper;
 	public NoticeDetail() {
 		session = MyAppSqlConfig.getSqlSessionInstance();
 		bMapper = session.getMapper(IBoardMapper.class);
 		rMapper = session.getMapper(IReplyMapper.class);
-		mMapper = session.getMapper(IMemberMapper.class);
-		iMapper = session.getMapper(IMainMapper.class);
 	}
 	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html; charset=utf-8"); 
 		try {
 		int no = Integer.parseInt(request.getParameter("boardNo"));
 		
 		BoardVO board = bMapper.selectOneBoard(no);
-		
 		request.setAttribute("board", board);
-		
-		String memberId = request.getParameter("memberId");
-		request.setAttribute("member", memberId);
-		
 		
 		String replyId = request.getParameter("replyId");
 		if (replyId != null) {
@@ -66,12 +54,5 @@ public class NoticeDetail extends HttpServlet{
 			e.printStackTrace();
 		}
 		}
-	public void setNickName(List<BoardVO> member) throws Exception {
-		for(int i = 0; i < member.size(); i++) {
-			member.get(i).setNickName( 
-					iMapper.myNickName( member.get(i).getMemberId() ) 
-					);
-		}
-	}
 
 }

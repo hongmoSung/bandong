@@ -67,13 +67,13 @@
 	</resultMap>
 	
 	<insert id="insertFile" parameterType="File">
-	   	<selectKey resultType="integer" keyProperty="boardNo" order="BEFORE">
-	   		select s_board_No.currval as board_No from dual
+	   	<selectKey resultType="integer" keyProperty="no" order="BEFORE">
+	   		select s_board_board_No.currval from dual
 	   	</selectKey>
 	    insert into file_form(           
-		    File_Id, file_path, origin_name, system_name, file_size, board_no
+		    File_Id, file_path, origin_name, system_name, file_size, board_no, member_id
 		) values (                       
-		    s_file_id.nextval, #{filePath}, #{originName}, #{systemName}, #{fileSize} , #{boardNo}
+		    s_board_file_id.nextval, #{filePath}, #{originName}, #{systemName}, #{fileSize} , #{boardNo}, #{memberID}
 		)                               
 	</insert>
 	
