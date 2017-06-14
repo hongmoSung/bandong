@@ -32,6 +32,7 @@ public class ReserDeleteServlet extends HttpServlet {
 		
 		try {
 			reserMap.deleteReservation(reserId);
+			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
