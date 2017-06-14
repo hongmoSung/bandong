@@ -39,10 +39,7 @@ public class MemberMyPage extends HttpServlet{
 		try {
 			member = mapper.selectMemberOne(member);
 			file = bmapper.selectUserProfile(member.getMemberId());
-//			ServletContext context = request.getServletContext();
-			
 			String imgSrc = "/upload/userProfile/" + file.getSystemName();
-			
 			request.setAttribute("file", file);
 			request.setAttribute("imgSrc", imgSrc);
 			request.setAttribute("member", member);

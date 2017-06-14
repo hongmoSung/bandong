@@ -26,8 +26,13 @@
 		<h1>수정페이지</h1>
 	</div>
 	<div class="center-block" style="width: 500px;">
-		<form class="form-horizontal" method="post" action="update" onsubmit="return doAction()">
+		<form class="form-horizontal" method="post" action="update" onsubmit="return doAction()" enctype="multipart/form-data">
 			<div class="form-group">
+				<label class="control-label col-sm-3" for="memberId">프로필</label>
+				<div class="col-sm-9">
+					<img src="${pageContext.request.contextPath}${imgSrc}" >
+					<input class="form-control" type="file" name="attachFile" id="attachFile">
+				</div>
 				<label class="control-label col-sm-3">id</label>
 				<div class="col-sm-9">
 					<input class="form-control" type="text" value="${member.memberId}" readonly="readonly" name="memberId">

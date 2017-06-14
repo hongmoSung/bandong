@@ -31,7 +31,7 @@
 			<div class="form-group">
 				<label class="control-label col-sm-3" for="memberId">프로필</label>
 				<div class="col-sm-9">
-					<img src="${pageContext.request.contextPath}${imgSrc}" >
+					<img src="${pageContext.request.contextPath}${imgSrc}" ><br>
 				</div>
 				<label class="control-label col-sm-3" for="memberId">아이디</label>
 				<div class="col-sm-9">

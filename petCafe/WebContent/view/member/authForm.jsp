@@ -8,6 +8,10 @@
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+
+<!-- sweet -->
+<script src="${pageContext.request.contextPath}/sweet/sweetalert.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/sweet/sweetalert.css"/>
 </head>
 <body>
 <div>
@@ -60,14 +64,19 @@
 		var result = document.querySelector("#result");
 		console.log(result.value);
 		if(result.value != "") {
-			alert(result.value);
+			if(result.value == "성공") {
+				swal("인증번호가 전송되었습니다.", "Your imaginary file has been deleted.", "success");
+			}
+			if(result.value == "실패") {
+				swal("인증번호가 전송실패되었습니다.", "Your imaginary file has been deleted.", "error");
+			}
 		}
 		function doAction() {
 			
 			var email = document.querySelector("#authMail");
 			
 			if(email.value == "") {
-				alert("email을 입력해주세요");
+				swal("email을 입력해주세요");
 				return false;
 			}
 			return true;			
@@ -79,15 +88,15 @@
 			console.dir(joinButton);
 			console.log(inputNum);
 			if(inputNum.value == "") {
-				alert("인증번호를 넣어주세요");
+				swal("인증번호를 넣어주세요");
 				return
 			}
 			if(inputNum.value != authNum.value) {
-				alert("인증 실패");
+				swal("인증 실패", "Your imaginary file is safe :)", "error");
 				return
 			}
 			else if (inputNum.value == authNum.value) {
-				alert("인증 성공");
+				swal("인증 성공!", "Your imaginary file has been deleted.", "success");
 				joinButton.hidden = false;
 			}
 		}

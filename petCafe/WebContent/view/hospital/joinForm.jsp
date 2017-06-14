@@ -23,6 +23,9 @@
 		var name = document.querySelector("#name");
 		var address = document.querySelector("#address");
 		var telNumber = document.querySelector("#telNumber");
+		var lat = document.querySelector("#lat");
+		var lng = document.querySelector("#lng");
+		
 		if (address.value == "") {
 			swal("주소를 등록해주세요");
 			return false;			
@@ -33,6 +36,14 @@
 		}
 		if(telNumber.value == "") {
 			swal("전화번호를 등록해주세요");
+			return false;
+		}
+		if(lat.value == "") {
+			swal("위도를 등록해주세요");
+			return false;
+		}
+		if(lng.value == "") {
+			swal("경도를 등록해주세요");
 			return false;
 		}
 		return true;
@@ -49,10 +60,10 @@
 		console.log($("#zz").value);
 		
 		if($("#zz").attr("value") == "실패") {
-			alert("등록 실패");
+			swal("병원등록에 실패하였습니다.", "fuck...", "error");
 		} 
 		if($("#zz").attr("value") == "성공") {
-			alert("등록 성공");
+			swal("병원등록에 성공하였습니다.", "fuck...", "success");
 		} 
 	</script>
 	<div class="row" id="firstDiv">

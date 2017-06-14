@@ -1,8 +1,10 @@
 package kr.co.ggori.member.servlet;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,44 +13,80 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 import common.db.MyAppSqlConfig;
+import kr.co.ggori.repository.mapper.IBoardMapper;
 import kr.co.ggori.repository.mapper.IMemberMapper;
+import kr.co.ggori.repository.vo.FileVO;
 import kr.co.ggori.repository.vo.MemberVO;
 
 @WebServlet("/member/update")
 public class MemberUpdate extends HttpServlet{
 	private SqlSession session;
 	private IMemberMapper mapper;
+	private IBoardMapper bmapper;
 	
 	public MemberUpdate() {
 		session = MyAppSqlConfig.getSqlSessionInstance();
 		this.mapper = session.getMapper(IMemberMapper.class);
+		this.bmapper = session.getMapper(IBoardMapper.class);
 	}
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//
+		ServletContext context = request.getServletContext();
+		String uploadPath = context.getRealPath("/upload/userProfile");
+		//
+		File folder = new File(uploadPath);
+		if(!folder.exists()) folder.mkdirs();
+		//
+		MultipartRequest multi = new MultipartRequest(request, uploadPath, 1024 * 1024 * 1000, "utf-8", new DefaultFileRenamePolicy());
 		
 		try {
 			MemberVO member = new MemberVO();
-			member.setPass(request.getParameter("pass"));
-			member.setMemberId(request.getParameter("memberId"));
+			member.setPass(multi.getParameter("pass"));
+			member.setMemberId(multi.getParameter("memberId"));
 			member = mapper.selectMemberOne(member);
-			
+			System.out.println("member생성");
 			if (member != null) {
-				member.setNickName(request.getParameter("nickName"));
-				member.setEmail(request.getParameter("email"));
-				member.setPhoneNum(Integer.parseInt(request.getParameter("phoneNum")));
+				member.setNickName(multi.getParameter("nickName"));
+				member.setEmail(multi.getParameter("email"));
+				member.setPhoneNum(Integer.parseInt(multi.getParameter("phoneNum")));
 				
 				int result = mapper.updateMember(member);
 				RequestDispatcher rd = null;
 				if (result != 0) {
+					File file = multi.getFile("attachFile");
+					if(file != null) {
+						file = multi.getFile("attachFile");
+						if(file != null) {
+							FileVO fileVO = bmapper.selectUserProfile(multi.getParameter("memberId"));
+							System.out.println(fileVO.toString());
+							long size = file.length();
+							fileVO.setFileSize(size);
+							fileVO.setOriginName(multi.getOriginalFileName("attachFile"));
+							fileVO.setSystemName(multi.getFilesystemName("attachFile"));
+							fileVO.setMemberId(multi.getParameter("memberId"));
+							int resultFile = bmapper.updateUserProfile(fileVO);
+							
+							if (resultFile != 0) {
+								session.commit();
+								rd = request.getRequestDispatcher("myPage");
+							}
+							else {
+								System.out.println("프로필 등록 실패");
+							}
+						}
+					}
 					session.commit();
 					rd = request.getRequestDispatcher("myPage");
-					rd.forward(request, response);
 				} else {
 					rd = request.getRequestDispatcher("myPage");
-					rd.forward(request, response);
 				}
+				rd.forward(request, response);
 			} else {
 				System.out.println("error");
 			}

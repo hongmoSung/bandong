@@ -50,6 +50,9 @@ public class FileVO {
 	public void setBoardNo(int boardNo) {
 		this.boardNo = boardNo;
 	}
-	
-	
+	@Override
+	public String toString() {
+		return "FileVO [fileId=" + fileId + ", filePath=" + filePath + ", originName=" + originName + ", systemName="
+				+ systemName + ", fileSize=" + fileSize + ", memberId=" + memberId + ", boardNo=" + boardNo + "]";
+	}
 }

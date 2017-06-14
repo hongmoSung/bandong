@@ -88,7 +88,7 @@
 	      from file_form
 	     where board_no=#{boardNo} 
 	</delete>
-	
+	<!-- userProfile -->
 	<insert id="insertUserProfile" parameterType="File">
 	    insert into file_form(           
 		    File_Id, file_path, origin_name, system_name, file_size, Member_Id
@@ -101,4 +101,9 @@
 		  from file_form
 		 where member_id = #{memberId}
 	</select>
+	<update id="updateUserProfile" parameterType="File">
+		update file_form
+		   set origin_name = #{originName}, system_name = #{systemName}, file_size = #{fileSize}
+		where member_id = #{memberId}  
+	</update>
 </mapper>

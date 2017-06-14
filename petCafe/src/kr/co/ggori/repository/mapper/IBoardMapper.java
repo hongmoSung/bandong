@@ -25,4 +25,5 @@ public interface IBoardMapper {
 	//userProfile
 	public int insertUserProfile(FileVO file) throws Exception;
 	public FileVO selectUserProfile(String memberId) throws Exception;
+	public int updateUserProfile(FileVO file) throws Exception;
 }

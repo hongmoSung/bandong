@@ -55,14 +55,11 @@ public class MemberJoin extends HttpServlet{
 			member.setNickName(multi.getParameter("nickName"));
 			member.setEmail(multi.getParameter("email"));
 			member.setPhoneNum(Integer.parseInt(multi.getParameter("phoneNum")));
-			System.out.println("**********" + member.toString());
 			try {
 				
 				int result = mapper.insertMember(member);
-				System.out.println("member insert ********************");
 				if (result != 0) {
 					File file = multi.getFile("attachFile");
-					System.out.println("file*******************************8");
 					if(file != null) {
 						FileVO fileVO = new FileVO();
 						long size = file.length();
@@ -71,7 +68,6 @@ public class MemberJoin extends HttpServlet{
 						fileVO.setSystemName(multi.getFilesystemName("attachFile"));
 						fileVO.setFilePath(uploadPath);
 						fileVO.setMemberId(multi.getParameter("memberId"));
-						System.out.println("***********************"+fileVO.toString());
 						int resultFile = bmapper.insertUserProfile(fileVO);
 						
 						if (resultFile != 0) {

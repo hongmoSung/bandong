@@ -27,7 +27,9 @@
 					</tr>
 					<tr>
 						<th>이름</th>
-						<td id="name">${h.name}</td>
+						<td id="name">
+							<a href="${pageContext.request.contextPath}/hospital/detail?hospitalId=${h.hospitalId}">${h.name}</a>
+						</td>
 					</tr>
 					<tr>
 						<th>주소</th>
