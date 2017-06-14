@@ -14,6 +14,7 @@ import org.apache.ibatis.session.SqlSession;
 import common.db.MyAppSqlConfig;
 import kr.co.ggori.repository.mapper.IBoardMapper;
 import kr.co.ggori.repository.vo.BoardVO;
+import kr.co.ggori.repository.vo.FileVO;
 
 @WebServlet("/board/boardUpdateForm")
 public class BoardUpdateForm extends HttpServlet{
@@ -28,10 +29,14 @@ public class BoardUpdateForm extends HttpServlet{
 		BoardVO board = null;
 		try {
 			board = mapper.selectOneBoard(no);
+			FileVO file = mapper.selectFile(no);
+			
+			
+			request.setAttribute("board", board);
+			request.setAttribute("file", file);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		request.setAttribute("board", board);
 		RequestDispatcher rd = request.getRequestDispatcher("/view/board/updateForm.jsp");
 		rd.forward(request, response);
 	}

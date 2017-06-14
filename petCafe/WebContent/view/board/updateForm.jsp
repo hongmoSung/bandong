@@ -36,7 +36,7 @@
 	  	<td><textarea name='content' rows="5" cols="70"><c:out value="${board.content}"/></textarea></td>
 	  	</tr>
 	  </table>
-	  	<div id='file'></div>
+	  	<span id='file'></span>
 	  	<input type="submit" value="수정"/>
 	  	<input type='reset' value='재입력'/>
 </form>
