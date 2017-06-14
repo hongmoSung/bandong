@@ -40,17 +40,15 @@ public class SelectDateServlet extends HttpServlet {
 		List<CareTypeVO> careTypeList = null;
 
 		try {
-//			reservationList = reserMap.hospitalReservation( Integer.parseInt(hospitalId) );
-			reservationList = reserMap.hospitalReservation(1);
-			careTypeList = careMap.SearchCare(1);
+			reservationList = reserMap.hospitalReservation( Integer.parseInt(hospitalId) );
+			careTypeList = careMap.SearchCare( Integer.parseInt(hospitalId) );
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		request.setAttribute("reservationList", reservationList);
 		request.setAttribute("careTypeList", careTypeList);
-//		request.setAttribute("hospitalId", hospitalId);
-		request.setAttribute("hospitalId", 1);
+		request.setAttribute("hospitalId", hospitalId);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/view/reservation/selectDate.jsp");
 		rd.forward(request, response);

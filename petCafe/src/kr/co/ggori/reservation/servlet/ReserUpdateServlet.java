@@ -8,22 +8,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 
 import common.db.MyAppSqlConfig;
 import kr.co.ggori.repository.mapper.IReservationMapper;
-import kr.co.ggori.repository.vo.MemberVO;
 import kr.co.ggori.repository.vo.ReservationVO;
 
-@WebServlet("/reservation/reserInsert")
-public class ReservationInsertServlet extends HttpServlet {
+@WebServlet("/reservation/reserUpdate")
+public class ReserUpdateServlet extends HttpServlet {
 
-	private IReservationMapper reserMap = null;
 	private SqlSession session = null;
+	private IReservationMapper reserMap = null;
 	
-	public ReservationInsertServlet() {
+	public ReserUpdateServlet() {
 		session = MyAppSqlConfig.getSqlSessionInstance();
 		reserMap = session.getMapper(IReservationMapper.class);
 	}
@@ -31,32 +29,20 @@ public class ReservationInsertServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession Hsession = request.getSession();
-		
 		ReservationVO reservation = new ReservationVO();
 		
-		String detail = request.getParameter("detail");
-		MemberVO mem = (MemberVO)Hsession.getAttribute("member");
-		String reserTime = request.getParameter("reserTime") + ":00:00";
-		
-		reservation.setReserDate( request.getParameter("userSelectDate") );
-		reservation.setReserTime( reserTime );
-		reservation.setReserName( request.getParameter("reserName") );
-		reservation.setHospitalId( Integer.parseInt(request.getParameter("hospitalId")) );
-		reservation.setMemberId( mem.getMemberId() );
+		reservation.setReserDate( request.getParameter("reserDate") );
+		reservation.setReserTime( request.getParameter("reserTime") + ":00:00" );
 		reservation.setCareTypeId( request.getParameter("careType") );
+		reservation.setReserName( request.getParameter("reserName") );
+		if( request.getParameter("reserName") != "" ) {
+			reservation.setDetail( request.getParameter("detail") );
+		}
 		
 		try {
-			if( detail != "" ) {
-				reservation.setDetail( detail );
-				reserMap.insertReservation(reservation);
-			}
-			else {
-				reserMap.insertReservationNoDetail(reservation);
-			}
+			reserMap.updateReservation(reservation);
 			session.commit();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		

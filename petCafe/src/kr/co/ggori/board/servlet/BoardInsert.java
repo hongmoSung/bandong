@@ -42,6 +42,7 @@ public class BoardInsert extends HttpServlet{
 		String datePath = sdf.format(new Date());
 		
 		realPath += datePath;
+		System.out.println(realPath);
 		
 		File f = new File(realPath);
 		

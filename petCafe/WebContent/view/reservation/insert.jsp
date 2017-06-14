@@ -74,6 +74,7 @@
 </script>
 
 <form action="selectDate" method="post">
+	<input type="hidden" name="hospitalId" value="${hospitalId}"/>
 	<button>날짜선택</button>
 </form>
 </body>

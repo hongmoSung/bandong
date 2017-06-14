@@ -28,7 +28,7 @@ public class BoardDelete extends HttpServlet{
 		System.out.println(no);
 		
 		try {
-//			mapper.deleteFile(no);
+			mapper.deleteFile(no);
 			mapper.deleteBoard(no);
 			session.commit();
 		} catch (Exception e) {

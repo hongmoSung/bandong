@@ -7,7 +7,7 @@
 <html>
 	<head>
 	<meta charset="UTF-8">
-	<title>풀캘린더</title>
+	<title>날짜 선택</title>
 	
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
 <!-- 	<link href="../css/custom2.css" rel="stylesheet"> -->
@@ -45,20 +45,23 @@
 	</style>
 	
 	<script type="text/javascript">
+		var reserList = [];
 		var hospitalDayOff = [{
 			start: "2017-06-23",
 			color: "transparent"
 		}];
-		var reserList = [
-			<c:forEach var="index" begin="0" end="${fn:length(reservationList) - 1}" varStatus="loop">
-				<c:if test="${not loop.first}">,</c:if>
-				{
-					"start":"<c:out value='${reservationList[index].reserDate}'/>T<c:out value='${reservationList[index].reserTime}'/>",
-					<c:set value="${reservationList[index].reserName}" var="reserName"/>
-					"title": "<c:out value='${reserName.charAt(0)}'/>*<c:out value='${reserName.charAt(2)}'/>"
-				}
-			</c:forEach>
-		];
+		<c:if test="${not empty reservationList}">
+			reserList = [
+				<c:forEach var="index" begin="0" end="${fn:length(reservationList) - 1}" varStatus="loop">
+					<c:if test="${not loop.first}">,</c:if>
+					{
+						"start":"<c:out value='${reservationList[index].reserDate}'/>T<c:out value='${reservationList[index].reserTime}'/>",
+						<c:set value="${reservationList[index].reserName}" var="reserName"/>
+						"title": "<c:out value='${reserName.charAt(0)}'/>*<c:out value='${reserName.charAt(2)}'/>"
+					}
+				</c:forEach>
+			];
+		</c:if>
 		
 	// 	hospitalDayOff["backgroundColor"] = "#99CCFF";
 	// 	hospitalDayOff["rendering"] = "background";
@@ -73,6 +76,11 @@
 				  locale : "ko"
 				, editable : false
 				, eventLimit : true
+				, header : {
+					left: 'prev',
+				    center: 'title',
+				    right: 'today, next'
+				}
 				, eventSources : [
 					{
 						  events : hospitalDayOff
@@ -201,7 +209,7 @@
 	<script>
 		$(document).ready(function() {
 		    $("#reserBtn").on("click", function () {
-		        $("#reserModal").modal();
+		        $("#updateModal").modal();
 		    });
 		});
  	</script>
@@ -217,7 +225,7 @@
 				<div id="calendar" class="col-md-10 cont">
 					<div>
 						<button class="btn btn-primary btn-xl page-scroll" disabled="true" id="reserBtn"
-								data-toggle="modal" data-target="#myModal">예약하기</button>
+								data-toggle="modal" data-target="#reserModal">예약하기</button>
 					</div>
 				</div>
 			</div>

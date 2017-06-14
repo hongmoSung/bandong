@@ -19,6 +19,7 @@
 		.table > thead > tr > th {
 			text-align: center;
 		}
+		
 	</style>
 </head>
 <body>
@@ -34,16 +35,16 @@
 			<table class="table table-condensed table-hover">
 				<jsp:useBean id="now" class="java.util.Date"/>
 				<fmt:formatDate value="${now}" var="today" pattern="d"/>
+				<thead>
 				<tr>
-					<th>타입</th>
 					<th>번호</th>
 					<th>제목</th>
 					<th>작성자</th>
 					<th>등록일</th>
 				</tr>
+				</thead>
 				<c:forEach var="board" items="${list}">
 				<tr>
-					<td><c:out value='${board.boardType}'/></td>
 					<td><c:out value='${board.boardNo}'/></td>
 					<td id="title">
 						<c:set var="type" value="${board.boardType}"/>

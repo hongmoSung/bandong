@@ -4,63 +4,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>상세페이지</title>
+	<meta charset="UTF-8">
+	<title>상세페이지</title>
+	<style>
+		.table > thead > tr > th {
+			text-align: center;
+		}
+		button {
+			text-decoration:none;
+		}
+	</style>
 </head>
 <body>
-<div>
 <div><c:import url="/view/include/topMenu.jsp"></c:import> </div>
+
 <div>
-<table>
-		<tr>
-		<td>번호</td>
-		<td><c:out value="${board.boardNo}"/></td>
-		</tr>
-		<tr>
-		<td>제목</td>
-		<td><c:out value="${board.title}"/></td>
-		</tr>
-		<tr>
-		<td>작성자</td>
-		<td><c:out value="${board.memberId}"/></td>
-		</tr>
-		<tr>
-		<td>내용</td>
-		<td><c:out value="${board.content}"/></td>
-		</tr>
-		<tr>
-		<td>등록일</td>
-		<td><fmt:formatDate value="${board.regDate}" pattern="yyyy-MM-dd"/></td>
-		</tr>
-		<tr>
-		<td>이미지</td>
-		<td>		
- 			<a href="${pageContext.request.contextPath}/servlet/DownloadServlet?path=${file.filePath}&sName=${file.sysName}&dName=${file.oriName}">${file.oriName}</a>
-				(<c:out value='${file.fileSize}'/> byte)
-		</td>
-		</tr>
-	</table>
-	<c:out value="${board.boardNo}"/>
-	<c:out value="${board.boardType}"/>
-	<a href='boardUpdateForm?boardType=${board.boardType}&boardNo=<c:out value="${board.boardNo}" />'>수정</a>
-	<a href='boardDelete?boardType=${board.boardType}&boardNo=<c:out value="${board.boardNo}" />'>삭제</a>
+	<c:set var="file" value="${file}"/>
+	<c:set var="type" value="${board.boardType}"/>
+		<table>
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>등록일</th>
+				</tr>	
+			</thead>
+			<tr>
+				<td><c:out value="${board.boardNo}"/></td>
+				<td><c:out value="${board.title}"/></td>
+				<td><c:out value="${board.memberId}"/></td>
+				<td><fmt:formatDate value="${board.regDate}" pattern="yy/MM/dd hh:mm:ss"/></td>
+			</tr>
+		</table>
+		<c:if test="${type eq 'image'}">
+		<c:forEach var="file" items="${file}">
+			<img src="${uploadPath}${file.filePath}/${file.systemName}"/>
+		</c:forEach>
+		</c:if>
+		<div align="center">
+			<c:out value="${board.content}"/>
+		</div>
 	
 	
-		<c:set var="type" value="${board.boardType}"/>
+	<button><a href='boardUpdateForm?boardType=${board.boardType}&boardNo=<c:out value="${board.boardNo}" />'>수정</a></button>
+	<button><a href='boardDelete?boardType=${board.boardType}&boardNo=<c:out value="${board.boardNo}" />'>삭제</a></button>
+	
+		
 				<c:choose>
 					<c:when test="${type eq 'notice'}">
-						<a href="noticeList">목록</a>
+						<button><a href="noticeList">목록</a></button>
 					</c:when>
 					<c:when test="${type eq 'sale'}">
-						<a href="saleList">목록</a>
+						<button><a href="saleList">목록</a></button>
 					</c:when>
 					<c:when test="${type eq 'tip'}">
-						<a href="tipList">목록</a>
+						<button><a href="tipList">목록</a></button>
 					</c:when>
 					<c:when test="${type eq 'image'}">
-						<a href="imageList">목록</a>
+						<button><a href="imageList">목록</a></button>
 					</c:when>
-					</c:choose>
+				</c:choose>
+				
+				
 	
 	<h5>댓글</h5>
 	<hr>
@@ -132,8 +138,6 @@
 				</div>
 			</form>
 		</div>
-
-
 <div><c:import url="/view/include/footer.jsp"/> </div>
 </div>
 </body>

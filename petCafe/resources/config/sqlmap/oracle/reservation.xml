@@ -33,6 +33,12 @@
 		 where hospital_id = #{hospitalId}
 	</select>
 	
+	<select id="userSelectReservation" parameterType="int" resultMap="reserMap">
+		select *
+		  from reservation
+		 where reser_id = #{reserId}
+	</select>
+	
 	<select id="hospitalDayOff" parameterType="int" resultMap="dayOffMap">
 		select off_day
 		  from dayoff
@@ -96,8 +102,7 @@
 	
 	<update id="updateReservation" parameterType="Reservation">
 		update reservation
-		   set reser_date = #{reserDate},
-		       reser_time = #{reserTime},
+		   set reser_time = #{reserTime},
 		       care_type = #{careType},
 		       detail = #{detail},
 		       reser_name = #{reserName}

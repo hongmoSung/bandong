@@ -78,16 +78,16 @@
 	
 		<div class="col-md-5 cont">
 			<jsp:useBean id="now" class="java.util.Date"/>
-			<fmt:formatDate value="${now}" var="today" pattern="d"/>
+			<fmt:formatDate value="${now}" var="today" pattern="yyyyMMddHH"/>
 			<div>
 				<a href="${pageContext.request.contextPath}/board/noticeList">공지사항</a><br>
 				<table class="table table-condensed table-hover">
 					<c:forEach var="board" items="${boardListNotice}">
 						<tr>
 							<td id="title">
-								<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="d"/>
+								<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="yyyyMMddHH"/>
 								<c:out value="${board.title}"/>
-								<c:if test="${today-writeDate == 0}">
+								<c:if test="${today-writeDate <= 3}">
 									<span class="new">new</span>
 								</c:if>
 							</td>
@@ -106,9 +106,9 @@
 					<c:forEach var="board" items="${boardListSale}">
 						<tr>
 							<td id="title">
-								<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="d"/>
+								<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="yyyyMMddHH"/>
 								<c:out value="${board.title}"/>
-								<c:if test="${today-writeDate == 0}">
+								<c:if test="${today-writeDate <= 3}">
 									<span class="new">new</span>
 								</c:if>
 							</td>
@@ -127,9 +127,9 @@
 					<c:forEach var="board" items="${boardListTip}">
 						<tr>
 							<td id="title">
-								<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="d"/>
+								<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="yyyyMMddHH"/>
 								<c:out value="${board.title}"/>
-								<c:if test="${today-writeDate == 0}">
+								<c:if test="${today-writeDate <= 3}">
 									<span class="new">new</span>
 								</c:if>
 							</td>
@@ -167,8 +167,8 @@
 												</c:otherwise>
 											</c:choose>
 <%-- 											<c:out value="${boardListImage[index].title}"/> --%>
-											<fmt:formatDate value="${boardListImage[index].regDate}" var="writeDate" pattern="d"/>
-											<c:if test="${today-writeDate == 0}">
+											<fmt:formatDate value="${boardListImage[index].regDate}" var="writeDate" pattern="yyyyMMddHH"/>
+											<c:if test="${today-writeDate <= 3}">
 												<span class="new">new</span>
 											</c:if>
 											<br>

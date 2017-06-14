@@ -14,6 +14,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import common.db.MyAppSqlConfig;
 import kr.co.ggori.repository.mapper.IBoardMapper;
+import kr.co.ggori.repository.mapper.IMainMapper;
 import kr.co.ggori.repository.mapper.IMemberMapper;
 import kr.co.ggori.repository.mapper.IReplyMapper;
 import kr.co.ggori.repository.vo.BoardVO;
@@ -25,27 +26,44 @@ public class ImageDetail extends HttpServlet{
 	private SqlSession session;
 	private IBoardMapper bMapper;
 	private IReplyMapper rMapper;
-	private IMemberMapper mMapper;
+	private IMainMapper mainMapper;
 	public ImageDetail() {
 		session = MyAppSqlConfig.getSqlSessionInstance();
 		bMapper = session.getMapper(IBoardMapper.class);
 		rMapper = session.getMapper(IReplyMapper.class);
-		mMapper = session.getMapper(IMemberMapper.class);
+		mainMapper = session.getMapper(IMainMapper.class);
 	}
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int no = Integer.parseInt(request.getParameter("boardNo"));
 		
-		BoardVO board;
+		FileVO fileList = null;
+		String uploadPath = null;
+		
+		List<BoardVO> boardList = null;
+		List<FileVO> file = null;
+		
 		try {
-			board = bMapper.selectOneBoard(no);
+			
+			boardList = bMapper.selectAll("image"); 
+			request.setAttribute("boardList", boardList);
+
+			BoardVO board = bMapper.selectOneBoard(no);
 			request.setAttribute("board", board);
+			
+			setNickName(boardList);
+			
+			uploadPath = request.getContextPath() + "/upload";
+			request.setAttribute("uploadPath", uploadPath);
 			
 			String memberId = request.getParameter("memberId");
 			request.setAttribute("member", memberId);
 			
-			FileVO file = bMapper.selectFile(no);
+			file = bMapper.selectFileAll(no);
 			request.setAttribute("file", file);
+			
+			
+			
 			
 			String replyId = request.getParameter("replyId");
 			if (replyId != null) {
@@ -60,6 +78,13 @@ public class ImageDetail extends HttpServlet{
 			rd.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	public void setNickName(List<BoardVO> member) throws Exception {
+		for(int i = 0; i < member.size(); i++) {
+			member.get(i).setNickName( 
+					mainMapper.myNickName( member.get(i).getMemberId() ) 
+					);
 		}
 	}
 	
