@@ -8,9 +8,10 @@
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-<style type="text/css">
-	
-</style>
+
+<!-- sweet -->
+<script src="${pageContext.request.contextPath}/sweet/sweetalert.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/sweet/sweetalert.css"/>
 </head>
 <body>
 <div>
@@ -44,7 +45,7 @@
 		var email = document.querySelector("#email");
 		
 		if (email.value == "") {
-			alert("email을 입력해주세요")
+			swal("email을 입력해주세요")
 			return false;
 		}
 		return true;		

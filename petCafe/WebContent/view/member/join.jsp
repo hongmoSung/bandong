@@ -7,6 +7,11 @@
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+
+<!-- sweet -->
+<script src="${pageContext.request.contextPath}/sweet/sweetalert.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/sweet/sweetalert.css"/>
+
 <style type="text/css">
 	.col-sm-9 {
 		margin-bottom: 15px;
@@ -66,23 +71,28 @@
 		var phoneNum = document.querySelector("#phoneNum");
 		
 		if(id.value == "") {
-			alert("id를 입력하세요");
+// 			alert("id를 입력하세요");
+			swal("id를 입력하세요")
 			return false;
 		} 
 		if(pass.value == "") {
-			alert("pass를 입력하세요");
+// 			alert("pass를 입력하세요");
+			swal("pass를 입력하세요")
 			return false;
 		} 
 		if(nickName.value == "") {
-			alert("nickName를 입력하세요");
+// 			alert("nickName를 입력하세요");
+			swal("nickName를 입력하세요")
 			return false;
 		} 
 		if(email.value == "") {
-			alert("email를 입력하세요");
+// 			alert("email를 입력하세요");
+			swal("email를 입력하세요")
 			return false;
 		} 
 		if(phoneNum.value == "") {
-			alert("phoneNum를 입력하세요");
+// 			alert("phoneNum를 입력하세요");
+			swal("phoneNum를 입력하세요")
 			return false;
 		} 
 		return true;

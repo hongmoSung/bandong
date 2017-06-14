@@ -7,6 +7,10 @@
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+
+<!-- sweet -->
+<script src="${pageContext.request.contextPath}/sweet/sweetalert.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/sweet/sweetalert.css"/>
 </head>
 <body>
 <div class="container">
@@ -58,11 +62,11 @@
 	function doAction() {
 		console.log("zz");
 		if (id.value == "") {
-			alert("id를 입력하세요");
+			swal("id를 입력하세요")
 			return false;
 		}
 		if (pass.value == "") {
-			alert("비밀번호를 입력하세요");
+			swal("비밀번호를 입력하세요")
 			return false;
 		}
 		return true;

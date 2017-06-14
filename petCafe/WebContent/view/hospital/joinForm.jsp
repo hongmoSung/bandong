@@ -13,10 +13,31 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
-<style type="text/css">
-	
-</style>
+<!-- sweet -->
+<script src="${pageContext.request.contextPath}/sweet/sweetalert.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/sweet/sweetalert.css"/>
 
+<!--  -->
+<script type="text/javascript">
+	function doAction() {
+		var name = document.querySelector("#name");
+		var address = document.querySelector("#address");
+		var telNumber = document.querySelector("#telNumber");
+		if (address.value == "") {
+			swal("주소를 등록해주세요");
+			return false;			
+		}
+		if(name.value == "") {
+			swal("병원 이름을 등록해주세요");
+			return false;
+		}
+		if(telNumber.value == "") {
+			swal("전화번호를 등록해주세요");
+			return false;
+		}
+		return true;
+	}
+</script>
 </head>	
 <body>
 <div>
@@ -42,11 +63,11 @@
 		<div class="center-block text-center" style="width: 500px; margin-bottom: 25px;">
 			<h1>병원등록</h1>
 			<div id="map" style="width:100%;height:350px;margin-top:10px; margin-bottom:10px; display:none"></div>
-			<form class="form-horizontal" method="post" action="join">
-			<div style="margin-bottom: 15px;">
-				<input class="col-sm-9" type="text" placeholder="주소"  id="address" name="address">
-				<input class="col-sm-3" type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
-			</div>
+			<form class="form-horizontal" method="post" action="join" onsubmit="return doAction();">
+				<div style="margin-bottom: 15px;">
+					<input class="col-sm-9" type="text" placeholder="주소"  id="address" name="address">
+					<input class="col-sm-3" type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
+				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-3" for="name">병원이름</label>
 					<div class="col-sm-9">

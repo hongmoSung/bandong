@@ -7,6 +7,10 @@
 	<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 	<script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	
+	<!-- sweet -->
+	<script src="${pageContext.request.contextPath}/sweet/sweetalert.min.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/sweet/sweetalert.css"/>
 </head>
 <body>
 <div>
@@ -16,11 +20,20 @@
 <div class="container">
 	<input value="${msg}" id="msg">
 	<script type="text/javascript">
+		function doAction() {
+			var typeName = document.querySelector("#typeName");
+			console.log(typeName.value);
+			if(typeName.value == "") {
+				swal("진료 분야를 적어주세요!");
+				return false;
+			}
+			return true;
+		}
 		if($("#msg").attr("value") == "성공") {
-			alert("등록 성공")
+			swal("등록 성공!", "You clicked the button!", "success");
 		}
 		if($("#msg").attr("value") == "실패") {
-			alert("등록 실패")
+			swal("등록 실패", "Your imaginary file is safe :)", "error");
 		}
 	</script>
 	<div class="row" id="firstDiv">
@@ -31,7 +44,7 @@
 			<div style="text-align: center;">
 				<h1>진료 분야 등록</h1>
 			</div>
-			<form class="form-horizontal" method="post" action="careTypeInsert">
+			<form class="form-horizontal" method="post" action="careTypeInsert" onsubmit="return doAction()">
 				<div class="form-group">
 					<label class="control-label col-sm-3" for="typeName">진료 분야</label>
 					<div class="col-sm-9">
