@@ -13,15 +13,14 @@ import org.apache.ibatis.session.SqlSession;
 
 import common.db.MyAppSqlConfig;
 import kr.co.ggori.repository.mapper.IReservationMapper;
-import kr.co.ggori.repository.vo.ReservationVO;
 
-@WebServlet("/reservation/reserUpdate")
-public class ReserUpdateServlet extends HttpServlet {
-
+@WebServlet("/reservation/reserDelete")
+public class ReserDeleteServlet extends HttpServlet {
+	
 	private SqlSession session = null;
 	private IReservationMapper reserMap = null;
-	
-	public ReserUpdateServlet() {
+
+	public ReserDeleteServlet() {
 		session = MyAppSqlConfig.getSqlSessionInstance();
 		reserMap = session.getMapper(IReservationMapper.class);
 	}
@@ -29,23 +28,10 @@ public class ReserUpdateServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ReservationVO reservation = new ReservationVO();
-		String detail = request.getParameter("detail");
-		
-		reservation.setReserTime( request.getParameter("reserTime") + ":00:00" );
-		reservation.setCareTypeId( request.getParameter("careType") );
-		reservation.setReserName( request.getParameter("reserName") );
-		reservation.setReserId( Integer.parseInt(request.getParameter("reserId")) );
+		int reserId = Integer.parseInt( request.getParameter("reserId") );
 		
 		try {
-			if( detail != "" ) {
-				reservation.setDetail( detail );
-				reserMap.updateReservation(reservation);
-			}
-			else {
-				reserMap.updateReservationNoDetail(reservation);
-			}
-			session.commit();
+			reserMap.deleteReservation(reserId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

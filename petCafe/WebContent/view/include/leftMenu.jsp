@@ -83,7 +83,7 @@
 		</div>
 		<div id="reservationList" class="panel-collapse collapse">
 			<div class="panel-body">
-				<a href="${pageContext.request.contextPath}/reservation/insert">예약하기</a><br>
+				<a href="${pageContext.request.contextPath}/hospital/hospitalList">예약하기</a><br>
 				<a href="${pageContext.request.contextPath}/reservation/reservationList">예약 확인</a>
 			</div>
 		</div>

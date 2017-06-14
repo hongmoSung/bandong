@@ -34,6 +34,9 @@
 	.table > tbody > tr > #title {
 		text-align: left;
 	}
+	.more > a {
+		font-size: 12px;
+	}
 </style>
 
 </head>
@@ -75,117 +78,158 @@
 		<div class="col-md-2">
 			<c:import url="/view/include/leftMenu.jsp"/>
 		</div>
-	
-		<div class="col-md-5 cont">
-			<jsp:useBean id="now" class="java.util.Date"/>
-			<fmt:formatDate value="${now}" var="today" pattern="yyyyMMddHH"/>
-			<div>
-				<a href="${pageContext.request.contextPath}/board/noticeList">공지사항</a><br>
-				<table class="table table-condensed table-hover">
-					<c:forEach var="board" items="${boardListNotice}">
-						<tr>
-							<td id="title">
-								<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="yyyyMMddHH"/>
-								<c:out value="${board.title}"/>
-								<c:if test="${today-writeDate <= 3}">
-									<span class="new">new</span>
-								</c:if>
-							</td>
-							<td>
-								<c:out value="${board.nickName}"/>
-							</td>
-						</tr>
-					</c:forEach>
-				</table>
-			</div>
-		</div>
-		<div class="col-md-5 cont">
-			<div>
-				분양 게시판<br>
-				<table class="table table-condensed table-hover">
-					<c:forEach var="board" items="${boardListSale}">
-						<tr>
-							<td id="title">
-								<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="yyyyMMddHH"/>
-								<c:out value="${board.title}"/>
-								<c:if test="${today-writeDate <= 3}">
-									<span class="new">new</span>
-								</c:if>
-							</td>
-							<td>
-								<c:out value="${board.nickName}"/>
-							</td>
-						</tr>
-					</c:forEach>
-				</table>
-			</div>
-		</div>
-		<div class="col-md-5 cont">
-			<div>
-				양육 TIP 게시판<br>
-				<table class="table table-condensed table-hover">
-					<c:forEach var="board" items="${boardListTip}">
-						<tr>
-							<td id="title">
-								<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="yyyyMMddHH"/>
-								<c:out value="${board.title}"/>
-								<c:if test="${today-writeDate <= 3}">
-									<span class="new">new</span>
-								</c:if>
-							</td>
-							<td>
-								<c:out value="${board.nickName}"/>
-							</td>
-						</tr>
-					</c:forEach>
-				</table>
-			</div>
-		</div>
-		<div class="col-md-5 cont">
-			<div>
-				이미지 게시판<br>
-				<div class="row">
-					<c:forEach var="index" begin="0" end="5">
-						<c:if test="${index == 3}">
-							</div>
-							<div class="row">
-						</c:if>
-						<div class="col-sm-8 col-md-4">
-							<div class="thumbnail">
-								<c:choose>
-									<c:when test="${not empty fileList[index]}">
-										<img class="imgList" src="${uploadPath}${fileList[index].filePath}/${fileList[index].systemName}"/>
-										<div class="caption">
-											<c:set value="${boardListImage[index].title}" var="title"/>
-											<c:choose>
-												<c:when test="${fn:length(title) >= 8}">
-													<c:set value="${fn:substring(title, 0, 8)}..." var="subTitle"/>
-													<c:out value="${subTitle}"/>
-												</c:when>
-												<c:otherwise>
-													<c:out value="${title}"/>
-												</c:otherwise>
-											</c:choose>
-<%-- 											<c:out value="${boardListImage[index].title}"/> --%>
-											<fmt:formatDate value="${boardListImage[index].regDate}" var="writeDate" pattern="yyyyMMddHH"/>
+		<div class="col-md-10">
+			<div class="row">
+				<div class="col-md-5 cont mainBoardFour">
+					<jsp:useBean id="now" class="java.util.Date"/>
+					<fmt:formatDate value="${now}" var="today" pattern="yyyyMMddHH"/>
+					<div class="row">
+						<div class="col-xs-4 boardType">
+							<a href="${pageContext.request.contextPath}/board/noticeList">공지사항</a>
+						</div>
+						<div class="col-xs-6"></div>
+						<div class="col-xs-2 more">
+							<a href="${pageContext.request.contextPath}/board/noticeList">더보기</a>
+						</div>
+					</div>
+					<div>
+						<table class="table table-condensed table-hover">
+							<c:forEach var="board" items="${boardListNotice}">
+								<tr>
+									<td id="title">
+										<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="yyyyMMddHH"/>
+										<a href="${pageContext.request.contextPath}/board/noticeDetail?boardNo=<c:out value='${board.boardNo}'/>">
+											<c:out value="${board.title}"/>
 											<c:if test="${today-writeDate <= 3}">
 												<span class="new">new</span>
 											</c:if>
-											<br>
-											<c:out value="${boardListImage[index].nickName}"/>
-										</div>
-									</c:when>
-									<c:otherwise>
-										<img class="imgList" src="${pageContext.request.contextPath}/images/no-image.jpg"/>
-										<div class="caption">
-											<p><c:out value="등록된 이미지가 없습니다"/></p>
-											<p></p>
-										</div>
-									</c:otherwise>
-								</c:choose>
-							</div>
+										</a>
+									</td>
+									<td>
+										<c:out value="${board.nickName}"/>
+									</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
+				</div>
+				<div class="col-md-5 cont mainBoardFour">
+					<div class="row">
+						<div class="col-xs-4 boardType">
+							<a href="${pageContext.request.contextPath}/board/saleList">분양 게시판</a>
 						</div>
-					</c:forEach>
+						<div class="col-xs-6"></div>
+						<div class="col-xs-2 more">
+							<a href="${pageContext.request.contextPath}/board/saleList">더보기</a>
+						</div>
+					</div>
+					<div>
+						<table class="table table-condensed table-hover">
+							<c:forEach var="board" items="${boardListSale}">
+								<tr>
+									<td id="title">
+										<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="yyyyMMddHH"/>
+										<a href="${pageContext.request.contextPath}/board/saleDetail?boardNo=<c:out value='${board.boardNo}'/>">
+											<c:out value="${board.title}"/>
+											<c:if test="${today-writeDate <= 3}">
+												<span class="new">new</span>
+											</c:if>
+										</a>
+									</td>
+									<td>
+										<c:out value="${board.nickName}"/>
+									</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-5 cont">
+					<div class="row">
+						<div class="col-xs-4 boardType">
+							<a href="${pageContext.request.contextPath}/board/tipList">양육TIP</a>
+						</div>
+						<div class="col-xs-6"></div>
+						<div class="col-xs-2 more">
+							<a href="${pageContext.request.contextPath}/board/tipList">더보기</a>
+						</div>
+					</div>
+					<div>
+						<table class="table table-condensed table-hover">
+							<c:forEach var="board" items="${boardListTip}">
+								<tr>
+									<td id="title">
+										<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="yyyyMMddHH"/>
+										<a href="${pageContext.request.contextPath}/board/tipDetail?boardNo=<c:out value='${board.boardNo}'/>">
+											<c:out value="${board.title}"/>
+											<c:if test="${today-writeDate <= 3}">
+												<span class="new">new</span>
+											</c:if>
+										</a>
+									</td>
+									<td>
+										<c:out value="${board.nickName}"/>
+									</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
+				</div>
+				<div class="col-md-5 cont">
+					<div class="row">
+						<div class="col-xs-5 boardType">
+							<a href="${pageContext.request.contextPath}/board/imageList">이미지 게시판</a>
+						</div>
+						<div class="col-xs-4"></div>
+						<div class="col-xs-3 more">
+							<a href="${pageContext.request.contextPath}/board/imageList">더보기</a>
+						</div>
+					</div>
+					<div class="row">
+						<c:forEach var="index" begin="0" end="5">
+							<c:if test="${index == 3}">
+								</div>
+								<div class="row">
+							</c:if>
+							<div class="col-sm-8 col-md-4">
+								<div class="thumbnail">
+									<c:choose>
+										<c:when test="${not empty fileList[index]}">
+											<a href="${pageContext.request.contextPath}/board/imageList?boardNo='<c:out value='${boardListImage[index].boardNo}'/>'">
+												<img class="imgList" src="${uploadPath}${fileList[index].filePath}/${fileList[index].systemName}"/>
+											</a>
+											<div class="caption">
+												<c:set value="${boardListImage[index].title}" var="title"/>
+												<c:choose>
+													<c:when test="${fn:length(title) >= 8}">
+														<c:set value="${fn:substring(title, 0, 8)}..." var="subTitle"/>
+														<c:out value="${subTitle}"/>
+													</c:when>
+													<c:otherwise>
+														<c:out value="${title}"/>
+													</c:otherwise>
+												</c:choose>
+												<fmt:formatDate value="${boardListImage[index].regDate}" var="writeDate" pattern="yyyyMMddHH"/>
+												<c:if test="${today-writeDate <= 3}">
+													<span class="new">new</span>
+												</c:if>
+												<c:out value="${boardListImage[index].nickName}"/>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<img class="imgList" src="${pageContext.request.contextPath}/images/no-image.jpg"/>
+											<div class="caption">
+												<p><c:out value="등록된 이미지가 없습니다"/></p>
+												<p></p>
+											</div>
+										</c:otherwise>
+									</c:choose>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
 				</div>
 			</div>
 		</div>

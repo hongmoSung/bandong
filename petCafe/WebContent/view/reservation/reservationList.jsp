@@ -42,7 +42,7 @@
 
 		<script type="text/javascript">
 			var reserList = [];
-			if(${not empty reserList}) {
+			<c:if test="${not empty reserList}">
 				reserList = [
 					<c:forEach var="index" begin="0" end="${fn:length(reserList) - 1}" varStatus="loop">
 						<c:if test="${not loop.first}">,</c:if>
@@ -53,7 +53,7 @@
 						}
 					</c:forEach>
 				];
-			}
+			</c:if>
 		
 	// 	hospitalDayOff["backgroundColor"] = "#99CCFF";
 	// 	hospitalDayOff["rendering"] = "background";
@@ -134,7 +134,6 @@
 							else {
 								popContent += reserListDate.substring(11, 16) + " " + reserList[i].title;
 							}
-// 							reserTimeArr.push( reserListDate.substring(11, 13) );
 						}
 					}
 					if(!popContent) {
@@ -178,11 +177,11 @@
 					    		</div>
 					    		<div>
 					    			<button id='updateBtn' type='button' class='btn btn-default' onclick='chkForm();'>수정</button>
+					    			<button id='deleteBtn' type='button' class='btn btn-default' onclick='deleteReser();'>삭제</button>
 					    		</div>
 							</form>
 							<div id="checkResult"></div>
 						</div>
-						
 					</div>
 				</div>
 			</div>
@@ -190,7 +189,9 @@
 		</div>
 	</body>
 	<script>
-		$("#reserName").on("keyup", function () {
+		var f = document.uForm;
+
+		function validTest() {
 			var reserName = f.reserName;
 			$.ajax({
 				data: {
@@ -201,20 +202,25 @@
 					$("#checkResult").html(data);
 				}
 			});
-		});
-	
-		var f = document.uForm;
+		}
 		
 		function chkForm() {
 			var reserName = f.reserName;
-			if( $("#checkResult>p").text() == ("수정 또는 삭제 버튼을 누르세요") ) {
+			console.log("true?false? : ", $("#checkResult>p").text() == ("수정 또는 삭제 버튼을 누르세요") || $("#checkResult>p").text() == "");
+			if( $("#checkResult>p").text() == ("수정 또는 삭제 버튼을 누르세요") || $("#checkResult>p").text() == "") {
 				f.submit();
 			}
 			else {
 				alert("수정된 내용을 확인해 주세요..");
-				
 				return ;
 			}
+		}
+		
+		function deleteReser() {
+			alert("삭제하겠습니다..");
+			
+			f.action = "reserDelete";
+			f.submit();
 		}
 	</script>
 </html>

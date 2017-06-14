@@ -103,8 +103,15 @@
 	<update id="updateReservation" parameterType="Reservation">
 		update reservation
 		   set reser_time = #{reserTime},
-		       care_type = #{careType},
+		       care_type_id = #{careTypeId},
 		       detail = #{detail},
+		       reser_name = #{reserName}
+		 where reser_id = #{reserId}
+	</update>
+	<update id="updateReservationNoDetail" parameterType="Reservation">
+		update reservation
+		   set reser_time = #{reserTime},
+		       care_type_id = #{careTypeId},
 		       reser_name = #{reserName}
 		 where reser_id = #{reserId}
 	</update>

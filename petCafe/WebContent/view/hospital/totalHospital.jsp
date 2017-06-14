@@ -141,7 +141,7 @@
 			// 인포윈도우를 생성합니다
 			infowindow[i] = new daum.maps.InfoWindow({
 // 			    content : "<div style='padding:5px;'>" + infos[i].hospitalName + "<br>" + infos[i].address + "<br><a href='${pageContext.request.contextPath}/reservation/insert?hospitalId=" + infos[i].title +"'>예약하기</a></div>",
-			    content : '<div style="padding:5px;"><a href=${pageContext.request.contextPath}/reservation/insert?hospitalId=' + infos[i].title +'>예약하기</a><br><p>병원이름 : ' + infos[i].hospitalName + '</p><p>주소 : ' + infos[i].address + '</p><br></div>',
+			    content : '<div style="padding:5px;"><a href=${pageContext.request.contextPath}/reservation/selectDate?hospitalId=' + infos[i].title +'>예약하기</a><br><p>병원이름 : ' + infos[i].hospitalName + '</p><p>주소 : ' + infos[i].address + '</p><br></div>',
 			    removable : iwRemoveable
 			});
 			// 마커에 클릭이벤트를 등록합니다
