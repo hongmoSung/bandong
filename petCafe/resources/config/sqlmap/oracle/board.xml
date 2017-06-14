@@ -61,7 +61,7 @@
 		<result column="File_Path" property="filePath"/>
 		<result column="Origin_Name" property="originName"/>
 		<result column="System_name" property="systemName"/>
-		<result column="File_Size" property="FileSize"/>
+		<result column="File_Size" property="fileSize"/>
 		<result column="member_id" property="memberId"/>
 		<result column="board_no" property="boardNo"/>
 	</resultMap>
@@ -89,4 +89,16 @@
 	     where board_no=#{boardNo} 
 	</delete>
 	
+	<insert id="insertUserProfile" parameterType="File">
+	    insert into file_form(           
+		    File_Id, file_path, origin_name, system_name, file_size, Member_Id
+		) values (                       
+		    s_file_id.nextval, #{filePath}, #{originName}, #{systemName}, #{fileSize} , #{memberId}
+		)                               
+	</insert>
+	<select id="selectUserProfile" parameterType="String" resultMap="fileMap">
+		select * 
+		  from file_form
+		 where member_id = #{memberId}
+	</select>
 </mapper>

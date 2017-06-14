@@ -22,4 +22,7 @@ public interface IBoardMapper {
 	public int insertFile(FileVO file) throws Exception;
 	public int deleteFile(int boardNo) throws Exception;
 	
+	//userProfile
+	public int insertUserProfile(FileVO file) throws Exception;
+	public FileVO selectUserProfile(String memberId) throws Exception;
 }

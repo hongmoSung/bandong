@@ -31,8 +31,12 @@
 		<h1>회원가입</h1>
 	</div>
 	<div class="center-block" style="width: 500px;">
-		<form class="form-horizontal" method="POST" action="join" onsubmit="return doAction()">
+		<form class="form-horizontal" method="POST" action="join" onsubmit="return doAction()" enctype="multipart/form-data">
 			<div class="form-group">
+				<label class="control-label col-sm-3">profile</label>
+				<div class="col-sm-9">
+					<input class="form-control" type="file" name="attachFile" id="attachFile">
+				</div>
 				<label class="control-label col-sm-3">id</label>
 				<div class="col-sm-9">
 					<input class="form-control" type="text" name="memberId" id="memberId">
@@ -51,7 +55,7 @@
 				</div>
 				<label class="control-label col-sm-3">phoneNum</label>
 				<div class="col-sm-9">
-					<input class="form-control" type="text" name="phoneNum">
+					<input class="form-control" type="text" name="phoneNum" id="phoneNum">
 				</div>
 				<div class="text-center">
 				<button class="btn btn-success btn-lg">가입하기</button>

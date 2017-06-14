@@ -29,6 +29,10 @@
 	<div class="center-block" style="width: 500px;">
 		<form class="form-horizontal" role="form" method="post" action="updateForm">
 			<div class="form-group">
+				<label class="control-label col-sm-3" for="memberId">프로필</label>
+				<div class="col-sm-9">
+					<img src="${pageContext.request.contextPath}${imgSrc}" >
+				</div>
 				<label class="control-label col-sm-3" for="memberId">아이디</label>
 				<div class="col-sm-9">
 					<input class="form-control" type="text" value="${member.memberId}" readonly="readonly" id="memberId" name="memberId">

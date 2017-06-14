@@ -1,6 +1,7 @@
 package kr.co.ggori.hospital.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -32,16 +33,23 @@ public class HospitalInfo extends HttpServlet{
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession s = request.getSession();
 		MemberVO member = (MemberVO)s.getAttribute("member");
-		String memberId = member.getMemberId();
 		
 		try {
+			if(member == null) {
+				response.sendRedirect("http://localhost:8000/petCafe/main/Main");
+			}
+			String memberId = member.getMemberId();
 			List<HospitalVO> hospitals = mapper.selectHospital(memberId);
-//			List<HospitalVO> hospitals = mapper.selectHospital(memberId);
 			request.setAttribute("hospitals", hospitals);
 			
 			if (hospitals != null) {
-//				RequestDispatcher rd = request.getRequestDispatcher("/view/hospital/hospitalInfo.jsp");
 				RequestDispatcher rd = request.getRequestDispatcher("/view/hospital/MyHospital.jsp");
+				rd.forward(request, response);
+			} else {
+				System.out.println(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;");
+				RequestDispatcher rd = request.getRequestDispatcher("/main/Main");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('조회된데이터가 없습니다');</script>");
 				rd.forward(request, response);
 			}
 			
