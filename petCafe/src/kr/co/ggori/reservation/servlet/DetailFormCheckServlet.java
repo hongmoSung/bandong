@@ -21,8 +21,6 @@ public class DetailFormCheckServlet extends HttpServlet{
 		Pattern koPattern = Pattern.compile("(^[가-힣]*$)");
 		Pattern enPattern = Pattern.compile("(^[a-zA-Z]*$)");
 		
-//		String time = request.getParameter("time");
-//		String care = request.getParameter("care");
 		String name = request.getParameter("name");
 		String detail = request.getParameter("detail");
 		

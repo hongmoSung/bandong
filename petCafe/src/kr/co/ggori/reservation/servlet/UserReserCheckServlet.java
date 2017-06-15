@@ -57,15 +57,15 @@ public class UserReserCheckServlet extends HttpServlet {
 					check = true;
 					break;
 				}
-				if( Integer.parseInt(reserList.get(index).getReserTime().substring(0, 2)) == i ) {
-					check = true;
-					break;
+				if( reserList.get(index).getReserDate().equals(reser.getReserDate()) ) {
+					if( Integer.parseInt(reserList.get(index).getReserTime().substring(0, 2)) == i ) {
+						check = true;
+						break;
+					}
 				}
 			}
 			if(!check) {
-				inputReserFormText += "<option value='" + i + "'" 
-						+ reser.getReserTime().substring(0, 2) 
-						+ ">" + i + "</option>";
+				inputReserFormText += "<option value='" + i + "'>" + i + "</option>";
 			}
 		}
 		inputReserFormText += "</select>시<br>";
@@ -76,7 +76,7 @@ public class UserReserCheckServlet extends HttpServlet {
 		}
 		inputReserFormText += "</select><br>";
 		
-		inputReserFormText += "예약자 이름 : <input type='text' name='reserName' value='" + reser.getReserName() + "'/><br>";
+		inputReserFormText += "예약자 이름 : <input type='text' name='reserName' value='" + reser.getReserName() + "' onkeyup='validTest();'/><br>";
 		
 		inputReserFormText += "상세 내용 : <textarea rows='5' cols='60' name='detail' style='resize: none;'>";
 		if(reser.getDetail() != null) {
