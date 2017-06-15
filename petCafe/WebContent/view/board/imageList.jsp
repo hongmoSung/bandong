@@ -56,6 +56,8 @@
 	<div>
 	<c:set var="file" value="${fileList}"/>
 	<c:set var="board" value="${boardList}"/>
+	<c:choose>
+		<c:when test="${not empty board}">
 		<c:forEach var="index" begin="0" end="${fn:length(file)-1}">
 			
 			<ul>
@@ -81,6 +83,12 @@
 						
 			</ul>
 		</c:forEach>
+		</c:when>
+		<c:otherwise>
+			<tr>
+				<td colspan="4"><c:out value="등록된 게시물이 없습니다"/></td></tr>
+		</c:otherwise>
+		</c:choose>
 	</div>
 	<div>
 	<a href="boardInsertForm">글쓰기</a>

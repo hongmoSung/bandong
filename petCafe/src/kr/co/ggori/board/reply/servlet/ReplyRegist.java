@@ -41,10 +41,10 @@ public class ReplyRegist extends HttpServlet {
 			ReplyVO reply = new ReplyVO();
 			reply.setBoardNo(no);
 			reply.setContent(request.getParameter("content"));
+			System.out.println(member.getNickName());
 			reply.setNickName(member.getNickName());
 			reply.setMemberId(memberId);
-			System.out.println(reply.getMemberId());
-			System.out.println(memberId);
+			System.out.println(reply.getNickName());
 			
 			mapper.insertReply(reply);
 			session.commit();

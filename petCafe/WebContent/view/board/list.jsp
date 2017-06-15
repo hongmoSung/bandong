@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,45 +44,54 @@
 					<th>등록일</th>
 				</tr>
 				</thead>
+				
+				<c:choose>
+				<c:when test="${not empty list}">
 				<c:forEach var="board" items="${list}">
-				<tr>
-					<td><c:out value='${board.boardNo}'/></td>
-					<td id="title">
-						<c:set var="type" value="${board.boardType}"/>
-						<c:choose>
-							<c:when test="${type eq 'notice'}">
-								<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="d"/>
-								<a href='noticeDetail?boardNo=<c:out value="${board.boardNo}"/>'>
-									<c:out value='${board.title}'/>
-									<c:if test="${today-writeDate == 0}">
-										<span class="new">new</span>
-									</c:if>
-								</a>
-							</c:when>
-							<c:when test="${type eq 'sale'}">
-								<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="d"/>
-								<a href='saleDetail?boardNo=<c:out value="${board.boardNo}"/>'>
-									<c:out value='${board.title}'/>
-									<c:if test="${today-writeDate == 0}">
-										<span class="new">new</span>
-									</c:if>
-								</a>
-							</c:when>
-							<c:when test="${type eq 'tip'}">
-								<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="d"/>
-								<a href='tipDetail?boardNo=<c:out value="${board.boardNo}"/>'>
-									<c:out value='${board.title}'/>
-									<c:if test="${today-writeDate == 0}">
-										<span class="new">new</span>
-									</c:if>
-								</a>
-							</c:when>
-						</c:choose>
-					</td>
-					<td><c:out value='${board.nickName}'/></td>
-					<td><fmt:formatDate value="${board.regDate}" pattern="yyyy-MM-dd"/></td>
-				</tr>
-				</c:forEach>
+						<tr>
+							<td><c:out value='${board.boardNo}'/></td>
+							<td id="title">
+								<c:set var="type" value="${board.boardType}"/>
+								<c:choose>
+									<c:when test="${type eq 'notice'}">
+										<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="d"/>
+										<a href='noticeDetail?boardNo=<c:out value="${board.boardNo}"/>'>
+											<c:out value='${board.title}'/>
+											<c:if test="${today-writeDate == 0}">
+												<span class="new">new</span>
+											</c:if>
+										</a>
+									</c:when>
+									<c:when test="${type eq 'sale'}">
+										<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="d"/>
+										<a href='saleDetail?boardNo=<c:out value="${board.boardNo}"/>'>
+											<c:out value='${board.title}'/>
+											<c:if test="${today-writeDate == 0}">
+												<span class="new">new</span>
+											</c:if>
+										</a>
+									</c:when>
+									<c:when test="${type eq 'tip'}">
+										<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="d"/>
+										<a href='tipDetail?boardNo=<c:out value="${board.boardNo}"/>'>
+											<c:out value='${board.title}'/>
+											<c:if test="${today-writeDate == 0}">
+												<span class="new">new</span>
+											</c:if>
+										</a>
+									</c:when>
+								</c:choose>
+							</td>
+							<td><c:out value='${board.nickName}'/></td>
+							<td><fmt:formatDate value="${board.regDate}" pattern="yyyy-MM-dd"/></td>
+						</tr>
+					</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td colspan="4"><c:out value="등록된 게시물이 없습니다"/></td></tr>
+					</c:otherwise>
+				</c:choose>
 			</table>
 			<div>
 				<a href="boardInsertForm">글쓰기</a>
