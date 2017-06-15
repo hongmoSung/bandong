@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -83,6 +84,8 @@ public class MemberUpdate extends HttpServlet{
 						}
 						else {
 							resultFile = bmapper.updateUserProfile(fileVO);
+							HttpSession s = request.getSession();
+							s.setAttribute("profileImg", multi.getFilesystemName("attachFile"));
 						}
 						
 						if (resultFile != 0) {
@@ -92,8 +95,6 @@ public class MemberUpdate extends HttpServlet{
 						else {
 							System.out.println("프로필 등록 실패");
 						}
-//						System.out.println("파일 크기" + multi.getOriginalFileName("attachFile"));
-//						System.out.println("파일 크기" + multi.getFilesystemName("attachFile"));
 					}
 					session.commit();
 					rd = request.getRequestDispatcher("myPage");

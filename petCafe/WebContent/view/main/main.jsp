@@ -13,28 +13,18 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
 
 <style>
-	body {
-		background-color: #EEEEEE
-	}
-	.carousel-control {
-		text-shadow: none;
-		opacity: 0;
-	}
 	.col-sm-8.col-md-4 {
 		padding-right: 4px;
 		padding-left: 4px;
 	}
-	.table > tbody > tr > td {
-		text-align: center;
-	}
+	
 	.table > tbody > tr > #title {
 		text-align: left;
 	}
-	.more > a {
-		font-size: 12px;
-	}
+	
 	span.captionTitle {
 		width: 80px;
 		white-space: nowrap;
@@ -45,13 +35,7 @@
 	p.captionP {
 		margin-bottom: 0px;
 	}
-	div.mainBoardFour {
-	    width: 450px;
-    	height: 350px;
-    	border-radius: 20px;
-    	background: #FFFFFF;
-    	margin: 10px;
-	}
+	
 </style>
 
 </head>
@@ -95,7 +79,7 @@
 		</div>
 		<div class="col-md-10">
 			<div class="row">
-				<div class="col-md-5 cont mainBoardFour">
+				<div class="col-md-5 cont mainBoardFour" id="mainFour">
 					<jsp:useBean id="now" class="java.util.Date"/>
 					<fmt:formatDate value="${now}" var="today" pattern="yyyyMMddHH"/>
 					<div class="row">
@@ -115,12 +99,12 @@
 										<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="yyyyMMddHH"/>
 										<a href="${pageContext.request.contextPath}/board/noticeDetail?boardNo=<c:out value='${board.boardNo}'/>">
 											<c:out value="${board.title}"/>
-											<c:if test="${today-writeDate <= 3}">
-												<span class="new">new</span>
-											</c:if>
 										</a>
+										<c:if test="${today-writeDate <= 3}">
+											<span class="new">new</span>
+										</c:if>
 									</td>
-									<td>
+									<td class="boardWriter">
 										<c:out value="${board.nickName}"/>
 									</td>
 								</tr>
@@ -146,10 +130,10 @@
 										<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="yyyyMMddHH"/>
 										<a href="${pageContext.request.contextPath}/board/saleDetail?boardNo=<c:out value='${board.boardNo}'/>">
 											<c:out value="${board.title}"/>
-											<c:if test="${today-writeDate <= 3}">
-												<span class="new">new</span>
-											</c:if>
 										</a>
+										<c:if test="${today-writeDate <= 3}">
+											<span class="new">new</span>
+										</c:if>
 									</td>
 									<td>
 										<c:out value="${board.nickName}"/>
@@ -179,10 +163,10 @@
 										<fmt:formatDate value="${board.regDate}" var="writeDate" pattern="yyyyMMddHH"/>
 										<a href="${pageContext.request.contextPath}/board/tipDetail?boardNo=<c:out value='${board.boardNo}'/>">
 											<c:out value="${board.title}"/>
-											<c:if test="${today-writeDate <= 3}">
-												<span class="new">new</span>
-											</c:if>
 										</a>
+										<c:if test="${today-writeDate <= 3}">
+											<span class="new">new</span>
+										</c:if>
 									</td>
 									<td>
 										<c:out value="${board.nickName}"/>
