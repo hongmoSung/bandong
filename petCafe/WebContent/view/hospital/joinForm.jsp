@@ -60,10 +60,10 @@
 		console.log($("#zz").value);
 		
 		if($("#zz").attr("value") == "실패") {
-			swal("병원등록에 실패하였습니다.", "fuck...", "error");
+			swal("병원등록에 실패하였습니다.", "다시 시도해주세요", "error");
 		} 
 		if($("#zz").attr("value") == "성공") {
-			swal("병원등록에 성공하였습니다.", "fuck...", "success");
+			swal("병원등록에 성공하였습니다.", "환영합니다^^", "success");
 		} 
 	</script>
 	<div class="row" id="firstDiv">
@@ -71,50 +71,50 @@
 			<jsp:include page="/view/include/leftMenu.jsp"/>
 		</div>
 		<div class="col-md-10 text-center">
-		<div class="center-block text-center" style="width: 500px; margin-bottom: 25px;">
-			<h1>병원등록</h1>
-			<div id="map" style="width:100%;height:350px;margin-top:10px; margin-bottom:10px; display:none"></div>
-			<form class="form-horizontal" method="post" action="join" onsubmit="return doAction();">
-				<div style="margin-bottom: 15px;">
-					<input class="col-sm-9" type="text" placeholder="주소"  id="address" name="address">
-					<input class="col-sm-3" type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
+			<div class="center-block text-center" style="width: 500px; margin-bottom: 25px;">
+				<h1>병원등록</h1>
+				<div style="width: 100%; height: 350px;border: 1px solid tomato;">
+					<div id="map" style="width:100%;height:352px; display:none;margin-bottom: 2px;"></div>
 				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3" for="name">병원이름</label>
-					<div class="col-sm-9">
-						<input class="form-control" type="text" id="name" name="name">
+				<form class="form-horizontal" method="post" action="join" onsubmit="return doAction();">
+					<div style="margin-bottom: 15px;">
+						<input class="btn btn-primary btn-xl" type="button" onclick="sample5_execDaumPostcode()" value="주소 검색" style="float: right;"><br>
+						<input class="col-sm-9" type="hidden" placeholder="주소"  id="address" name="address">
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3" for="telNumber">전화번호</label>
-					<div class="col-sm-9">
-						<input class="form-control" type="text" id="telNumber" name="telNumber">
+					<div class="form-group">
+						<label class="control-label col-sm-3" for="name">병원이름</label>
+						<div class="col-sm-9">
+							<input class="form-control" type="text" id="name" name="name">
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3" for="lat">위도</label>
-					<div class="col-sm-9">
-						<input class="form-control" type="text" id="lat" name="latitude">
+					<div class="form-group">
+						<label class="control-label col-sm-3" for="telNumber">전화번호</label>
+						<div class="col-sm-9">
+							<input class="form-control" type="text" id="telNumber" name="telNumber">
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3" for="lng">경도</label>
-					<div class="col-sm-9">
-						<input class="form-control" type="text" id="lng" name="longitude">
+					<div class="form-group">
+						<div class="col-sm-9">
+							<input class="form-control" type="hidden" id="lat" name="latitude">
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3" for="memberId">회원아이디</label>
-					<div class="col-sm-9">
-						<input class="form-control" type="text" id="memberId" name="memberId" value="${member.memberId}" readonly="readonly">
-				</div>
-				<div class="text-center">
-					<button class="btn btn-success btn-lg" style="margin-top: 20px;">등록하기</button>
-				</div>
-				</div>
-			</form>
-		<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
-		</div>
+					<div class="form-group">
+						<div class="col-sm-9">
+							<input class="form-control" type="hidden" id="lng" name="longitude">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-3" for="memberId">회원아이디</label>
+						<div class="col-sm-9">
+							<input class="form-control" type="text" id="memberId" name="memberId" value="${member.memberId}" readonly="readonly">
+					</div>
+					<div class="text-center">
+						<button class="btn btn-primary btn-lg" style="margin-top: 20px;">등록하기</button>
+					</div>
+					</div>
+				</form>
+				<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
+			</div>
 	</div>
 	</div>
 </div>

@@ -30,7 +30,7 @@
 			<div class="form-group">
 				<label class="control-label col-sm-3" for="memberId">프로필</label>
 				<div class="col-sm-9">
-					<img src="${pageContext.request.contextPath}${imgSrc}" >
+					<img src="${pageContext.request.contextPath}${imgSrc}" style="width: 343px; height: 480px;">
 					<input class="form-control" type="file" name="attachFile" id="attachFile">
 				</div>
 				<label class="control-label col-sm-3">id</label>

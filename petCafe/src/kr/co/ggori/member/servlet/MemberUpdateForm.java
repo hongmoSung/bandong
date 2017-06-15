@@ -39,7 +39,8 @@ public class MemberUpdateForm extends HttpServlet{
 			member = mapper.selectMemberOne(member);
 			FileVO file = bmapper.selectUserProfile(member.getMemberId());
 			if(file != null) {
-				String imgSrc = "/upload" + file.getFilePath() + "/" + file.getSystemName();
+//				String imgSrc = "/upload" + file.getFilePath() + "/" + file.getSystemName();
+				String imgSrc = "/upload/userProfile/" + file.getSystemName();
 				request.setAttribute("imgSrc", imgSrc);
 			}
 			if (member != null) {

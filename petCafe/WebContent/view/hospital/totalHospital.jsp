@@ -56,8 +56,8 @@
 			</c:forEach>
 			
 			<!-- 주소 검색을 위한 태그와 버튼-->
-			<input type="text" id="sample5_address" placeholder="주소">
-			<input type="button" onclick="ffffff()" value="주소 검색"><br>
+			<input type="hidden" id="sample5_address" placeholder="주소">
+			<input class="btn btn-primary btn-xl" type="button" onclick="ffffff()" value="주소 검색" style="float: right;" ><br>
 			<!-- 맵이 나오는 위치 -->
 			<div id="map" style="width:100%;height:350px;"></div>
 	</div>
@@ -88,8 +88,8 @@
 		
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 		    mapOption = { 
-		        center: new daum.maps.LatLng(37.4921822193, 127.057411875), // 지도의 중심좌표
-		        level: 3 // 지도의 확대 레벨
+		        center: new daum.maps.LatLng(37.5638268704, 126.9754657955), // 지도의 중심좌표
+		        level: 11 // 지도의 확대 레벨
 		    };
 		
 		var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다

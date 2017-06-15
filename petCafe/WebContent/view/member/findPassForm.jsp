@@ -42,26 +42,28 @@
 		<div class="col-md-2">
 			<jsp:include page="/view/include/leftMenu.jsp"/>
 		</div>
-	<div class="center-block text-center" style="width: 500px; margin-bottom: 20px;">
-		<h1>비밀번호 찾기</h1>
-	</div>
-	<div class="center-block" style="width: 500px;">
-		<form class="form-horizontal" method="post" action="findPass" onsubmit="return doAction();">
-			<div class="form-group">
-				<label class="control-label col-sm-3">email</label>
-				<div class="col-sm-9">
-					<input class="form-control" type="text" name="email" id="email">
-				</div>
-				<label class="control-label col-sm-3">memberId</label>
-				<div class="col-sm-9">
-					<input class="form-control" type="text" name="memberId" id="memberId">
-				</div>
-				<div class="text-center">
-					<button class="btn btn-success btn-lg">찾기</button>
-				</div>
+		<div class="col-md-10">
+			<div class="center-block text-center" style="width: 500px; margin-bottom: 20px;">
+				<h1>비밀번호 찾기</h1>
 			</div>
-		</form>
-	</div>
+			<div class="center-block" style="width: 500px;">
+				<form class="form-horizontal" method="post" action="findPass" onsubmit="return doAction();">
+					<div class="form-group">
+						<label class="control-label col-sm-3">email</label>
+						<div class="col-sm-9">
+							<input class="form-control" type="text" name="email" id="email">
+						</div>
+						<label class="control-label col-sm-3">memberId</label>
+						<div class="col-sm-9">
+							<input class="form-control" type="text" name="memberId" id="memberId">
+						</div>
+						<div class="text-center">
+							<button class="btn btn-success btn-lg">찾기</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
 </div>
 <div>

@@ -14,6 +14,7 @@
 		select *
 		  from care_type
 		 where hospital_id = #{hospital_id}
+		 ORDER BY CARE_TYPE_ID desc
 	</select>
 	
 	<insert id="insertCare" parameterType="CareType">

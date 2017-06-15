@@ -22,21 +22,23 @@
 		<div class="col-md-2">
 			<jsp:include page="/view/include/leftMenu.jsp"/>
 		</div>
-	<div class="center-block text-center" style="width: 500px; margin: 20px;">
-		<h1>찾기 페이지</h1>
-	</div>
-	<div class="center-block" style="width: 500px;">
-		<form class="form-inline" method="POST" action="findId" onsubmit="return doAction()">
-			<div class="form-group">
-				<label for="email">E-mail</label>
-				<input type="text" name="email" id="email">
-				<button class="btn btn-success btn-lg">아이디 찾기</button><br>
+		<div class="col-md-10">
+			<div class="center-block text-center" style="width: 500px;">
+				<h1>찾기 페이지</h1>
+				<div class="center-block" style="width: 500px; margin-top: 100px;">
+					<form class="form-inline" method="POST" action="findId" onsubmit="return doAction()">
+						<div class="form-group">
+							<label for="email">E-mail</label>
+							<input type="text" name="email" id="email">
+							<button class="btn btn-success btn-lg">아이디 찾기</button><br>
+						</div>
+					</form>
+					<div class="center-block text-center" style="width: 500px;">
+						<a href="${pageContext.request.contextPath}/login/findPassForm">비밀번호 찾기</a>
+					</div>
+				</div>
 			</div>
-		</form>
-	</div>
-	<div class="center-block text-center" style="width: 500px;">
-		<a href="${pageContext.request.contextPath}/login/findPassForm">비밀번호 찾기</a>
-	</div>
+		</div>
 	</div>
 </div>
 

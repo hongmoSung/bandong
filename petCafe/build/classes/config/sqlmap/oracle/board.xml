@@ -71,13 +71,20 @@
 	   		select s_board_No.currval as board_No from dual
 	   	</selectKey>
 	    insert into file_form(           
-		    File_Id, file_path, origin_name, system_name, file_size, board_no
+		    File_Id, file_path, origin_name, system_name, File_Size, board_no
 		) values (                       
 		    s_file_id.nextval, #{filePath}, #{originName}, #{systemName}, #{fileSize} , #{boardNo}
 		)                               
 	</insert>
 	
 	<select id="selectFile" parameterType="integer" resultMap="fileMap">
+		select *
+		  from file_form
+		 where board_no=#{boardNo} 
+		   and rownum &lt; 2
+	</select>
+	
+	<select id="selectFileAll" parameterType="integer" resultMap="fileMap">
 		select *
 		  from file_form
 		 where board_no=#{boardNo} 
@@ -90,7 +97,7 @@
 	</delete>
 	<!-- userProfile -->
 	<insert id="insertUserProfile" parameterType="File">
-	    insert into file_form(           
+	    insert into file_form(
 		    File_Id, file_path, origin_name, system_name, file_size, Member_Id
 		) values (                       
 		    s_file_id.nextval, #{filePath}, #{originName}, #{systemName}, #{fileSize} , #{memberId}
@@ -106,4 +113,12 @@
 		   set origin_name = #{originName}, system_name = #{systemName}, file_size = #{fileSize}
 		where member_id = #{memberId}  
 	</update>
+	
+	<!-- search -->
+	<select id="searchByContent" parameterType="Board" resultMap="boardMap">
+		select *
+		  from board_form
+		 where board_type = #{boardType}
+		   and content like '%' || #{content} || '%'
+	</select>
 </mapper>

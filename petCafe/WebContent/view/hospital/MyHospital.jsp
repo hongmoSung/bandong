@@ -21,7 +21,7 @@
 		<div class="col-md-10">
 			<c:forEach items="${hospitals}" var="h">
 				<table>
-					<tr>
+					<tr hidden="true">
 						<th>id</th>
 						<td id="hospitalId">${h.hospitalId}</td>
 					</tr>
@@ -39,11 +39,11 @@
 						<th>전화번호</th>
 						<td id="telNumber">${h.telNumber}</td>
 					</tr>
-					<tr>
+					<tr hidden="true">
 						<th>위도</th>
 						<td id="latitude">${h.latitude}</td>
 					</tr>
-					<tr>
+					<tr hidden="true">
 						<th>경도</th>
 						<td id="longitude">${h.longitude}</td>
 					</tr>
@@ -82,8 +82,8 @@
 				
 				var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 				    mapOption = { 
-				        center: new daum.maps.LatLng(35.5549272063, 129.3204590667), // 지도의 중심좌표
-				        level: 12 // 지도의 확대 레벨
+				        center: new daum.maps.LatLng(37.5638268704, 126.9754657955), // 지도의 중심좌표
+				        level: 10 // 지도의 확대 레벨
 				    };
 				
 				var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
