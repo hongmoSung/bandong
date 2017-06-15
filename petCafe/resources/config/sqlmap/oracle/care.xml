@@ -23,5 +23,9 @@
 			S_CARETYPE_ID.nextval, #{typeName}, #{hospitalId}
 		)
 	</insert>
-
+	<delete id="deleteCare" parameterType="int">
+		delete 
+		  from CARE_TYPE
+		 where CARE_TYPE_ID = #{careTypeId}
+	</delete>
 </mapper>

@@ -37,6 +37,7 @@ public class MemberJoin extends HttpServlet{
 
 		@Override
 		protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			System.out.println("회원가입 서블릿");
 			//
 			ServletContext context = request.getServletContext();
 			String uploadPath = context.getRealPath("/upload/userProfile");
@@ -55,9 +56,11 @@ public class MemberJoin extends HttpServlet{
 			member.setNickName(multi.getParameter("nickName"));
 			member.setEmail(multi.getParameter("email"));
 			member.setPhoneNum(Integer.parseInt(multi.getParameter("phoneNum")));
+			System.out.println(member.toString());
 			try {
 				
 				int result = mapper.insertMember(member);
+				System.out.println("result = " + result);
 				if (result != 0) {
 					File file = multi.getFile("attachFile");
 					if(file != null) {

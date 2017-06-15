@@ -69,13 +69,17 @@
 							<button id="careBtn">등록하기</button>
 						<c:forEach items="${careList}" var="c">
 								<div>
-									<input type="text" value="${c.careTypeId}" hidden="true">
-									<input type="text" value="${c.hospitalId}" hidden="true">
-									<input type="text" value="${c.typeName}"><button>삭제하기</button><br>
+<!-- 									<form action="careDelete" method="post" onsubmit="return doAction();"> -->
+									<input type="text" value="${c.careTypeId}" hidden="true" id="careTypeId" name="careTypeId">
+									<input type="text" value="${c.hospitalId}" hidden="true" id="hospitalId" name="hospitalId">
+									<input type="text" value="${c.typeName}"><button id="careDelBtn"><a href="careDelete?careTypeId=${c.careTypeId}&hospitalId=${c.hospitalId}">삭제</a></button><br>
+<!-- 									</form> -->
 								</div>
 						</c:forEach>
 					</div>
 					<script type="text/javascript">
+						
+						
 						$("#careBtn").on("click", function() {
 							var typeName = document.querySelector("#typeName");
 							var hospitalId = document.querySelector("#hospitalId");
