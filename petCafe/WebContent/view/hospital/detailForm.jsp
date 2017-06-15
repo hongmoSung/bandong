@@ -32,53 +32,69 @@
 					<div class="form-group">
 						<label class="control-label col-sm-3">병원 아이디</label>
 						<div class="col-sm-9">
-							<input class="form-control" type="text" value="${h.hospitalId}" name="hospitalId" id="hospitalId">
+							<input class="form-control" type="text" value="${h.hospitalId}" name="hospitalId" id="hospitalId" readonly="readonly">
 						</div>
 						<label class="control-label col-sm-3">병원명</label>
 						<div class="col-sm-9">
-							<input class="form-control" type="text" value="${h.name}" name="hospitalName" id="hospitalName">
+							<input class="form-control" type="text" value="${h.name}" name="hospitalName" id="hospitalName" readonly="readonly">
 						</div>
 						<label class="control-label col-sm-3">전화번호</label>
 						<div class="col-sm-9">
-							<input class="form-control" type="text" value="${h.telNumber}" name="telNumber" id="telNumber">
+							<input class="form-control" type="text" value="${h.telNumber}" name="telNumber" id="telNumber" readonly="readonly">
 						</div>
 						<label class="control-label col-sm-3">병원 주소</label>
 						<div class="col-sm-9">
-							<input class="form-control" type="text" value="${h.address}" name="address" id="address">
+							<input class="form-control" type="text" value="${h.address}" name="address" id="address" readonly="readonly">
 						</div>
 						<label class="control-label col-sm-3">위도</label>
 						<div class="col-sm-9">
-							<input class="form-control" type="text" value="${h.latitude}" name="latitude" id="latitude">
+							<input class="form-control" type="text" value="${h.latitude}" name="latitude" id="latitude" readonly="readonly">
 						</div>
 						<label class="control-label col-sm-3">경도</label>
 						<div class="col-sm-9">
-							<input class="form-control" type="text" value="${h.longitude}" name="longitude" id="longitude">
+							<input class="form-control" type="text" value="${h.longitude}" name="longitude" id="longitude" readonly="readonly">
 						</div>
 						<label class="control-label col-sm-3">회원ID</label>
 						<div class="col-sm-9">
-							<input class="form-control" type="text" value="${h.memberId}" name="memberId" id="memberId">
-						</div>
-						<div class="text-center">
-							<button>수정하기</button>
+							<input class="form-control" type="text" value="${h.memberId}" name="memberId" id="memberId" readonly="readonly">
 						</div>
 					</div>
 					<div>
 						<h1>진료분야</h1>
-							<input type="text" value="${h.hospitalId}" name="hospitalId" id="hospitalId">
-							<label>진료분야</label><input type="text" name="typeName" id="typeName">
-							<button id="careBtn">등록하기</button>
+						<label>진료분야</label><input type="text" name="typeName" id="typeName">
+						<button id="careBtn">등록</button>
 						<c:forEach items="${careList}" var="c">
 								<div>
-<!-- 									<form action="careDelete" method="post" onsubmit="return doAction();"> -->
 									<input type="text" value="${c.careTypeId}" hidden="true" id="careTypeId" name="careTypeId">
 									<input type="text" value="${c.hospitalId}" hidden="true" id="hospitalId" name="hospitalId">
 									<input type="text" value="${c.typeName}"><button id="careDelBtn"><a href="careDelete?careTypeId=${c.careTypeId}&hospitalId=${c.hospitalId}">삭제</a></button><br>
-<!-- 									</form> -->
+								</div>
+						</c:forEach>
+					</div>
+					<div>
+						<h1>휴일등록</h1>
+						<label>진료분야</label><input type="text" name="offDay" id="offDay" placeholder="yyyy-MM-dd"><button id="dayOffBtn">등록</button>
+						<c:forEach items="${dayOffList}" var="d">
+								<div>
+									<input type="text" value="${d.dayoffId}" hidden="true" id="dayoffId" name="dayoffId">
+									<input type="text" value="${d.hospitalId}" hidden="true" id="hospitalId" name="hospitalId">
+									<input type="text" value="${d.offDay}" id="offDay" name="offDay"><button id="offDay"><a href="offDayDelete?dayoffId=${d.dayoffId}&hospitalId=${d.hospitalId}">삭제</a></button><br>
 								</div>
 						</c:forEach>
 					</div>
 					<script type="text/javascript">
-						
+					$("#dayOffBtn").on("click", function() {
+						swal("버튼클릭");
+						var offDay = document.querySelector("#offDay");
+						var hospitalId = document.querySelector("#hospitalId");
+						$.ajax({
+							type : "post",
+							data : {offDay : offDay.value, hospitalId : hospitalId.value},
+							url : "ajaxDayOffInsert",
+							dataType : "json",
+							success : function (data) {}
+						});
+					});
 						
 						$("#careBtn").on("click", function() {
 							var typeName = document.querySelector("#typeName");

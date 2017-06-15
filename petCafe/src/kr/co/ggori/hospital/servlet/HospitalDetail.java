@@ -14,8 +14,10 @@ import org.apache.ibatis.session.SqlSession;
 
 import common.db.MyAppSqlConfig;
 import kr.co.ggori.repository.mapper.ICareTypeMapper;
+import kr.co.ggori.repository.mapper.IDayoffMapper;
 import kr.co.ggori.repository.mapper.IHospitalMapper;
 import kr.co.ggori.repository.vo.CareTypeVO;
+import kr.co.ggori.repository.vo.DayOffVO;
 import kr.co.ggori.repository.vo.HospitalVO;
 
 @WebServlet("/hospital/detail")
@@ -23,11 +25,13 @@ public class HospitalDetail extends HttpServlet{
 	private SqlSession session;
 	private IHospitalMapper mapper;
 	private ICareTypeMapper cmapper;
+	private IDayoffMapper dmapper;
 	
 	public HospitalDetail() {
 		session = MyAppSqlConfig.getSqlSessionInstance();
 		this.mapper = session.getMapper(IHospitalMapper.class);
 		this.cmapper = session.getMapper(ICareTypeMapper.class);
+		this.dmapper = session.getMapper(IDayoffMapper.class);
 	}
 
 	@Override
@@ -38,11 +42,13 @@ public class HospitalDetail extends HttpServlet{
 		
 		try {
 			hospital = mapper.selectHospitalById(hospitalId);
-			List<CareTypeVO> careList = cmapper.SearchCare(hospitalId); 
+			List<CareTypeVO> careList = cmapper.SearchCare(hospitalId);
+			List<DayOffVO> dayOffList = dmapper.selectDayoffByHospitalId(hospitalId);
 			
 			if (hospital != null) {
 				request.setAttribute("hospital", hospital);
 				request.setAttribute("careList", careList);
+				request.setAttribute("dayOffList", dayOffList);
 				rd = request.getRequestDispatcher("/view/hospital/detailForm.jsp");
 				rd.forward(request, response);
 			} else {

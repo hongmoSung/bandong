@@ -40,5 +40,6 @@
 <!-- 		<mapper resource="config/sqlmap/oracle/login.xml"/> -->
 		<mapper resource="config/sqlmap/oracle/hospital.xml"/>
 		<mapper resource="config/sqlmap/oracle/care.xml"/>
+		<mapper resource="config/sqlmap/oracle/dayoff.xml"/>
 	</mappers>
 </configuration>

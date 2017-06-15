@@ -5,7 +5,6 @@ public class DayOffVO {
 	private int dayoffId;
 	private int hospitalId;
 	private String offDay;
-	
 	public int getDayoffId() {
 		return dayoffId;
 	}
@@ -23,6 +22,10 @@ public class DayOffVO {
 	}
 	public void setOffDay(String offDay) {
 		this.offDay = offDay;
+	}
+	@Override
+	public String toString() {
+		return "DayOffVO [dayoffId=" + dayoffId + ", hospitalId=" + hospitalId + ", offDay=" + offDay + "]";
 	}
 	
 }
