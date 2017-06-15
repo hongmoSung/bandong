@@ -22,6 +22,18 @@
 		where member_id = #{memberId} and pass = #{pass}
 	</select>
 	
+	<select id="selectMemberAll" resultMap="memberMap">
+	    select *         
+		  from member  
+		 order by member_id, rank desc
+	</select>
+	
+	<update id="updateMemberRank" parameterType="Member">
+		update member 
+		   set rank = #{rank} 
+		 where member_id = #{memberId}
+	</update>
+	
 	<resultMap type="Member" id="memberMap">
 		<result column="MEMBER_ID" property="memberId"/>
 		<result column="Pass" property="pass"/>
