@@ -28,41 +28,49 @@ public class AjaxCareInsert extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/plain; charset=utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		System.out.println("ajax서블릿");
 		System.out.println(request.getParameter("hospitalId"));
 		System.out.println(request.getParameter("typeName"));
 		
+		String result = request.getParameter("result");
 		String hospitalId = request.getParameter("hospitalId");
 		String typeName = request.getParameter("typeName");
+		String idNum = request.getParameter("idNum");
 		
 		try {
 			CareTypeVO vo = new CareTypeVO();
 			vo.setHospitalId(Integer.parseInt(hospitalId));
 			vo.setTypeName(typeName);
-			int result = mapper.insertCare(vo);
-			session.commit();
+//			int result = mapper.insertCare(vo);
+//			session.commit();
 			
-			List<CareTypeVO> list = mapper.SearchCare(Integer.parseInt(hospitalId));
+//			List<CareTypeVO> list = mapper.SearchCare(Integer.parseInt(hospitalId));
 			PrintWriter out = response.getWriter();
-//			String json = "";
-			String json = "실패";
-			if (result != 0) {
-				json = "성공";
+			String resultHtml = "";
+			
+			if(result != null) {
+				resultHtml += result;
 			}
-//			json = "[";
+//			resultHtml = "[";
 //			for(int i = 0; i < list.size(); i++) {
-//				json += list.get(i).toString();
+//				resultHtml += list.get(i).toString();
 //				if (i != list.size() - 1) {
-//					json += ",";
+//					resultHtml += ",";
 //				}
 //			}
-//			json += "]";
-			System.out.println(json.toString());
-			out.println(json);
+//			resultHtml += "]";
+			resultHtml += "<input type='hidden' value='" + hospitalId + "' name='hospitalId' id='hospitalId" + idNum + "'/>"
+//				        + "<input type='hidden' value='" + careTypeId + "' name='careTypeId' id='careTypeId" + idNum + "'/>"
+				        + "<input type='text' value='" + typeName + "' id='careName" + idNum + "'/><button id='" + idNum + "'onclick='deleteBtn(" + idNum + ");'>삭제</button><br>";
+			System.out.println(resultHtml.toString());
+			out.println(resultHtml);
+			System.out.println("out성공");
 			out.close();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
+	
 }

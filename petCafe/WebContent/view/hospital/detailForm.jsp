@@ -62,20 +62,22 @@
 					<div>
 						<h1>진료분야</h1>
 						<label>진료분야</label><input type="text" name="typeName" id="typeName">
-						<button id="careBtn">등록</button>
+						<button type="button" id="careBtn">등록</button>
+<!-- 						<div id="result"></div> -->
 						<c:forEach items="${careList}" var="c">
-								<div>
-									<input type="text" value="${c.careTypeId}" hidden="true" id="careTypeId" name="careTypeId">
-									<input type="text" value="${c.hospitalId}" hidden="true" id="hospitalId" name="hospitalId">
+								<div id="careDiv">
+									<input type="hidden" value="${c.careTypeId}" id="careTypeId" name="careTypeId">
+									<input type="hidden" value="${c.hospitalId}" id="hospitalId" name="hospitalId">
 									<input type="text" value="${c.typeName}"><button id="careDelBtn"><a href="careDelete?careTypeId=${c.careTypeId}&hospitalId=${c.hospitalId}">삭제</a></button><br>
 								</div>
 						</c:forEach>
 					</div>
 					<div>
 						<h1>휴일등록</h1>
-						<label>진료분야</label><input type="text" name="offDay" id="offDay" placeholder="yyyy-MM-dd"><button id="dayOffBtn">등록</button>
+						<label>휴일등록</label><input type="text" name="offDay" id="offDay" placeholder="yyyy-MM-dd">
+						<button type="button" id="dayOffBtn">등록</button>
 						<c:forEach items="${dayOffList}" var="d">
-								<div>
+								<div id="result">
 									<input type="text" value="${d.dayoffId}" hidden="true" id="dayoffId" name="dayoffId">
 									<input type="text" value="${d.hospitalId}" hidden="true" id="hospitalId" name="hospitalId">
 									<input type="text" value="${d.offDay}" id="offDay" name="offDay"><button id="offDay"><a href="offDayDelete?dayoffId=${d.dayoffId}&hospitalId=${d.hospitalId}">삭제</a></button><br>
@@ -96,32 +98,49 @@
 						});
 					});
 						
-						$("#careBtn").on("click", function() {
-							var typeName = document.querySelector("#typeName");
-							var hospitalId = document.querySelector("#hospitalId");
-							$.ajax({
-								type : "post",
-								data : {typeName : typeName.value, hospitalId : hospitalId.value},
-								url : "ajaxCareInsert",
-								dataType : "json",
-								success : function (data) {
-// 									var care = data;
-// 									if (care == "성공") {
-// 										swal("등록되었습니다.", "success!!","success");
+					$("#careBtn").on("click", function() {
+						var typeName = document.querySelector("#typeName");
+						var hospitalId = document.querySelector("#hospitalId");
+						var result = document.querySelector("#result");
+						var idNum = 0;
+						$.ajax({
+							type : "post",
+							data : {
+								"typeName" : typeName.value, "hospitalId" : hospitalId.value, "result" : result.value, "idNum" : idNum++
+							},
+							url : "ajaxCareInsert",
+// 							dataType : "json",
+							success : function (data) {
+// 								var care = data;
+// 								var html = "";
+// 									for(var i = 0; i < care.length; i++) {
+// 										var m = care[i];
+// 										html += "<p> 진료분야 :" + m.typeName + "</p>";
+// 										html += "<input type='text' value='" + m.dayoffId + "hidden='true' id='dayoffId' name='dayoffId'><input type='text' value='" + m.hospitalId + "hidden='true' id='hospitalId' name='hospitalId'><input type='text' value='" + m.offDay + "id='offDay' name='offDay'><button id='offDay'><a href='offDayDelete?dayoffId=" + m.dayoffId + "&hospitalId=" + m.hospitalId + ">삭제</a></button><br>";
+// 										html += "<input type='hidden' value='" + m.hospitalId + "' name='hospitalId' id='hospitalId'/>"
+// 										      + "<input type='hidden' value='" + m.careTypeId + "' name='careTypeId' id='careTypeId'/>"
+// 										      + "<input type='text' value='" + m.typeName + "'/><button>삭제</button><br>";
 // 									}
-// 									if (care == "실패") {
-// 										swal("실패 되었습니다.", "fail!!","error");
-// 									}
-// 									var html = "";
-// 										for(var i = 0; i < care.length; i++) {
-// 											html += "<p> 이름 :" + care.typeName + "</p>";
-// 											alert(care.typeName);
-// 										}
-// 										$("#result").append(html)
-// 									swal("등록되었습니다.", "success!!","success");
-								}
-							});
+									$("#careDiv").html($("#careDiv").html() + data);
+									typeName.value="";
+								swal("등록되었습니다.", "success!!","success");
+							}
 						});
+					});
+					
+					function deleteBtn(delNo) {
+						$.ajax({
+							type : "post",
+							data : {
+								"typeName" : typeName.value, "hospitalId" : hospitalId.value, "result" : result.value, "idNum" : idNum++
+							},
+							url : "ajaxCareInsert",
+							success : function (data) {
+								$("#careDiv > input#careName" + delNo).html("");
+								swal("삭제되었습니다.", "success!!","success");
+							}
+						});
+					}
 					</script>
 				</form>
 			</div>
