@@ -7,6 +7,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>상세페이지</title>
+	<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+	<script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 	<style>
 		.table > thead > tr > th {
 			text-align: center;
