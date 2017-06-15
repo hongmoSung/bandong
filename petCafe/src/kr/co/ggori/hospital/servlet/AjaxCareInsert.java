@@ -29,7 +29,6 @@ public class AjaxCareInsert extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=utf-8");
-		
 		String result = request.getParameter("result");
 		String hospitalId = request.getParameter("hospitalId");
 		String typeName = request.getParameter("typeName");
@@ -39,9 +38,8 @@ public class AjaxCareInsert extends HttpServlet{
 			CareTypeVO vo = new CareTypeVO();
 			vo.setHospitalId(Integer.parseInt(hospitalId));
 			vo.setTypeName(typeName);
-//			int result = mapper.insertCare(vo);
-//			session.commit();
-			
+			int db = mapper.insertCare(vo);
+			if(db == 1) session.commit();
 //			List<CareTypeVO> list = mapper.SearchCare(Integer.parseInt(hospitalId));
 			PrintWriter out = response.getWriter();
 			String resultHtml = "";
@@ -59,7 +57,7 @@ public class AjaxCareInsert extends HttpServlet{
 //			resultHtml += "]";
 			resultHtml += //"<input type='hidden' value='" + hospitalId + "' name='hospitalId' id='hospitalId" + idNum + "'/>"
 //				        + "<input type='hidden' value='" + careTypeId + "' name='careTypeId' id='careTypeId" + idNum + "'/>"
-				         "<p id='" + idNum + "'><input type='text' value='" + typeName + "'/><button onclick='deleteBtn(" + idNum + ");'>삭제</button></p>";
+				         "<p id='" + idNum + "'><input type='text' value='" + typeName + "' name='typeName'/><button onclick='deleteBtn(" + idNum + ");'>삭제</button></p>";
 			out.println(resultHtml);
 			out.close();
 		} catch(Exception e) {

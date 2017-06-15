@@ -119,7 +119,7 @@
 								"userInsertCare" : userInsertCare.value, 
 								"idNum" : idNum++
 							},
-							url : "ajaxCareInsert",
+							url : "careDelete",
 							success : function (data) {
 								swal("삭제되었습니다.", "success!!","success");
 							}

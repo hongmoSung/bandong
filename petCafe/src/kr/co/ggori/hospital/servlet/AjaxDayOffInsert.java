@@ -42,6 +42,8 @@ public class AjaxDayOffInsert extends HttpServlet{
 			
 			PrintWriter out = response.getWriter();
 			String resultHtml = "";
+			int db = mapper.insertDayoff(dayoff);
+			if(db == 1) session.commit();
 			
 			if (result != null) {
 				resultHtml += result;

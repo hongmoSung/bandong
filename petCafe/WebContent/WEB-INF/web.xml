@@ -23,8 +23,11 @@
   	<init-param>
   		<param-name>pages</param-name>
   		<param-value>
+  			/css/bootstrap.min.css;
 			<!--  -->
 			/;
+			/main/Main;
+			/index.jsp
 			<!--  -->
 			/member/authForm;
 			/member/join;
@@ -40,8 +43,6 @@
 			/login/login;
 			/login/loginForm;
 			/login/logout;
-			/main/Main;
-			/index.jsp
   		</param-value>
   	</init-param>
   </filter>
