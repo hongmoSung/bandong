@@ -42,7 +42,6 @@ public class BoardInsert extends HttpServlet{
 		String datePath = sdf.format(new Date());
 		
 		realPath += datePath;
-		System.out.println(realPath);
 		
 		File f = new File(realPath);
 		
@@ -75,15 +74,12 @@ public class BoardInsert extends HttpServlet{
 			if(files != null){
 				
 				String originFile = multi.getOriginalFileName("attachFile");
-				System.out.println(originFile);
 				String sysFile = multi.getFilesystemName("attachFile");
-				System.out.println(sysFile);
 				long size = files.length();
 				
 				FileVO file = new FileVO();
 				file.setBoardNo(board.getBoardNo());
 				file.setFilePath(datePath);
-				System.out.println(datePath);
 				file.setFileSize(size);
 				file.setOriginName(originFile);
 				file.setSystemName(sysFile);
@@ -99,7 +95,6 @@ public class BoardInsert extends HttpServlet{
 			throw new ServletException(e);
 			}
 		String bType = multi.getParameter("boardType");
-		System.out.println(bType);
 		
 		
 		RequestDispatcher rd = null;

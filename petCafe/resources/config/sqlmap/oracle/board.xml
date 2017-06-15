@@ -90,6 +90,15 @@
 		 where board_no=#{boardNo} 
 	</select>
 	
+   <update id="updateFile" parameterType="File">
+    	update file_form
+    	   set file_path = #{filePath},
+    	   	   file_size = #{fileSize},
+    	   	   Origin_Name = #{originName},
+    	   	   System_name = #{systemName}
+    	 where board_No = #{boardNo}
+    </update>
+	
 	<delete id="deleteFile" parameterType="int">
 	    delete
 	      from file_form

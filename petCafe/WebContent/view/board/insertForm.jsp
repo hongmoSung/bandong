@@ -56,6 +56,7 @@
 		var f = document.bForm;
 		var title = f.title;
 		var content = f.content;
+		var file = document.querySelector('#file');
 		
 		if(title.value == "") {
 			alert("제목을 입력하세요");
@@ -69,6 +70,10 @@
 		}
 		if(f.boardType.selectedIndex == 0){
 			alert("게시판 유형을 선택하세요");
+			return false;
+		}
+		if(f.attachFile.value == ""){
+			alert("이미지를 첨부하세요");
 			return false;
 		}
 	}

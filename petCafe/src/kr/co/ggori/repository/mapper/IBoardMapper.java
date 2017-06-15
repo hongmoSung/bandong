@@ -21,6 +21,7 @@ public interface IBoardMapper {
 	public FileVO selectFile(int boardNo) throws Exception;
 	public List<FileVO> selectFileAll(int boardNo) throws Exception;
 	public int insertFile(FileVO file) throws Exception;
+	public int updateFile(FileVO file) throws Exception;
 	public int deleteFile(int boardNo) throws Exception;
 	
 	//userProfile

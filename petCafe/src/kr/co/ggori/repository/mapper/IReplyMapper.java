@@ -9,7 +9,7 @@ public interface IReplyMapper {
 	public void insertReply(ReplyVO reply) throws Exception;
 	public int updateReply(ReplyVO reply) throws Exception;
 	public int deleteReply(int boardNo) throws Exception;
-	public List<ReplyVO> replyList(int replyId) throws Exception;
+	public List<ReplyVO> replyList(int boardNo) throws Exception;
 	public String myNickName(String memberId) throws Exception;
 
 }

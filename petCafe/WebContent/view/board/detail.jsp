@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +17,7 @@
 	</style>
 </head>
 <body>
+<div>
 <div><c:import url="/view/include/topMenu.jsp"></c:import> </div>
 
 <div>
@@ -72,10 +74,9 @@
 	<h5>댓글</h5>
 	<hr>
 	<div id="reply">
-			<form method="post" action="replyRegist">
+			<form name='registForm' method="post" action="replyRegist" onsubmit="return regChk();">
 				<input type="hidden" name="boardNo" value="${board.boardNo}" />	
 				<input type="hidden" name="boardType" value="${board.boardType}" />
-				<input type="hidden" name="replyId" value="${reply.replyId}" />
 				<table width="70%">
 				<tr>
 					<td><input type="text" name="nickName" value="${member.nickName}" /></td>
@@ -86,10 +87,10 @@
 			</form>
 		</div>
 			
-		<form action="replyUpdate" method="post">
+		<form name='updateForm' action="replyUpdate" method="post" onsubmit="return upChk();">
 			<input type="hidden" name="boardNo" value="${board.boardNo}" />
-
 			<input type="hidden" name="boardType" value="${board.boardType}" />
+			<input type="hidden" name="replyId" value="${replyId}" />
 		
 		<div id="replyList">
 		<table>
@@ -99,25 +100,44 @@
 		  			<th>닉네임</th>
 		  			<th>내용</th>
 		  			<th>등록일</th>
-		  			<th><c:out value="${reply.memberId}"/></th>
 	  			</tr>
   			</thead>
-		<c:set var="replyId" value="${reply.memberId}"/>
+		<c:set var="replymember" value="${reply.memberId}"/>
 			<c:forEach var="reply" items="${replyList}">
+				<c:choose>
+		  			<c:when test="${replyId eq reply.replyId}">	
+		  			m : ${member.nickName}
+		  			r: ${reply.nickName}
 						<tr>
-							<td><input type="hidden" name="replyId" value="${reply.replyId}" /><c:out value="${reply.replyId}"/></td>
+							<td><c:out value="${reply.replyId}"/></td>
 					 	 	<td><c:out value="${reply.nickName}" /></td>
 					 	 	<td><textarea name="content" rows="2" cols="60"><c:out value="${reply.content}" /></textarea></td>
 						  	<td><fmt:formatDate var="regDate" value="${reply.regDate}" pattern="yyyy-MM-dd HH:mm:ss" />
 						  		<c:out value="${regDate}" /></td>
-						<tr>
-			</c:forEach>
-					  		<c:if test="${member.memberId eq reply.memberId}">	
-							  	<td colspan="2">
-							  		<input type="submit" value="수정" />
-							  		<input type="button" name="버튼" value="삭제" onclick="window.open('replyDelete?boardType=${board.boardType}&replyId=${reply.replyId}&boardNo=${board.boardNo}')">
-							 	</td>                  
-						 	</c:if>
+						<c:if test="${member.nickName eq reply.nickName}">
+				  			<td colspan="2">
+				  			 <input type="submit" value="수정" />	
+				 			</td>    
+				 		</c:if>
+				 		</tr>
+				 	</c:when>
+				 	<c:otherwise>
+				 		<tr>
+							<td><c:out value="${reply.replyId}"/></td>
+					 	 	<td><c:out value="${reply.nickName}" /></td>
+					 	 	<td><c:out value="${reply.content}" /></td>
+						  	<td><fmt:formatDate var="regDate" value="${reply.regDate}" pattern="yyyy-MM-dd HH:mm:ss" />
+						  		<c:out value="${regDate}" /></td>
+						<c:if test="${member.nickName eq reply.nickName}">
+				  			<td colspan="2">
+				  			<a href="${board.boardType}Detail?replyId=${reply.replyId}&boardNo=${board.boardNo}">수정</a>
+				  			<a href="replyDelete?boardType=${board.boardType}&replyId=${reply.replyId}&boardNo=${board.boardNo}">삭제</a>
+				 			</td>
+			 			</c:if>
+			 			</tr>
+				 	</c:otherwise>
+			 	</c:choose>              
+			 </c:forEach>
 			 <c:if test="${empty replyList}">
 			 <tr>
 			    <td colspan='4'>댓글이 존재하지 않습니다.</td>
@@ -126,8 +146,32 @@
 				</table>
 				</div>
 			</form>
-		</div>
+			</div>
 <div><c:import url="/view/include/footer.jsp"/> </div>
 </div>
+
+
+<script>
+	function regChk() {
+		var reg = document.registForm;
+		var content = reg.content;
+		
+		if(content.value == "") {
+			alert("댓글을 입력하세요");
+			content.focus();
+			return false;
+		}
+	}
+	function upChk() {
+		var update = document.updateForm;
+		var content = update.content;
+		
+		if(content.value == "") {
+			alert("댓글을 입력하세요");
+			content.focus();
+			return false;
+		}
+	}
+</script>
 </body>
 </html>
