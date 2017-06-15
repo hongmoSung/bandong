@@ -31,14 +31,15 @@ public class ReplyUpdate extends HttpServlet {
 		try {
 			int no = Integer.parseInt(request.getParameter("boardNo"));
 			int replyId = Integer.parseInt(request.getParameter("replyId"));
-			System.out.println("번호" + no);
-			System.out.println("대슥ㄹ" + replyId);
+			System.out.println("댓글번호" + replyId);
 			
 			
 			ReplyVO reply = new ReplyVO();
 			reply.setContent(request.getParameter("content"));
+			System.out.println(request.getParameter("content"));
 			reply.setBoardNo(no);
 			reply.setReplyId(replyId);
+			System.out.println(reply);
 			
 			mapper.updateReply(reply);
 			session.commit();
@@ -50,11 +51,11 @@ public class ReplyUpdate extends HttpServlet {
 			switch (bType){
 			case "notice" : response.sendRedirect("noticeDetail?boardNo=" + no);
 							break;
-			case "sale" :   response.sendRedirect("noticeDetail?boardNo=" + no);
+			case "sale" :   response.sendRedirect("saleDetail?boardNo=" + no);
 							break;
-			case "tip" :  response.sendRedirect("noticeDetail?boardNo=" + no);
+			case "tip" :  response.sendRedirect("tipDetail?boardNo=" + no);
 						  break;
-			case "image" :  response.sendRedirect("noticeDetail?boardNo=" + no);
+			case "image" :  response.sendRedirect("imageDetail?boardNo=" + no);
 							break;
 			}
 		} catch (Exception e) {

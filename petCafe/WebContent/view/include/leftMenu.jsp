@@ -37,7 +37,7 @@
 <div id="cafeBtn">
 	<c:choose>
 		<c:when test="${not empty member}">
-			<a href="${pageContext.request.contextPath}/board/write" class="btn btn-primary btn-xl page-scroll">카페 글쓰기</a>
+			<a href="${pageContext.request.contextPath}/board/boardInsertForm" class="btn btn-primary btn-xl page-scroll">카페 글쓰기</a>
 		</c:when>
 		<c:otherwise>
 			<a href="${pageContext.request.contextPath}/member/authForm" class="btn btn-primary btn-xl page-scroll">카페 가입하기</a>
@@ -70,8 +70,9 @@
 		<div id="hospitalList" class="panel-collapse collapse">
 			<div class="panel-body">
 				<a href="${pageContext.request.contextPath}/hospital/joinForm">우리 병원 등록</a><br>
-				<a href="${pageContext.request.contextPath}/hospital/hospitalInfo">병원 정보 확인</a><br>
+				<a href="${pageContext.request.contextPath}/hospital/hospitalInfo">병원 정보 수정</a><br>
 				<a href="${pageContext.request.contextPath}/hospital/hospitalList">모든병원</a><br>
+				<a href="${pageContext.request.contextPath}/view/hospital/insert.jsp">병원 정보 등록</a>
 			</div>
 		</div>
 	</div>

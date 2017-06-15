@@ -38,7 +38,7 @@
     <update id="updateReply" parameterType="Reply">
     	update REPLY_FORM
     	   set content = #{content}
-    	 where reply_Id = #{replyId}
+    	 where reply_id = #{replyId}
     	 	   
     </update>
     
