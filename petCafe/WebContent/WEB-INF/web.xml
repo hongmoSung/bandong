@@ -2,6 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>petCafe</display-name>
   
+  <!-- 한글처리 필터 -->
   <filter>
   	<filter-name>encoding</filter-name>
   	<filter-class>kr.co.ggori.filter.EncodingFilter</filter-class>
@@ -12,6 +13,39 @@
   </filter>
   <filter-mapping>
   	<filter-name>encoding</filter-name>
+  	<url-pattern>*</url-pattern>
+  </filter-mapping>
+  
+  <!-- 인증처리 필터  -->	
+  <filter>
+  	<filter-name>auth</filter-name>
+  	<filter-class>kr.co.ggori.filter.AuthFilter</filter-class>
+  	<init-param>
+  		<param-name>pages</param-name>
+  		<param-value>
+			<!--  -->
+			/;
+			<!--  -->
+			/member/authForm;
+			/member/join;
+			/member/joinForm;
+			/member/authEmail;
+			<!--  -->
+			/login/changePass;
+			/login/changePassForm;
+			/login/findForm;
+			/login/findId;
+			/login/findPass;
+			/login/findPassForm;
+			/login/login;
+			/login/loginForm;
+			/login/logout;
+			/main/Main
+  		</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>auth</filter-name>
   	<url-pattern>*</url-pattern>
   </filter-mapping>
   
