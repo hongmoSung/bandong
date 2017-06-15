@@ -28,7 +28,7 @@
 		</div>
 				<c:set value="${hospital}" var="h"/>
 			<div class="center-block" style="width: 500px;">
-				<form>
+				<form method="post">
 					<div class="form-group">
 						<label class="control-label col-sm-3">병원 아이디</label>
 						<div class="col-sm-9">
@@ -64,16 +64,45 @@
 					</div>
 					<div>
 						<h1>진료분야</h1>
-						<form>
-							<label>진료분야</label><input>
-							<button>등록하기</button>
-						</form>
+							<input type="text" value="${h.hospitalId}" name="hospitalId" id="hospitalId">
+							<label>진료분야</label><input type="text" name="typeName" id="typeName">
+							<button id="careBtn">등록하기</button>
 						<c:forEach items="${careList}" var="c">
-								<input type="text" value="${c.careTypeId}" hidden="true"><br>
-								<input type="text" value="${c.hospitalId}" hidden="true"><br>
-								<input type="text" value="${c.typeName}"><button>삭제하기</button><br>
+								<div>
+									<input type="text" value="${c.careTypeId}" hidden="true">
+									<input type="text" value="${c.hospitalId}" hidden="true">
+									<input type="text" value="${c.typeName}"><button>삭제하기</button><br>
+								</div>
 						</c:forEach>
 					</div>
+					<script type="text/javascript">
+						$("#careBtn").on("click", function() {
+							var typeName = document.querySelector("#typeName");
+							var hospitalId = document.querySelector("#hospitalId");
+							$.ajax({
+								type : "post",
+								data : {typeName : typeName.value, hospitalId : hospitalId.value},
+								url : "ajaxCareInsert",
+								dataType : "json",
+								success : function (data) {
+// 									var care = data;
+// 									if (care == "성공") {
+// 										swal("등록되었습니다.", "success!!","success");
+// 									}
+// 									if (care == "실패") {
+// 										swal("실패 되었습니다.", "fail!!","error");
+// 									}
+// 									var html = "";
+// 										for(var i = 0; i < care.length; i++) {
+// 											html += "<p> 이름 :" + care.typeName + "</p>";
+// 											alert(care.typeName);
+// 										}
+// 										$("#result").append(html)
+// 									swal("등록되었습니다.", "success!!","success");
+								}
+							});
+						});
+					</script>
 				</form>
 			</div>
 		</div>

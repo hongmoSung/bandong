@@ -26,6 +26,6 @@ public class CareTypeVO {
 	}
 	@Override
 	public String toString() {
-		return "CareTypeVO [careTypeId=" + careTypeId + ", hospitalId=" + hospitalId + ", typeName=" + typeName + "]";
+		return "{careTypeId=" + careTypeId + ", hospitalId=" + hospitalId + ", typeName=\"" + typeName + "\"}";
 	}
 }

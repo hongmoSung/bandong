@@ -40,6 +40,7 @@ public class MemberMyPage extends HttpServlet{
 			member = mapper.selectMemberOne(member);
 			file = bmapper.selectUserProfile(member.getMemberId());
 			String imgSrc = "/upload/userProfile/" + file.getSystemName();
+			System.out.println(imgSrc);
 			request.setAttribute("file", file);
 			request.setAttribute("imgSrc", imgSrc);
 			request.setAttribute("member", member);
