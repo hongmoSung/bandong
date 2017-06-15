@@ -40,7 +40,8 @@
 			/login/login;
 			/login/loginForm;
 			/login/logout;
-			/main/Main
+			/main/Main;
+			/index.jsp
   		</param-value>
   	</init-param>
   </filter>
