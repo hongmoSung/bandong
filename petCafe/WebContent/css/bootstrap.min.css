@@ -67,4 +67,18 @@
 div #firstDiv {
 	margin-top: 70px;
 }
+
+div #searchBtn {
+	background: #FFFFFF;
+	border-left-color: white;
+}
+
+div #searchBtn:hover {
+	background: lightgray;
+}
+
+div > #searchTxt {
+	border-right-color: white;
+	box-shadow: none;
+}
 /*# sourceMappingURL=bootstrap.min.css.map */

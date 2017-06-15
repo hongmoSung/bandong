@@ -25,10 +25,15 @@
 			</c:choose>
 		</ul>
 		<form class="navbar-form navbar-right" role="search">
+			<c:if test="${not empty member}">
+				<img src="${pageContext.request.contextPath}/userImage/${member.memberId}"/>
+			</c:if>
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="검색">
+				<div class="input-group">
+					<input type="text" class="form-control" id="searchTxt" placeholder="검색" aria-describedby="searchBtn">
+	  				<span class="input-group-addon" id="searchBtn">검색</span>
+	  			</div>
 			</div>
-			<button type="submit" class="btn btn-default">검색</button>
 		</form>
 	</div>
 </nav>

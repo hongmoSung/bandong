@@ -66,7 +66,7 @@ public class MemberJoin extends HttpServlet{
 						fileVO.setFileSize(size);
 						fileVO.setOriginName(multi.getOriginalFileName("attachFile"));
 						fileVO.setSystemName(multi.getFilesystemName("attachFile"));
-						fileVO.setFilePath(uploadPath);
+						fileVO.setFilePath("/userProfile");
 						fileVO.setMemberId(multi.getParameter("memberId"));
 						int resultFile = bmapper.insertUserProfile(fileVO);
 						

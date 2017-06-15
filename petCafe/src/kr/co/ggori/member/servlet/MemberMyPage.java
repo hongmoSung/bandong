@@ -39,9 +39,11 @@ public class MemberMyPage extends HttpServlet{
 		try {
 			member = mapper.selectMemberOne(member);
 			file = bmapper.selectUserProfile(member.getMemberId());
-			String imgSrc = "/upload/userProfile/" + file.getSystemName();
-			request.setAttribute("file", file);
-			request.setAttribute("imgSrc", imgSrc);
+			if(file != null) {
+				String imgSrc = "/upload/userProfile/" + file.getSystemName();
+				request.setAttribute("file", file);
+				request.setAttribute("imgSrc", imgSrc);
+			}
 			request.setAttribute("member", member);
 			RequestDispatcher rd = request.getRequestDispatcher("/view/member/myPage.jsp");
 			rd.forward(request, response);

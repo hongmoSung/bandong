@@ -50,7 +50,6 @@ public class MemberUpdate extends HttpServlet{
 			member.setPass(multi.getParameter("pass"));
 			member.setMemberId(multi.getParameter("memberId"));
 			member = mapper.selectMemberOne(member);
-			System.out.println("member생성");
 			if (member != null) {
 				member.setNickName(multi.getParameter("nickName"));
 				member.setEmail(multi.getParameter("email"));
@@ -58,28 +57,43 @@ public class MemberUpdate extends HttpServlet{
 				
 				int result = mapper.updateMember(member);
 				RequestDispatcher rd = null;
+				boolean check = false;
 				if (result != 0) {
 					File file = multi.getFile("attachFile");
 					if(file != null) {
-						file = multi.getFile("attachFile");
-						if(file != null) {
-							FileVO fileVO = bmapper.selectUserProfile(multi.getParameter("memberId"));
+						FileVO fileVO = bmapper.selectUserProfile(multi.getParameter("memberId"));
+						if( fileVO != null ) {
 							System.out.println(fileVO.toString());
-							long size = file.length();
-							fileVO.setFileSize(size);
-							fileVO.setOriginName(multi.getOriginalFileName("attachFile"));
-							fileVO.setSystemName(multi.getFilesystemName("attachFile"));
-							fileVO.setMemberId(multi.getParameter("memberId"));
-							int resultFile = bmapper.updateUserProfile(fileVO);
-							
-							if (resultFile != 0) {
-								session.commit();
-								rd = request.getRequestDispatcher("myPage");
-							}
-							else {
-								System.out.println("프로필 등록 실패");
-							}
 						}
+						else {
+							fileVO = new FileVO();
+							check = true;
+						}
+						long size = file.length();
+						fileVO.setFileSize(size);
+						fileVO.setOriginName(multi.getOriginalFileName("attachFile"));
+						fileVO.setSystemName(multi.getFilesystemName("attachFile"));
+						fileVO.setMemberId(multi.getParameter("memberId"));
+						
+						int resultFile = 0;
+						
+						if(check) {
+							fileVO.setFilePath("/userProfile");
+							resultFile = bmapper.insertUserProfile(fileVO);
+						}
+						else {
+							resultFile = bmapper.updateUserProfile(fileVO);
+						}
+						
+						if (resultFile != 0) {
+							session.commit();
+							rd = request.getRequestDispatcher("myPage");
+						}
+						else {
+							System.out.println("프로필 등록 실패");
+						}
+//						System.out.println("파일 크기" + multi.getOriginalFileName("attachFile"));
+//						System.out.println("파일 크기" + multi.getFilesystemName("attachFile"));
 					}
 					session.commit();
 					rd = request.getRequestDispatcher("myPage");
