@@ -28,7 +28,6 @@ public class EncodingFilter implements Filter {
 		HttpServletRequest hRequest = (HttpServletRequest)request;
 		String method = hRequest.getMethod();
 		if ("POST".equals(method)) {
-			System.out.println("인코딩필터가 적용되었습니다.");
 			request.setCharacterEncoding(charset);
 		}
 		chain.doFilter(request, response);
@@ -36,16 +35,5 @@ public class EncodingFilter implements Filter {
 
 	@Override
 	public void destroy() {
-		
 	}
-	
 }
-
-
-
-
-
-
-
-
-
