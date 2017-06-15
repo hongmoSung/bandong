@@ -16,7 +16,7 @@
 	
 	게시판 유형<select name="boardType" onchange="innerSelect(this.value);">
 		<option value='0'>선택</option>
-		<c:if test="${member eq 'admin'}">
+		<c:if test="${member eq 'ididid'}">
 		<option value='notice'>공지사항</option>
 		</c:if>		
 		<option value='sale'>분양게시판</option>
