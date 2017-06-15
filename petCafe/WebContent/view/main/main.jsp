@@ -12,13 +12,12 @@
 <title>꼬리 카페</title>
 <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
 
-<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <!-- <link href="../css/custom2.css" rel="stylesheet"> -->
 
 <style>
-	.imgList {
-		width: 140px;
-		height: auto;
+	body {
+		background-color: #EEEEEE
 	}
 	.carousel-control {
 		text-shadow: none;
@@ -36,6 +35,23 @@
 	}
 	.more > a {
 		font-size: 12px;
+	}
+	span.captionTitle {
+		width: 80px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: inline-block;
+	}
+	p.captionP {
+		margin-bottom: 0px;
+	}
+	div.mainBoardFour {
+	    width: 450px;
+    	height: 350px;
+    	border-radius: 20px;
+    	background: #FFFFFF;
+    	margin: 10px;
 	}
 </style>
 
@@ -146,7 +162,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-5 cont">
+				<div class="col-md-5 cont mainBoardFour">
 					<div class="row">
 						<div class="col-xs-4 boardType">
 							<a href="${pageContext.request.contextPath}/board/tipList">양육TIP</a>
@@ -177,7 +193,7 @@
 						</table>
 					</div>
 				</div>
-				<div class="col-md-5 cont">
+				<div class="col-md-5 cont mainBoardFour">
 					<div class="row">
 						<div class="col-xs-5 boardType">
 							<a href="${pageContext.request.contextPath}/board/imageList">이미지 게시판</a>
@@ -197,11 +213,11 @@
 								<div class="thumbnail">
 									<c:choose>
 										<c:when test="${not empty fileList[index]}">
-											<a href="${pageContext.request.contextPath}/board/imageList?boardNo='<c:out value='${boardListImage[index].boardNo}'/>'">
+											<a href="${pageContext.request.contextPath}/board/imageDetail?boardNo=<c:out value='${boardListImage[index].boardNo}'/>">
 												<img class="imgList" src="${uploadPath}${fileList[index].filePath}/${fileList[index].systemName}"/>
 											</a>
 											<div class="caption">
-												<c:set value="${boardListImage[index].title}" var="title"/>
+											<%--
 												<c:choose>
 													<c:when test="${fn:length(title) >= 8}">
 														<c:set value="${fn:substring(title, 0, 8)}..." var="subTitle"/>
@@ -211,18 +227,28 @@
 														<c:out value="${title}"/>
 													</c:otherwise>
 												</c:choose>
+											 --%>
+												<c:set value="${boardListImage[index].title}" var="title"/>
 												<fmt:formatDate value="${boardListImage[index].regDate}" var="writeDate" pattern="yyyyMMddHH"/>
-												<c:if test="${today-writeDate <= 3}">
-													<span class="new">new</span>
-												</c:if>
-												<c:out value="${boardListImage[index].nickName}"/>
+												<p class="captionP">
+													<a href="${pageContext.request.contextPath}/board/imageDetail?boardNo=<c:out value='${boardListImage[index].boardNo}'/>">
+													 	<span class="captionTitle">
+															<c:out value="${title}"/>
+													 	</span>
+												 	</a>
+													<c:if test="${today-writeDate <= 3}">
+														<span class="new">new</span>
+													</c:if>
+												</p>
+											 	<p class="captionP">
+													<span class="captionWriter"><c:out value="${boardListImage[index].nickName}"/></span>
+											 	</p>
 											</div>
 										</c:when>
 										<c:otherwise>
 											<img class="imgList" src="${pageContext.request.contextPath}/images/no-image.jpg"/>
 											<div class="caption">
 												<p><c:out value="등록된 이미지가 없습니다"/></p>
-												<p></p>
 											</div>
 										</c:otherwise>
 									</c:choose>

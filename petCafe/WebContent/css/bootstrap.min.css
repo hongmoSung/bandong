@@ -31,7 +31,9 @@
 	border-radius:4px;
 	-webkit-transition:border .2s ease-in-out;
 	-o-transition:border .2s ease-in-out;
-	transition:border .2s ease-in-out
+	transition:border .2s ease-in-out;
+	margin: 0 auto;
+	padding: 0px;
 }
 .thumbnail a>img,.thumbnail>img{margin-right:auto;margin-left:auto}a.thumbnail.active,a.thumbnail:focus,a.thumbnail:hover{border-color:#337ab7}
 .thumbnail .caption {
@@ -80,5 +82,13 @@ div #searchBtn:hover {
 div > #searchTxt {
 	border-right-color: white;
 	box-shadow: none;
+}
+
+#topMemberProfileImg {
+	padding: 0px;
+	margin: 2px;
+	width: 40px;
+    height: 40px;
+    border-radius: 100px;
 }
 /*# sourceMappingURL=bootstrap.min.css.map */

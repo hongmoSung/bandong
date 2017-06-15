@@ -13,17 +13,21 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 
 import common.db.MyAppSqlConfig;
+import kr.co.ggori.repository.mapper.IBoardMapper;
 import kr.co.ggori.repository.mapper.IMemberMapper;
+import kr.co.ggori.repository.vo.FileVO;
 import kr.co.ggori.repository.vo.MemberVO;
 
 @WebServlet("/login/login")
 public class Login extends HttpServlet{
 	private SqlSession session;
 	private IMemberMapper mapper;
+	private IBoardMapper bmapper;
 	
 	public Login () {
 		session = MyAppSqlConfig.getSqlSessionInstance();
 		this.mapper = session.getMapper(IMemberMapper.class);
+		this.bmapper = session.getMapper(IBoardMapper.class);
 	}
 
 	@Override
@@ -37,6 +41,10 @@ public class Login extends HttpServlet{
 			if (member != null) {
 				HttpSession s = request.getSession();
 				s.setAttribute("member", member);
+				FileVO file = bmapper.selectUserProfile(member.getMemberId());
+				if(file != null) {
+					s.setAttribute("profileImg", file.getSystemName());
+				}
 			} else {
 				request.setAttribute("loginError", "로그인 실패");
 			}

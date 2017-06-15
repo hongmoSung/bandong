@@ -97,7 +97,7 @@
 	</delete>
 	<!-- userProfile -->
 	<insert id="insertUserProfile" parameterType="File">
-	    insert into file_form(           
+	    insert into file_form(
 		    File_Id, file_path, origin_name, system_name, file_size, Member_Id
 		) values (                       
 		    s_file_id.nextval, #{filePath}, #{originName}, #{systemName}, #{fileSize} , #{memberId}
@@ -113,4 +113,12 @@
 		   set origin_name = #{originName}, system_name = #{systemName}, file_size = #{fileSize}
 		where member_id = #{memberId}  
 	</update>
+	
+	<!-- search -->
+	<select id="searchByContent" parameterType="Board" resultMap="boardMap">
+		select *
+		  from board_form
+		 where board_type = #{boardType}
+		   and content like '%' || #{content} || '%'
+	</select>
 </mapper>
