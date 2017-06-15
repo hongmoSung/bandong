@@ -29,9 +29,6 @@ public class AjaxCareInsert extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=utf-8");
-		System.out.println("ajax서블릿");
-		System.out.println(request.getParameter("hospitalId"));
-		System.out.println(request.getParameter("typeName"));
 		
 		String result = request.getParameter("result");
 		String hospitalId = request.getParameter("hospitalId");
@@ -60,12 +57,10 @@ public class AjaxCareInsert extends HttpServlet{
 //				}
 //			}
 //			resultHtml += "]";
-			resultHtml += "<input type='hidden' value='" + hospitalId + "' name='hospitalId' id='hospitalId" + idNum + "'/>"
+			resultHtml += //"<input type='hidden' value='" + hospitalId + "' name='hospitalId' id='hospitalId" + idNum + "'/>"
 //				        + "<input type='hidden' value='" + careTypeId + "' name='careTypeId' id='careTypeId" + idNum + "'/>"
-				        + "<input type='text' value='" + typeName + "' id='careName" + idNum + "'/><button id='" + idNum + "'onclick='deleteBtn(" + idNum + ");'>삭제</button><br>";
-			System.out.println(resultHtml.toString());
+				         "<p id='" + idNum + "'><input type='text' value='" + typeName + "'/><button onclick='deleteBtn(" + idNum + ");'>삭제</button></p>";
 			out.println(resultHtml);
-			System.out.println("out성공");
 			out.close();
 		} catch(Exception e) {
 			e.printStackTrace();

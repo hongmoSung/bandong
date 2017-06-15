@@ -11,9 +11,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>꼬리 카페</title>
 <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
-
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-<!-- <link href="../css/custom2.css" rel="stylesheet"> -->
 
 <style>
 	body {

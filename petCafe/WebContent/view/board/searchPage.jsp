@@ -10,12 +10,16 @@
 		
 		<script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
 		<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 		
 		<style>
 			.content {
 				text-align: center;
 			}
-			.contentTr:hover, .tableHeader:hover {
+			.contentTr:hover {
+				background-color: #FFFFFF;
+			}
+			tr.tableHeader:hover {
 				background-color: #FFFFFF;
 			}
 			#searchWord {

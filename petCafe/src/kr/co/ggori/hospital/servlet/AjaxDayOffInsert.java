@@ -28,27 +28,28 @@ public class AjaxDayOffInsert extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/plain; charset=utf-8");
-		System.out.println(request.getParameter("hospitalId"));
-		System.out.println(request.getParameter("offDay"));
+		response.setContentType("text/html; charset=utf-8");
+		
+		String result = request.getParameter("result");
 		int hospitalId = Integer.parseInt(request.getParameter("hospitalId"));
 		String offDay = request.getParameter("offDay");
+		String idNum = request.getParameter("idNum");
 		
 		try {
 			DayOffVO dayoff = new DayOffVO();
 			dayoff.setHospitalId(hospitalId);
 			dayoff.setOffDay(offDay);
-			int result = mapper.insertDayoff(dayoff);
-			session.commit();
 			
-//			List<DayOffVO> list = mapper.selectDayoffByHospitalId(hospitalId);
 			PrintWriter out = response.getWriter();
-			String json = "실패";
-			if (result != 0) {
-				json = "성공";
+			String resultHtml = "";
+			
+			if (result != null) {
+				resultHtml += result;
 			}
-			System.out.println(json.toString());
-			out.println(json);
+			
+			resultHtml += "<p id='" + idNum + "'><input type='text' value='" + offDay + "'/><button onclick='deleteBtn2(" + idNum + ");'>삭제</button></p>";
+			
+			out.println(resultHtml);
 			out.close();
 		} catch(Exception e) {
 			e.printStackTrace();

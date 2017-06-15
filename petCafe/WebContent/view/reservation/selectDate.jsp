@@ -10,7 +10,6 @@
 	<title>날짜 선택</title>
 	
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
-<!-- 	<link href="../css/custom2.css" rel="stylesheet"> -->
 	<link href="${pageContext.request.contextPath}/css/fullcalendar.css" rel="stylesheet"/>
 	<link href="${pageContext.request.contextPath}/css/fullcalendar.print.css" rel="stylesheet" media="print"/>
 	
