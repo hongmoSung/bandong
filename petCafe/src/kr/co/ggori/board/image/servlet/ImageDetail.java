@@ -26,12 +26,13 @@ public class ImageDetail extends HttpServlet{
 	private SqlSession session;
 	private IBoardMapper bMapper;
 	private IReplyMapper rMapper;
-	private IMainMapper mainMapper;
+	private IMainMapper iMapper;
+	
 	public ImageDetail() {
 		session = MyAppSqlConfig.getSqlSessionInstance();
 		bMapper = session.getMapper(IBoardMapper.class);
 		rMapper = session.getMapper(IReplyMapper.class);
-		mainMapper = session.getMapper(IMainMapper.class);
+		iMapper = session.getMapper(IMainMapper.class);
 	}
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -51,8 +52,6 @@ public class ImageDetail extends HttpServlet{
 			BoardVO board = bMapper.selectOneBoard(no);
 			request.setAttribute("board", board);
 			
-			setNickName(boardList);
-			
 			uploadPath = request.getContextPath() + "/upload";
 			request.setAttribute("uploadPath", uploadPath);
 			
@@ -71,6 +70,7 @@ public class ImageDetail extends HttpServlet{
 			}
 			
 			List<ReplyVO> replyList = rMapper.replyList(no);
+			setNickName(replyList);
 			request.setAttribute("replyList", replyList);
 			
 			
@@ -80,10 +80,17 @@ public class ImageDetail extends HttpServlet{
 			e.printStackTrace();
 		}
 	}
-	public void setNickName(List<BoardVO> member) throws Exception {
+	public void setNickName(List<ReplyVO> member) throws Exception {
 		for(int i = 0; i < member.size(); i++) {
 			member.get(i).setNickName( 
-					mainMapper.myNickName( member.get(i).getMemberId() ) 
+					iMapper.myNickName( member.get(i).getMemberId() ) 
+					);
+		}
+	}
+	public void setbNickName(List<BoardVO> member) throws Exception {
+		for(int i = 0; i < member.size(); i++) {
+			member.get(i).setNickName( 
+					iMapper.myNickName( member.get(i).getMemberId() ) 
 					);
 		}
 	}

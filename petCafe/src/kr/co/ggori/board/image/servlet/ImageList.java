@@ -44,14 +44,11 @@ public class ImageList extends HttpServlet{
 		
 		try {
 			boardList = bMapper.selectAll("image");
-			System.out.println(boardList);
 			fileList = getFileList(boardList);
-			System.out.println(fileList);
 			
 			setNickName(boardList);
 			
 			uploadPath = request.getContextPath() + "/upload";
-			System.out.println(uploadPath);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -39,34 +39,39 @@ public class NoticeDetail extends HttpServlet{
 	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
 		int no = Integer.parseInt(request.getParameter("boardNo"));
+		List<BoardVO> boardList = null;
 		
-		BoardVO board = bMapper.selectOneBoard(no);
+		try {
+			boardList = bMapper.selectAll("notice"); 
+			request.setAttribute("boardList", boardList);
+			
+			BoardVO board = bMapper.selectOneBoard(no);
+			request.setAttribute("board", board);
+			
+			String memberId = request.getParameter("memberId");
+			request.setAttribute("member", memberId);
+			
+			String replyId = request.getParameter("replyId");
+			if (replyId != null) {
+				request.setAttribute("replyId", replyId);			
+			}
 		
-		request.setAttribute("board", board);
 		
-		String memberId = request.getParameter("memberId");
-		request.setAttribute("member", memberId);
-		
-		
-		String replyId = request.getParameter("replyId");
-		if (replyId != null) {
-			request.setAttribute("replyId", replyId);			
-		}
-		
-		List<ReplyVO> replyList = rMapper.replyList(no);
-		request.setAttribute("replyList", replyList);
-		
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/view/board/detail.jsp");
-		rd.forward(request, response);
-		
+			List<ReplyVO> replyList = rMapper.replyList(no);
+			setNickName(replyList);
+			
+			request.setAttribute("replyList", replyList);
+			
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/view/board/detail.jsp");
+			rd.forward(request, response);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		}
-	public void setNickName(List<BoardVO> member) throws Exception {
+	public void setNickName(List<ReplyVO> member) throws Exception {
 		for(int i = 0; i < member.size(); i++) {
 			member.get(i).setNickName( 
 					iMapper.myNickName( member.get(i).getMemberId() ) 

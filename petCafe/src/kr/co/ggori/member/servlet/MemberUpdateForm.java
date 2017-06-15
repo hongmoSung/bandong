@@ -38,9 +38,11 @@ public class MemberUpdateForm extends HttpServlet{
 		try {
 			member = mapper.selectMemberOne(member);
 			FileVO file = bmapper.selectUserProfile(member.getMemberId());
-			String imgSrc = "/upload/userProfile/" + file.getSystemName();
-			if (member != null) {
+			if(file != null) {
+				String imgSrc = "/upload" + file.getFilePath() + "/" + file.getSystemName();
 				request.setAttribute("imgSrc", imgSrc);
+			}
+			if (member != null) {
 				request.setAttribute("member", member);
 				RequestDispatcher rd = request.getRequestDispatcher("/view/member/updateForm.jsp");
 				rd.forward(request, response);

@@ -14,6 +14,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import common.db.MyAppSqlConfig;
 import kr.co.ggori.repository.mapper.IBoardMapper;
+import kr.co.ggori.repository.mapper.IMainMapper;
 import kr.co.ggori.repository.mapper.IReplyMapper;
 import kr.co.ggori.repository.vo.BoardVO;
 import kr.co.ggori.repository.vo.ReplyVO;
@@ -24,18 +25,25 @@ public class TipDetail extends HttpServlet {
 	private SqlSession session;
 	private IBoardMapper bMapper;
 	private IReplyMapper rMapper;
+	private IMainMapper iMapper;
+	
 	public TipDetail() {
 		session = MyAppSqlConfig.getSqlSessionInstance();
 		bMapper = session.getMapper(IBoardMapper.class);
 		rMapper = session.getMapper(IReplyMapper.class);
+		iMapper = session.getMapper(IMainMapper.class);
 	}
 	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html; charset=utf-8"); 
-		try {
 		int no = Integer.parseInt(request.getParameter("boardNo"));
+		List<BoardVO> boardList = null;
 		
+		try {
+			boardList = bMapper.selectAll("tip"); 
+			request.setAttribute("boardList", boardList);
+			
+			
 		BoardVO board = bMapper.selectOneBoard(no);
 		request.setAttribute("board", board);
 		
@@ -45,6 +53,7 @@ public class TipDetail extends HttpServlet {
 		}
 		
 		List<ReplyVO> replyList = rMapper.replyList(no);
+		setNickName(replyList);
 		request.setAttribute("replyList", replyList);
 		
 		
@@ -55,4 +64,11 @@ public class TipDetail extends HttpServlet {
 			e.printStackTrace();
 		}
 		}
+	public void setNickName(List<ReplyVO> member) throws Exception {
+		for(int i = 0; i < member.size(); i++) {
+			member.get(i).setNickName( 
+					iMapper.myNickName( member.get(i).getMemberId() ) 
+					);
+		}
+	}
 }

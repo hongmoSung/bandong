@@ -16,7 +16,7 @@
 	  	<tr>
 	  	<td>게시판 유형</td>
 	  	<td>
-	  		<select name="boardType" onchange="innerSelect(this.value);">
+	  		<select name="boardType" onchange="innerSelect(this.value);" value="${board.boardType}">
 				<option value='0'>선택</option>
 				<c:if test="${member eq 'admin'}">
 				<option value='notice'>공지사항</option>
