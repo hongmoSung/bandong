@@ -58,7 +58,6 @@
 	<input type="text" value="${msg}" id="zz">
 	<script>
 		console.log($("#zz").value);
-		
 		if($("#zz").attr("value") == "실패") {
 			swal("병원등록에 실패하였습니다.", "다시 시도해주세요", "error");
 		} 
@@ -103,14 +102,14 @@
 							<input class="form-control" type="hidden" id="lng" name="longitude">
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group" hidden="true">
 						<label class="control-label col-sm-3" for="memberId">회원아이디</label>
 						<div class="col-sm-9">
 							<input class="form-control" type="text" id="memberId" name="memberId" value="${member.memberId}" readonly="readonly">
 					</div>
+					</div>
 					<div class="text-center">
 						<button class="btn btn-primary btn-lg" style="margin-top: 20px;">등록하기</button>
-					</div>
 					</div>
 				</form>
 				<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>

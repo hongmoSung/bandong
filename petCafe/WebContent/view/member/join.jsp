@@ -58,7 +58,7 @@
 					<input class="form-control" type="text" name="phoneNum" id="phoneNum">
 				</div>
 				<div class="text-center">
-				<button class="btn btn-success btn-lg">가입하기</button>
+				<button class="btn btn-primary btn-lg">가입하기</button>
 				</div>
 			</div>
 		</form>
@@ -75,27 +75,22 @@
 		var phoneNum = document.querySelector("#phoneNum");
 		
 		if(id.value == "") {
-// 			alert("id를 입력하세요");
 			swal("id를 입력하세요")
 			return false;
 		} 
 		if(pass.value == "") {
-// 			alert("pass를 입력하세요");
 			swal("pass를 입력하세요")
 			return false;
 		} 
 		if(nickName.value == "") {
-// 			alert("nickName를 입력하세요");
 			swal("nickName를 입력하세요")
 			return false;
 		} 
 		if(email.value == "") {
-// 			alert("email를 입력하세요");
 			swal("email를 입력하세요")
 			return false;
 		} 
 		if(phoneNum.value == "") {
-// 			alert("phoneNum를 입력하세요");
 			swal("phoneNum를 입력하세요")
 			return false;
 		} 

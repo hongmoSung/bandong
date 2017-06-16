@@ -35,7 +35,7 @@ public class Login extends HttpServlet{
 		MemberVO member = new MemberVO();
 		member.setMemberId(request.getParameter("memberId"));
 		member.setPass(request.getParameter("pass"));
-		
+		RequestDispatcher rd = null;
 		try {
 			member = mapper.selectMemberOne(member);
 			if (member != null) {
@@ -45,10 +45,12 @@ public class Login extends HttpServlet{
 				if(file != null) {
 					s.setAttribute("profileImg", file.getSystemName());
 				}
+				request.setAttribute("loginSuccess", "로그인 성공");
+				rd = request.getRequestDispatcher("/main/Main");
 			} else {
 				request.setAttribute("loginError", "로그인 실패");
+				rd = request.getRequestDispatcher("/login/loginForm");
 			}
-			RequestDispatcher rd = request.getRequestDispatcher("/main/Main");
 			rd.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();

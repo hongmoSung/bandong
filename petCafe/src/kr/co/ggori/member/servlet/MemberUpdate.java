@@ -96,6 +96,7 @@ public class MemberUpdate extends HttpServlet{
 //						System.out.println("파일 크기" + multi.getFilesystemName("attachFile"));
 					}
 					session.commit();
+					request.setAttribute("updateSuccess", "성공");
 					rd = request.getRequestDispatcher("myPage");
 				} else {
 					rd = request.getRequestDispatcher("myPage");

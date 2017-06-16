@@ -44,16 +44,16 @@
 						</div>
 						<label class="control-label col-sm-3">병원 주소</label>
 						<div class="col-sm-9">
-							<input class="form-control" type="hidden" value="${h.address}" name="address" id="address" readonly="readonly">
+							<input class="form-control" type="text" value="${h.address}" name="address" id="address" readonly="readonly">
 						</div>
 <!-- 						<label class="control-label col-sm-3">위도</label> -->
-						<div class="col-sm-9">
+<!-- 						<div class="col-sm-9"> -->
 							<input class="form-control" type="hidden" value="${h.latitude}" name="latitude" id="latitude" readonly="readonly">
-						</div>
+<!-- 						</div> -->
 <!-- 						<label class="control-label col-sm-3">경도</label> -->
-						<div class="col-sm-9">
-							<input class="form-control" type="text" value="${h.longitude}" name="longitude" id="longitude" readonly="readonly">
-						</div>
+<!-- 						<div class="col-sm-9"> -->
+							<input class="form-control" type="hidden" value="${h.longitude}" name="longitude" id="longitude" readonly="readonly">
+<!-- 						</div> -->
 						<label class="control-label col-sm-3">회원ID</label>
 						<div class="col-sm-9">
 							<input class="form-control" type="text" value="${h.memberId}" name="memberId" id="memberId" readonly="readonly">
@@ -63,11 +63,12 @@
 						<h1>진료분야</h1>
 						<label>진료분야</label><input type="text" name="typeName" id="typeName">
 						<button type="button" id="careBtn">등록</button>
-						<div id="userInsertCare"></div>
+						<div id="userInsertCare">
 						<c:forEach items="${careList}" var="c">
 <%-- 							<input type="hidden" value="${c.careTypeId}" id="careTypeId" name="careTypeId"> --%>
 <%-- 							<input type="text" value="${c.typeName}"><button id="careDelBtn"><a href="careDelete?careTypeId=${c.careTypeId}&hospitalId=${c.hospitalId}">삭제</a></button><br> --%>
 						</c:forEach>
+						</div>
 					</div>
 					<div>
 						<h1>휴일등록</h1>

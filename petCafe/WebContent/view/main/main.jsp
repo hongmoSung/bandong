@@ -14,6 +14,9 @@
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 
+<!-- sweet -->
+<script src="${pageContext.request.contextPath}/sweet/sweetalert.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/sweet/sweetalert.css"/>
 <style>
 	body {
 		background-color: #EEEEEE
@@ -55,8 +58,22 @@
 </style>
 
 </head>
-
 <body>
+<!--  -->
+<input type="text" value="${loginSuccess}" id="mm">
+<script type="text/javascript">
+	var mm = $("#mm").attr("value");
+	console.log(mm);
+	if(mm != "") {
+		swal(mm);
+	}
+// 	if(mm == "로그인 성공") {
+// 		swal("로그인 성공!", "환영합니다 고객님^^", "success");
+// 	}
+// 	if(mm == "logOut") {
+// 		swal("로그아웃 성공!", "잘가세요 고객님^^", "success");
+// 	}
+</script>
 <div class="container">
 	<div>
 		<c:import url="/view/include/topMenu.jsp"/>

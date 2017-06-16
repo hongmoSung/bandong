@@ -7,6 +7,10 @@
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+
+<!-- sweet -->
+<script src="${pageContext.request.contextPath}/sweet/sweetalert.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/sweet/sweetalert.css"/>
 <style type="text/css">
 	.col-sm-9 {
 		margin-bottom: 10px;
@@ -15,6 +19,14 @@
 
 </head>
 <body>
+<input value="${updateSuccess}" id="mm">
+<script type="text/javascript">
+	var mm = $("#mm").attr("value");
+	console.log(mm);
+	if(mm == "성공") {
+		swal("수정되었습니다. ^^", "success!!", "success");
+	}
+</script>
 <div>
 	<jsp:include page="/view/include/topMenu.jsp"/>
 </div>

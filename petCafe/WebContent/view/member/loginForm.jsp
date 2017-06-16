@@ -21,6 +21,17 @@
 		<div class="col-md-2">
 			<jsp:include page="/view/include/leftMenu.jsp"/>
 		</div>
+		<input type="hidden" value="${loginError}" id="msg">
+		<script type="text/javascript">
+			var mm = $("#msg").attr("value");
+			console.log(mm);
+			if(mm == "로그인 실패") {
+				swal("로그인에 실패하였습니다.", "똑바로 적어주세요...", "error");
+			}
+			if(mm == "") {
+				swal("로그인 해주세요 ^^");
+			}
+		</script>
 		<div class="col-md-10">
 			<div class="center-block" style="width: 500px; margin-bottom: 25px;">
 				<h1 class="text-center">로그인</h1>
@@ -36,11 +47,12 @@
 						</div>
 					</div>
 						<div class="text-center">
-							<button class="btn btn-success btn-lg">로그인 하기</button>
+							<button class="btn btn-primary btn-lg">로그인 하기</button>
 						</div>
 						<div class="row" style="margin-top: 100px;">
 							<a class="col-sm-6" href="${pageContext.request.contextPath}/login/findForm">id, password 가 기억안나냐?</a>
-							<a class="col-sm-6" href="${pageContext.request.contextPath}/member/authForm">아이디가 아직도 없어?!</a>
+<%-- 							<a class="col-sm-6" href="${pageContext.request.contextPath}/member/authForm">아이디가 아직도 없어?!</a> --%>
+							<a class="col-sm-6" href="${pageContext.request.contextPath}/member/join2">아이디가 아직도 없어?!</a>
 						</div>
 				</form>
 			</div>

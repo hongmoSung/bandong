@@ -26,6 +26,7 @@ public class CareDelete extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("진료삭제 서블릿");
 		int careTypeId = Integer.parseInt(request.getParameter("careTypeId"));
 		int hospitalId = Integer.parseInt(request.getParameter("hospitalId"));
 		System.out.println(careTypeId);
