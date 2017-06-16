@@ -1,0 +1,38 @@
+@CHARSET "utf-8";
+
+body {
+	background-color: #E2DED3;
+}
+
+.fc-next-button, .fc-prev-button {
+	background: #f7695d;
+	border: none;
+	width: 80px;
+}
+.fc-next-button:hover, .fc-prev-button:hover {
+	background: #da4133;
+}
+.fc-today-button {
+	background: #368DD2;
+	border: none;
+	color: white;
+}
+.fc-today-button:hover {
+	background: #00A7C2;
+}
+.fc button .fc-icon {
+	color: white;
+}
+
+.fc-day.fc-widget-content:hover {
+	background: silvergray;
+}
+
+.fc .fc-toolbar > * > * {
+}
+
+.col-md-10 {
+	background: #fff;
+	border-radius: 20px;
+	padding: 20px;
+}
