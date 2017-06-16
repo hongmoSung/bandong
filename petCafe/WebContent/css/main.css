@@ -1,0 +1,74 @@
+@CHARSET "utf-8";
+
+body {
+	background-color: #E2DED3;
+}
+
+.carousel-control {
+	text-shadow: none;
+	opacity: 0;
+}
+
+.more > a {
+	font-size: 12px;
+	color: #333333;
+	float: right;
+	padding-right: 10px;
+}
+.boardType > a {
+	font-size: 14px;
+	color: #333333;
+	float: right;
+	padding-right: 10px;
+}
+.boardType > a {
+	color: #333333;
+	float: left;
+	padding-left: 10px;
+}
+
+div.mainBoardFour {
+    width: 450px;
+   	height: 400px;
+   	border-radius: 20px;
+   	border-style: solid;
+   	border-width: 1px;
+   	border-color: #00A7C2;
+   	background: #FFFFFF;
+   	margin: 15px;
+   	padding: 10px;
+   	border: none;
+}
+
+#mainFour > .row {
+	margin-bottom: 10px;
+}
+
+.more {
+	line-height: 30px;
+}
+.boardType {
+	line-height: 30px;
+}
+
+.more a:hover, .boardType a:hover {
+	color: #DA4133;
+	text-decoration: none;
+}
+
+.table > tbody > tr > #title {
+	text-align: left;
+	padding-left: 15px;
+	color: #368DD2;
+}
+
+.table > tbody > tr > #title > a:hover {
+	color: #DA4133;
+	text-decoration: none;
+}
+
+.table > tbody > tr > .boardWriter:hover {
+	cursor: default;
+	color: #333333;
+}
+
