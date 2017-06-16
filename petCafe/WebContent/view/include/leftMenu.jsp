@@ -54,10 +54,10 @@
 		</div>
 		<div id="boardList" class="panel-collapse collapse in">
 			<div class="panel-body">
-				<a href="${pageContext.request.contextPath}/board/noticeList">공지사항</a><br>
-				<a href="${pageContext.request.contextPath}/board/saleList">분양 게시판</a><br>
-				<a href="${pageContext.request.contextPath}/board/tipList">tip 게시판</a><br>
-				<a href="${pageContext.request.contextPath}/board/imageList">사진 게시판</a>
+				<p class="leftList"><a href="${pageContext.request.contextPath}/board/noticeList">공지사항</a></p>
+				<p class="leftList"><a href="${pageContext.request.contextPath}/board/saleList">분양 게시판</a></p>
+				<p class="leftList"><a href="${pageContext.request.contextPath}/board/tipList">tip 게시판</a></p>
+				<p class="leftList"><a href="${pageContext.request.contextPath}/board/imageList">사진 게시판</a></p>
 			</div>
 		</div>
 	</div>
@@ -69,10 +69,10 @@
 		</div>
 		<div id="hospitalList" class="panel-collapse collapse">
 			<div class="panel-body">
-				<a href="${pageContext.request.contextPath}/hospital/joinForm">우리 병원 등록</a><br>
-				<a href="${pageContext.request.contextPath}/hospital/hospitalInfo">병원 정보 수정</a><br>
-				<a href="${pageContext.request.contextPath}/hospital/hospitalList">모든병원</a><br>
-				<a href="${pageContext.request.contextPath}/view/hospital/insert.jsp">병원 정보 등록</a>
+				<p class="leftList"><a href="${pageContext.request.contextPath}/hospital/joinForm">우리 병원 등록</a></p>
+				<p class="leftList"><a href="${pageContext.request.contextPath}/hospital/hospitalInfo">병원 정보 수정</a></p>
+				<p class="leftList"><a href="${pageContext.request.contextPath}/hospital/hospitalList">모든병원</a></p>
+				<p class="leftList"><a href="${pageContext.request.contextPath}/view/hospital/insert.jsp">병원 정보 등록</a></p>
 			</div>
 		</div>
 	</div>
@@ -84,8 +84,8 @@
 		</div>
 		<div id="reservationList" class="panel-collapse collapse">
 			<div class="panel-body">
-				<a href="${pageContext.request.contextPath}/hospital/hospitalList">예약하기</a><br>
-				<a href="${pageContext.request.contextPath}/reservation/reservationList">예약 확인</a>
+				<p class="leftList"><a href="${pageContext.request.contextPath}/hospital/hospitalList">예약하기</a></p>
+				<p class="leftList"><a href="${pageContext.request.contextPath}/reservation/reservationList">예약 확인</a></p>
 			</div>
 		</div>
 	</div>

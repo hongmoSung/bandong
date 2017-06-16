@@ -26,7 +26,14 @@
 		</ul>
 		<form class="navbar-form navbar-right" role="search" action="${pageContext.request.contextPath}/board/search" name="searchArea">
 			<c:if test="${not empty member}">
-				<img src="${pageContext.request.contextPath}/upload/userProfile/${profileImg}" id="topMemberProfileImg"/>
+				<c:choose>
+					<c:when test="${not empty profileImg}">
+						<img src="${pageContext.request.contextPath}/upload/userProfile/${profileImg}" id="topMemberProfileImg"/>
+					</c:when>
+					<c:otherwise>
+						<img src="${pageContext.request.contextPath}/images/man-user.png" id="topMemberProfileImg"/>
+					</c:otherwise>
+				</c:choose>
 			</c:if>
 			<div class="form-group">
 				<div class="input-group">

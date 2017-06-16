@@ -3,7 +3,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -20,6 +19,8 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/css/locale-all.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/css/gcal.js"></script>
 		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+		
+		<link href="${pageContext.request.contextPath}/css/reservation.css" rel="stylesheet">
 		
 		<style type="text/css">
 			body {
