@@ -8,6 +8,10 @@
 	<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 	<script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	
+	<!-- sweet -->
+	<script src="${pageContext.request.contextPath}/sweet/sweetalert.min.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/sweet/sweetalert.css"/>
 <style>
 	select {
 	    width: 150px;
@@ -25,7 +29,20 @@
 	.topTitle {
 		font-size: 40px;
 	}
-
+	.reBo, .reset {
+			background-color: lavender;
+			width: 50px;
+			padding: 5px 8px;
+			border: 1px solid navy;
+			border-radius: 4px;
+			margin: 5px;
+			float: left;
+			font-size: 10px;
+			color : navy;
+	}
+	#file, #title, #content{
+		margin: 20px;
+	}
 </style>
 </head>
 <body>
@@ -36,15 +53,14 @@
 	
 <div class="row" id="firstDiv">
 <!--  left -->
-		<div class="col-md-2">
-			<c:import url="/view/include/leftMenu.jsp"/>
-		</div>
+		<div class="col-md-2"><c:import url="/view/include/leftMenu.jsp"/></div>
 
 <div class="col-md-10 cont">
 <!-- 본문 -->
 
 	<div>
 		<p class="topTitle"> 게시물 등록 </p>
+		<hr>
 		<form name='bForm' action="boardInsert" method="post" enctype="multipart/form-data" onsubmit="return chkForm();">
 			<c:set var="member" value="${member.memberId}"/>		
 				게시판 유형<select name="boardType" onchange="innerSelect(this.value);">
@@ -58,12 +74,13 @@
 						</select><br>
 	
 					
-				제목 : <input type="text" name="title"/><br>
-				내용 : <textarea name="content" rows="5" cols="70"></textarea><br>
+				제목 : <input id="title" type="text" name="title"/><br>
+				내용 : <br>
+				<textarea id="content" name="content" rows="5" cols="70" style="resize: none;"></textarea><br>
 				<div id='file'></div>
 	
-				<input type="submit" value="등록" />
-				<input type='reset' value='재입력'/>
+				<input class="reBo" type="submit" value="등록" />
+				<input class="reset" type='reset' value='재입력'/>
 		</form>
 		<c:set var="type" value="${board.boardType}"/>
 				<c:choose>
@@ -95,21 +112,21 @@
 		var file = document.querySelector('#file');
 		
 		if(title.value == "") {
-			alert("제목을 입력하세요");
+			swal("제목을 입력하세요");
 			title.focus();
 			return false;
 		}
 		if(content.value == "") {
-			alert("내용을 입력하세요");
+			swal("내용을 입력하세요");
 			content.focus();
 			return false;
 		}
 		if(f.boardType.selectedIndex == 0){
-			alert("게시판 유형을 선택하세요");
+			swal("게시판 유형을 선택하세요");
 			return false;
 		}
 		if(f.attachFile.value == ""){
-			alert("이미지를 첨부하세요");
+			swal("이미지를 첨부하세요");
 			return false;
 		}
 	}

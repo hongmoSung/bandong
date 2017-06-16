@@ -121,7 +121,7 @@
 			<c:set var="board" value="${boardList}"/>
 			<c:choose>
 				<c:when test="${not empty board}">
-				<c:forEach var="index" begin="0" end="${fn:length(file)-1}">
+				<c:forEach var="index" begin="0" end="${fn:length(file)-2}">
 					<ul>
 						<li>
 							<table id="img">
