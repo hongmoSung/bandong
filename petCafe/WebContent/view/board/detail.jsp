@@ -7,9 +7,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>상세페이지</title>
-	<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 	<script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 	
 	<!-- sweet -->
 	<script src="${pageContext.request.contextPath}/sweet/sweetalert.min.js"></script>
@@ -157,7 +157,7 @@
 						<input type="hidden" name="boardType" value="${board.boardType}" />
 						<table width="100%">
 							<tr id="replyPo">
-								<td><input type="text" name="nickName" value="${member.nickName}" disabled="disabled"/></td>
+								<td><input type="text" name="nickName" value="${member.nickName}" disabled="disabled" style="border:none; background:none;"/></td>
 								<td><textarea name="content" rows="2" cols="60" style="resize: none;"></textarea></td>
 								<td><button class="sub" type="submit">등록</button></td>
 							</tr>	
