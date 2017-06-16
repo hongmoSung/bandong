@@ -76,7 +76,7 @@ public class MemberJoin extends HttpServlet{
 						if (resultFile != 0) {
 							session.commit();
 							request.setAttribute("loginSuccess", "회원가입이 되었습니다.");
-							RequestDispatcher rd = request.getRequestDispatcher("/login/login");
+							RequestDispatcher rd = request.getRequestDispatcher("/main/Main");
 							rd.forward(request, response);
 						}
 						else {

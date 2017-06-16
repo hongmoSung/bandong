@@ -47,7 +47,7 @@
 				} 
 				else if(result.result == "실패") {
 					console.log("실패어럴트");
-					swal("인증번호가 전공실패.", "Try again", "error");
+					swal("인증번호 전송에 실패 하였습니다.", "Try again", "error");
 				} 
 			}
 		});
