@@ -35,12 +35,14 @@
 					</c:otherwise>
 				</c:choose>
 			</c:if>
-			<div class="form-group">
-				<div class="input-group">
-					<input type="text" class="form-control" id="searchTxt" placeholder="검색" aria-describedby="searchBtn" name="searchTxt">
-	  				<span class="input-group-addon" id="searchBtn" onclick="document.searchArea.submit();">검색</span>
-	  			</div>
-			</div>
+<!-- 			<div class="form-inline"> -->
+				<div class="form-group">
+					<div class="input-group">
+						<input type="text" class="form-control" id="searchTxt" placeholder="검색" aria-describedby="searchBtn" name="searchTxt">
+		  				<span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true" id="searchBtn" onclick="document.searchArea.submit();"></span>
+		  			</div>
+				</div>
+<!-- 			</div> -->
 		</form>
 	</div>
 </nav>

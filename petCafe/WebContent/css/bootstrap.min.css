@@ -179,4 +179,7 @@ div > #searchTxt {
 .navbar-right {
 	margin-right: 0px;
 }
+div > #searchTxt {
+	margin-top: 1px;
+}
 /*# sourceMappingURL=bootstrap.min.css.map */
