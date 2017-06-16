@@ -19,6 +19,9 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/css/locale-all.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/css/gcal.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<link href="${pageContext.request.contextPath}/css/reservation.css" rel="stylesheet">
+	<script src="${pageContext.request.contextPath}/sweet/sweetalert.min.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/sweet/sweetalert.css"/>
 	
 	<style type="text/css">
 	    body {
@@ -41,20 +44,36 @@
 	    .fc-day-top.fc-sun.fc-past, .fc-day-top.fc-sun.fc-future { 
 	    	color:#FF0000; 
 	    }
+	    
+	    #reserBtn {
+	    	margin-left: auto;
+	    	margin-right: auto;
+			margin-top: 30px;
+			
+		}
 	</style>
 	
 	<script type="text/javascript">
 		var reserList = [];
-		var hospitalDayOff = [{
-			start: "2017-06-23",
-			color: "transparent"
-		}];
+		var hospitalDayOff = [];
+		<c:if test="${not empty hospitalDayOff}">
+			hospitalDayOff = [
+				<c:forEach var="index" begin="0" end="${fn:length(hospitalDayOff) - 1}" varStatus="loop">
+					<c:if test="${not loop.first}">,</c:if>
+					{
+						"start": "<c:out value='${hospitalDayOff[index].offDay}'/>",
+// 						<c:set value="${hospitalDayOff[index].name}" var="hospitalName"/>
+						"color": "transparent"
+					}
+				</c:forEach>
+			];
+		</c:if>
 		<c:if test="${not empty reservationList}">
 			reserList = [
 				<c:forEach var="index" begin="0" end="${fn:length(reservationList) - 1}" varStatus="loop">
 					<c:if test="${not loop.first}">,</c:if>
 					{
-						"start":"<c:out value='${reservationList[index].reserDate}'/>T<c:out value='${reservationList[index].reserTime}'/>",
+						"start": "<c:out value='${reservationList[index].reserDate}'/>T<c:out value='${reservationList[index].reserTime}'/>",
 						<c:set value="${reservationList[index].reserName}" var="reserName"/>
 						"title": "<c:out value='${reserName.charAt(0)}'/>*<c:out value='${reserName.charAt(2)}'/>"
 					}
@@ -291,10 +310,20 @@
 		function chkForm() {
 			var reserName = f.reserName;
 			if( $("#checkResult>p").text() == ("예약 하시려면 예약 버튼을 누르세요") ) {
-				f.submit();
+				swal({
+					text: "예약 정보가 등록 되었습니다!", 
+					type: "success",
+					title: ""
+					},
+					function(isConfirm) {
+						if(isConfirm) {
+							f.submit();
+						}
+					}
+				);
 			}
 			else {
-				alert("예약자 이름을 확인해 주세요..");
+				swal("예약자 이름을 형식에 맞게 입력해 주세요!", "warning");
 				reserName.focus();
 				
 				return ;

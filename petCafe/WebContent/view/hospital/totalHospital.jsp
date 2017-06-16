@@ -5,9 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/totalHospital.css" rel="stylesheet">
+
 </head>
 <body>
 <div>
@@ -18,7 +20,7 @@
 		<div class="col-md-2">
 			<jsp:include page="/view/include/leftMenu.jsp"/>
 		</div>
-		<div class="col-md-10">
+		<div class="col-md-10 totalHospital">
 			<div style="text-align: center;">
 				<h1>모든 병원</h1>
 			</div>

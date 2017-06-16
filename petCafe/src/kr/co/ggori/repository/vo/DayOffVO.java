@@ -5,6 +5,14 @@ public class DayOffVO {
 	private int dayoffId;
 	private int hospitalId;
 	private String offDay;
+	private String name;
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public int getDayoffId() {
 		return dayoffId;
 	}

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs leftTab">
 	<li class="active"><a href="#cafe" data-toggle="tab">Cafe</a></li>
 	<li><a href="#member" data-toggle="tab">MyInfo</a></li>
 </ul>
@@ -71,8 +71,7 @@
 			<div class="panel-body">
 				<p class="leftList"><a href="${pageContext.request.contextPath}/hospital/joinForm">우리 병원 등록</a></p>
 				<p class="leftList"><a href="${pageContext.request.contextPath}/hospital/hospitalInfo">병원 정보 수정</a></p>
-				<p class="leftList"><a href="${pageContext.request.contextPath}/hospital/hospitalList">모든병원</a></p>
-				<p class="leftList"><a href="${pageContext.request.contextPath}/view/hospital/insert.jsp">병원 정보 등록</a></p>
+				<p class="leftList"><a href="${pageContext.request.contextPath}/hospital/hospitalList">모든 병원</a></p>
 			</div>
 		</div>
 	</div>

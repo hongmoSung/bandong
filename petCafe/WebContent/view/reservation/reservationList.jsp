@@ -209,19 +209,56 @@
 			var reserName = f.reserName;
 			console.log("true?false? : ", $("#checkResult>p").text() == ("수정 또는 삭제 버튼을 누르세요") || $("#checkResult>p").text() == "");
 			if( $("#checkResult>p").text() == ("수정 또는 삭제 버튼을 누르세요") || $("#checkResult>p").text() == "") {
-				f.submit();
+				swal({
+					text: "예약 정보가 수정 되었습니다!", 
+					type: "success",
+					title: ""
+					},
+					function(isConfirm) {
+						if(isConfirm) {
+							f.submit();
+						}
+					}
+				);
 			}
 			else {
-				alert("수정된 내용을 확인해 주세요..");
+				swal("예약자 이름을 형식에 맞게 입력해 주세요!", "warning");
+				reserName.focus();
 				return ;
 			}
 		}
 		
 		function deleteReser() {
-			alert("삭제하겠습니다..");
-			
-			f.action = "reserDelete";
-			f.submit();
+			swal({
+				  title: "정말 삭제하시겠습니까?",
+				  text: "예약 정보가 모두 삭제될 수 있습니다.",
+				  type: "warning",
+				  showCancelButton: true,
+				  confirmButtonClass: "btn-danger",
+				  confirmButtonText: "삭제",
+				  cancelButtonText: "취소",
+				  closeOnConfirm: false,
+				  closeOnCancel: false
+				},
+				function(isConfirm) {
+				  if (isConfirm) {
+					 swal({
+						text: "삭제되었습니다!", 
+						type: "success",
+						title: ""
+						},
+						function(isConfirm) {
+							if(isConfirm) {
+								f.action = "reserDelete";
+								f.submit();
+							}
+						}
+					);
+				  } else {
+				    swal("취소되었습니다", "예약 확인 페이지로 이동합니다 :)", "error");
+				  }
+				}
+			);
 		}
 	</script>
 </html>
