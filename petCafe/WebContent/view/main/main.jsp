@@ -152,7 +152,7 @@
 											<span class="new">new</span>
 										</c:if>
 									</td>
-									<td>
+									<td class="boardWriter">
 										<c:out value="${board.nickName}"/>
 									</td>
 								</tr>
@@ -185,7 +185,7 @@
 											<span class="new">new</span>
 										</c:if>
 									</td>
-									<td>
+									<td class="boardWriter">
 										<c:out value="${board.nickName}"/>
 									</td>
 								</tr>
@@ -241,7 +241,7 @@
 													</c:if>
 												</p>
 											 	<p class="captionP">
-													<span class="captionWriter"><c:out value="${boardListImage[index].nickName}"/></span>
+													<span class="captionWriter boardWriter"><c:out value="${boardListImage[index].nickName}"/></span>
 											 	</p>
 											</div>
 										</c:when>
