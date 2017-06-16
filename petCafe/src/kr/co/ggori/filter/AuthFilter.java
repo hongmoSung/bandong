@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 public class AuthFilter implements Filter {
 
 	private List<String> pageList;
+	private List<String> pageDirList;
 	
 	@Override
 	public void init(FilterConfig config) throws ServletException {
@@ -24,6 +25,13 @@ public class AuthFilter implements Filter {
 		pageList = new ArrayList<>();
 		for (String page : arr) {
 			pageList.add(page.trim());
+		}
+
+		String pageDirs = config.getInitParameter("pagesDir");
+		arr = pageDirs.split(";");
+		pageDirList = new ArrayList<>();
+		for (String page : arr) {
+			pageDirList.add(page.trim());
 		}
 	}
 
@@ -45,6 +53,14 @@ public class AuthFilter implements Filter {
 				isRedirect = true;
 			}
 		}
+		
+		for (String page : pageDirList) {
+			if (uri.startsWith(page)) {
+				isRedirect = false;
+				break;
+			}
+		}
+		
 		if (isRedirect) {
 			HttpServletResponse hResponse = 
 					(HttpServletResponse)response;

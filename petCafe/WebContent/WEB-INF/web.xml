@@ -23,7 +23,6 @@
   	<init-param>
   		<param-name>pages</param-name>
   		<param-value>
-  			/css/bootstrap.min.css;
 			<!--  -->
 			/;
 			/main/Main;
@@ -43,6 +42,15 @@
 			/login/login;
 			/login/loginForm;
 			/login/logout;
+  		</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>pagesDir</param-name>
+  		<param-value>
+  			/css;
+  			/js;
+  			/sweet;
+  			/images
   		</param-value>
   	</init-param>
   </filter>
