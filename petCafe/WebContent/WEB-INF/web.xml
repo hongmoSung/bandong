@@ -30,8 +30,10 @@
 			<!--  -->
 			/member/authForm;
 			/member/join;
+			/member/join2;
 			/member/joinForm;
 			/member/authEmail;
+			/member/authEmail2;
 			<!--  -->
 			/login/changePass;
 			/login/changePassForm;

@@ -22,8 +22,6 @@
 	var authNum = "";
 	var email = "";
 	function authEmail() {
-// 		alert("zz");
-// 		var email = $("email").attr("value");
 		email = document.querySelector("#email").value;
 		var dType = "ajax";
 		console.log(email);
@@ -44,8 +42,7 @@
 				god = result.result;
 				if(result.result == "성공") {
 					console.log("성공어럴트");
-					swal("인증번호가 전공되었습니다.", "메일에서 확인해주세요", "success");
-// 					$("#authE").attr("hidden") = false;
+					swal("인증번호가 전송되었습니다.", "메일에서 확인해주세요", "success");
 					document.querySelector("#authE").hidden = false;
 				} 
 				else if(result.result == "실패") {
@@ -105,9 +102,9 @@
 		<div class="col-md-2">
 			<jsp:include page="/view/include/leftMenu.jsp"/>
 		</div>
-		<div class="col-md-10">
+		<div class="col-md-10 center-block" style="width:800px;">
 			<div class="center-block text-center" style="width: 500px;">
-				<h1>회원가입2|</h1>
+				<h1>회원 가입</h1>
 				<label for="a">email</label>
 				<input type="text" id="email"><button onclick="authEmail();" id="authBtn" type="button" class="btn btn-primary btn-xl" style="margin-left: 5px;">인증하기</button><br>
 				
