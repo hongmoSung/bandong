@@ -5,51 +5,87 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+	<script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<style>
+	select {
+	    width: 150px;
+	    height: 20px;
+	    padding-left: 10px;
+	    font-size: 12px;
+	    color: #006fff;
+	    border: 1px solid #006fff;
+	    border-radius: 3px;
+	    -webkit-appearance: none; 
+	   -moz-appearance: none;    
+	   appearance: none;
+	   background: aliceblue no-repeat 95% 50%; /* 화살표 아이콘 추가 */       
+	}
+	.topTitle {
+		font-size: 40px;
+	}
+
+</style>
 </head>
 <body>
-<div>
-<div><c:import url="/view/include/topMenu.jsp"></c:import> </div>
-<div>
-<form name='bForm' action="boardInsert" method="post" enctype="multipart/form-data" onsubmit="return chkForm();">
+<div class="container">
+	
+<!-- top -->
+	<div><c:import url="/view/include/topMenu.jsp"></c:import> </div>
+	
+<div class="row" id="firstDiv">
+<!--  left -->
+		<div class="col-md-2">
+			<c:import url="/view/include/leftMenu.jsp"/>
+		</div>
 
-	<c:set var="member" value="${member.memberId}"/>
+<div class="col-md-10 cont">
+<!-- 본문 -->
+
+	<div>
+		<p class="topTitle"> 게시물 등록 </p>
+		<form name='bForm' action="boardInsert" method="post" enctype="multipart/form-data" onsubmit="return chkForm();">
+			<c:set var="member" value="${member.memberId}"/>		
+				게시판 유형<select name="boardType" onchange="innerSelect(this.value);">
+							<option value='0'>선택</option>
+							<c:if test="${member eq 'admin'}">
+								<option value='notice'>공지사항</option>
+							</c:if>		
+							<option value='sale'>분양게시판</option>
+							<option value='tip'>tip 게시판</option>
+							<option value='image'>이미지게시판</option>
+						</select><br>
 	
-	게시판 유형<select name="boardType" onchange="innerSelect(this.value);">
-		<option value='0'>선택</option>
-		<c:if test="${member eq 'ididid'}">
-		<option value='notice'>공지사항</option>
-		</c:if>		
-		<option value='sale'>분양게시판</option>
-		<option value='tip'>tip 게시판</option>
-		<option value='image'>이미지게시판</option>
-	</select><br>
+					
+				제목 : <input type="text" name="title"/><br>
+				내용 : <textarea name="content" rows="5" cols="70"></textarea><br>
+				<div id='file'></div>
 	
-		
-	제목 : <input type="text" name="title"/><br>
-	내용 : <textarea name="content" rows="5" cols="70"></textarea><br>
-	<div id='file'></div>
-	
-<input type="submit" value="등록" />
-<input type='reset' value='재입력'/>
-</form>
-<c:set var="type" value="${board.boardType}"/>
+				<input type="submit" value="등록" />
+				<input type='reset' value='재입력'/>
+		</form>
+		<c:set var="type" value="${board.boardType}"/>
 				<c:choose>
-				<c:when test="${type eq 'notice'}">
-				<a href="noticeList">목록</a>
-				</c:when>
-				<c:when test="${type eq 'sale'}">
-				<a href="saleList">목록</a>
-				</c:when>
-				<c:when test="${type eq 'tip'}">
-				<a href="tipList">목록</a>
-				</c:when>
-				<c:when test="${type eq 'image'}">
-				<a href="imageList">목록</a>
-				</c:when>
+					<c:when test="${type eq 'notice'}">
+					<a href="noticeList">목록</a>
+					</c:when>
+					<c:when test="${type eq 'sale'}">
+					<a href="saleList">목록</a>
+					</c:when>
+					<c:when test="${type eq 'tip'}">
+					<a href="tipList">목록</a>
+					</c:when>
+					<c:when test="${type eq 'image'}">
+						<a href="imageList">목록</a>
+					</c:when>
 				</c:choose>
-
+	</div>
 </div>
+
+<!-- footer -->
 <div><c:import url="/view/include/footer.jsp"></c:import> </div>
+</div>
 </div>
 <script>
 	function chkForm() {

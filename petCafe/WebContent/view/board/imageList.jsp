@@ -21,8 +21,6 @@
 			float: left;
 		}
 		img{
-			margin: 10px;
-			margin-bottom: 0px;
 			width: 150px;
 			height: auto;
 			overflow:hidden;
@@ -33,7 +31,6 @@
 			text-align: center;
 		}
 		div {
-			clear: both;
 		}
 		div > ul {
 			list-style: none;
@@ -52,19 +49,74 @@
 		#nickName {
 			font-size: 15px;
 		}
+		div > .write {
+			margin-top:20px;
+			float: right;
+			background: lightcyan;
+			border-radius: 4px;
+			padding: 6px 12px;
+			color : navy;
+			border: 1px solid navy;
+		}
+		.topTitle {
+			font-size: 40px;
+		}
+		/* 	<!-- 화살표--> */
+		.css-arrow {
+			float:left;
+		    display: inline-block;
+		    position: relative;
+		    margin: 0 0 0 10px;
+		    margin-top:13px;
+		    padding: 0;
+		    width: 0;
+		    height: 0;
+		    border: 10px solid transparent;
+		    border-left-color: #000;
+		}
+		.css-arrow:before, .css-arrow:after {
+		    display: block;
+		    content: "";
+		    position: absolute;
+		    top: 0;
+		    width: 0;
+		    height: 0;
+		}
+		.css-arrow:before {
+		    left: -30px;
+		    margin-top: -10px;
+		    border: 10px solid transparent;
+		    border-right-color: #000;
+		}
+		.css-arrow:after {
+		    left: -20px;
+		    margin-top: -14px;
+		    border: 14px solid transparent;
+		    border-left-color: white;
+		}
 	</style>
 </head>
 <body>
 <div class="container">
+<!-- top -->
 	<div id="top">
 		<c:import url="/view/include/topMenu.jsp"/>
 	</div>
 	
 	<div class="row" id="firstDiv">
-		<div class="col-md-2">
-			<c:import url="/view/include/leftMenu.jsp"/>
+<!-- left-->
+	<div class="col-md-2">
+		<c:import url="/view/include/leftMenu.jsp"/>
+	</div>
+		
+	<div class="col-md-10 cont">
+<!-- 본문-->
+		<div>
+			<a href="boardInsertForm" class="write">글쓰기</a>
 		</div>
-		<div class="col-md-10 cont">
+		<p class="css-arrow"></p>
+		<p class="topTitle">이미지 게시판</p>
+		
 			<c:set var="file" value="${fileList}"/>
 			<c:set var="board" value="${boardList}"/>
 			<c:choose>
@@ -99,7 +151,7 @@
 				</c:otherwise>
 			</c:choose>
 			<div>
-			<a href="boardInsertForm">글쓰기</a>
+				<a href="boardInsertForm" class="write">글쓰기</a>
 			</div>
 		</div>
 	</div>

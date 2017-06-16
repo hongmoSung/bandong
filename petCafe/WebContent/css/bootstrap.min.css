@@ -19,6 +19,7 @@
  .thumbnail {
 	display:block;
 	padding:4px;
+	margin: 0 auto;
 	margin-bottom:20px;
 	line-height:1.42857143;
 	background-color:#fff;
@@ -32,7 +33,6 @@
 	-webkit-transition:border .2s ease-in-out;
 	-o-transition:border .2s ease-in-out;
 	transition:border .2s ease-in-out;
-	margin: 0 auto;
 	padding: 0px;
 }
 .thumbnail a>img,.thumbnail>img{margin-right:auto;margin-left:auto}a.thumbnail.active,a.thumbnail:focus,a.thumbnail:hover{border-color:#337ab7}

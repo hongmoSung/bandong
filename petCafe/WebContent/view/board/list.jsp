@@ -29,12 +29,51 @@
 			width : 100px;
 		}	
 		div > .write {
+			margin-top:20px;
 			float: right;
 			background: lightcyan;
 			border-radius: 4px;
 			padding: 6px 12px;
 			color : navy;
 			border: 1px solid navy;
+		}
+		.topTitle {
+		font-size: 40px;
+		}
+/* 	<!-- 화살표--> */
+		.css-arrow {
+			float:left;
+		    display: inline-block;
+		    position: relative;
+		    margin: 0 0 0 10px;
+		    margin-top:13px;
+		    padding: 0;
+		    width: 0;
+		    height: 0;
+		    border: 10px solid transparent;
+		    border-left-color: #000;
+		}
+		.css-arrow:before, .css-arrow:after {
+		    display: block;
+		    content: "";
+		    position: absolute;
+		    top: 0;
+		    width: 0;
+		    height: 0;
+		}
+		.css-arrow:before {
+		    left: -30px;
+		    margin-top: -10px;
+		    border: 10px solid transparent;
+		    border-right-color: #000;
+		}
+		.css-arrow:after {
+		    left: -20px;
+		    margin-top: -14px;
+		    border: 14px solid transparent;
+		    border-left-color: white;
+		}
+		.col-md-10 {
 		}
 	</style>
 </head>
@@ -52,7 +91,13 @@
 			<c:import url="/view/include/leftMenu.jsp"/>
 		</div>
 <!-- 리스트 -->
+	
+	
 	<div class="col-md-5 cont">
+		<div>
+			<a href="boardInsertForm" class="write">글쓰기</a>
+		</div>
+		
 		<table class="table table-condensed table-hover">
 			<jsp:useBean id="now" class="java.util.Date"/>
 			<fmt:formatDate value="${now}" var="today" pattern="d"/>
@@ -64,13 +109,23 @@
 					<th class="date">등록일</th>
 				</tr>
 			</thead>
+			<c:forEach var="board" items="${list}" end="0">
+			<c:set var="type" value="${board.boardType}"/>
+				<p class="css-arrow"></p>
+				<p class="topTitle"> 
+					<c:choose>
+						<c:when test="${board.boardType eq 'notice'}">공지사항</c:when>
+						<c:when test="${board.boardType eq 'sale'}">분양게시판</c:when>
+						<c:when test="${board.boardType eq 'tip'}">Tip 게시판</c:when>
+					</c:choose>
+				</p>
+			</c:forEach>
 				<c:choose>
 					<c:when test="${not empty list}">
 					<c:forEach var="board" items="${list}">
 						<tr>
 							<td><c:out value='${board.boardNo}'/></td>
 							<td id="title">
-								<c:set var="type" value="${board.boardType}"/>
 								<!-- 타입별 리스트 뿌리기 -->
 								<c:choose>
 									<c:when test="${type eq 'notice'}">

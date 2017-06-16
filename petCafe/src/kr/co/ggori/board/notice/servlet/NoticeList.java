@@ -35,7 +35,6 @@ public class NoticeList extends HttpServlet{
 		
 		try {
 			list = mapper.selectAll("notice");
-			
 			setNickName(list);
 			
 		} catch (Exception e) {

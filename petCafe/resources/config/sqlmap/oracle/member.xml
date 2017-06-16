@@ -16,6 +16,7 @@
 		  from member
 	</select>
 	
+	
 	<select id="selectMemberOne" parameterType="Member" resultMap="memberMap">
 		select *
 		  from member
