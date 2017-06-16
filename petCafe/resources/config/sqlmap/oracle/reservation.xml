@@ -40,7 +40,7 @@
 	</select>
 	
 	<select id="hospitalDayOff" parameterType="int" resultMap="dayOffMap">
-		select off_day
+		select *
 		  from dayoff
 		 where hospital_id = #{hospitalId}
 	</select>

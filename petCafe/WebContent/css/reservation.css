@@ -16,6 +16,8 @@ body {
 	background: #368DD2;
 	border: none;
 	color: white;
+	text-align: center;
+	line-height: inherit;
 }
 .fc-today-button:hover {
 	background: #00A7C2;
@@ -34,5 +36,15 @@ body {
 .col-md-10 {
 	background: #fff;
 	border-radius: 20px;
-	padding: 20px;
+	padding: 50px;
+	color: #555;
 }
+
+.fc-toolbar h2:hover {
+	cursor: default;
+}
+
+.fc-day-header > span {
+	cursor: default;
+}
+

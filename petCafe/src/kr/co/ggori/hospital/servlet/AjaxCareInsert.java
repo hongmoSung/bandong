@@ -39,6 +39,7 @@ public class AjaxCareInsert extends HttpServlet{
 			vo.setHospitalId(Integer.parseInt(hospitalId));
 			vo.setTypeName(typeName);
 			int db = mapper.insertCare(vo);
+			
 			if(db == 1) session.commit();
 //			List<CareTypeVO> list = mapper.SearchCare(Integer.parseInt(hospitalId));
 			PrintWriter out = response.getWriter();
@@ -55,9 +56,8 @@ public class AjaxCareInsert extends HttpServlet{
 //				}
 //			}
 //			resultHtml += "]";
-			resultHtml += //"<input type='hidden' value='" + hospitalId + "' name='hospitalId' id='hospitalId" + idNum + "'/>"
-//				        + "<input type='hidden' value='" + careTypeId + "' name='careTypeId' id='careTypeId" + idNum + "'/>"
-				         "<p id='" + idNum + "'><input type='text' value='" + typeName + "' name='typeName'/><button onclick='deleteBtn(" + idNum + ");'>삭제</button></p>";
+			
+			resultHtml += "<p id='" + idNum + "'><input type='text' value='" + typeName + "' name='typeName'/><button onclick='deleteBtn(" + idNum + ");'>삭제</button></p>";
 			out.println(resultHtml);
 			out.close();
 		} catch(Exception e) {

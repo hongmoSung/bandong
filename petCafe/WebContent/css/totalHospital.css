@@ -1,0 +1,20 @@
+@CHARSET "utf-8";
+
+body {
+	background-color: #E2DED3;
+}
+
+.totalHospital {
+   	border-radius: 20px;
+   	background: #FFFFFF;
+   	padding: 50px;
+   	border: none;
+}
+
+.btn-primary {
+	margin-bottom: 30px;
+}
+
+h1 {
+	margin: 0px auto
+}

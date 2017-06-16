@@ -30,18 +30,30 @@
 		font-size: 40px;
 	}
 	.reBo, .reset {
-			background-color: lavender;
+			background-color: #CFFFEE;
 			width: 50px;
-			padding: 5px 8px;
-			border: 1px solid navy;
+			padding: 5px 5px;
+			border: 0.5px solid navy;
 			border-radius: 4px;
 			margin: 5px;
 			float: left;
-			font-size: 10px;
+			font-size: 13px;
+			font-weight: 600;
 			color : navy;
 	}
 	#file, #title, #content{
 		margin: 20px;
+	}
+	input, textarea {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+
+		padding:5px 0px 0px 10px;
+		border-radius: 4px;
+	}
+	input:focus, textarea:focus {
+		outline: none;
+	
 	}
 </style>
 </head>
@@ -63,8 +75,8 @@
 		<hr>
 		<form name='bForm' action="boardInsert" method="post" enctype="multipart/form-data" onsubmit="return chkForm();">
 			<c:set var="member" value="${member.memberId}"/>		
-				게시판 유형<select name="boardType" onchange="innerSelect(this.value);">
-							<option value='0'>선택</option>
+				게시판 유형    <select name="boardType" onchange="innerSelect(this.value);">
+							<option value='0' >선택하세요</option>
 							<c:if test="${member eq 'admin'}">
 								<option value='notice'>공지사항</option>
 							</c:if>		
@@ -73,10 +85,10 @@
 							<option value='image'>이미지게시판</option>
 						</select><br>
 	
-					
-				제목 : <input id="title" type="text" name="title"/><br>
-				내용 : <br>
-				<textarea id="content" name="content" rows="5" cols="70" style="resize: none;"></textarea><br>
+				제목 <br>	
+				<textarea id="title" name="title" rows="1" cols="20" style="resize: none;"></textarea><br>
+				내용  <br>
+				<textarea id="content" name="content" rows="7" cols="100" style="resize: none;"></textarea><br>
 				<div id='file'></div>
 	
 				<input class="reBo" type="submit" value="등록" />

@@ -45,7 +45,7 @@
 		  		  from board_form
 		  		 order by board_no desc) Board
 		 where board_type = #{boardType}
-		   and rownum &lt; 11
+		   and rownum &lt; 12
 	</select>
 	
 	<select id="cafeMaster" resultType="string">

@@ -182,5 +182,10 @@ div > #searchTxt {
 div > #searchTxt {
 	margin-top: 1px;
 }
+.nav-tabs>li>a {
+	width: 82.5px;
+	margin: 0px;
+	text-align: center;
+}
 
 /*# sourceMappingURL=bootstrap.min.css.map */
