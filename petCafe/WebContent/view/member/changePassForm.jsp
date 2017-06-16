@@ -8,6 +8,10 @@
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+
+<!-- sweet -->
+<script src="${pageContext.request.contextPath}/sweet/sweetalert.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/sweet/sweetalert.css"/>
 <style type="text/css">
 	.col-sm-9 {
 		margin-bottom: 15px;
@@ -18,6 +22,14 @@
 <div>
 	<jsp:include page="/view/include/topMenu.jsp"/>
 </div>
+<input type="hidden" value="${smsg}" id="smsg">
+<script type="text/javascript">
+	var smsg = document.querySelector("#smsg").value;
+	console.log(smsg);
+	if(smsg == "s") {
+		swal("임시 비밀번호가 전송되었습니다.", "success", "success");
+	}
+</script>
 <div class="container">
 	<div class="row" id="firstDiv">
 		<div class="col-md-2">

@@ -40,8 +40,8 @@ public class HospitalJoin extends HttpServlet{
 		try {
 			int result = mapper.insertHospital(hospital);
 			if (result != 0) {
-				msg = "성공";
 				session.commit();
+				msg = "성공";
 //				RequestDispatcher rd = request.getRequestDispatcher("/hospital/hospitalInfo");
 				RequestDispatcher rd = request.getRequestDispatcher("/hospital/joinForm");
 				request.setAttribute("msg", msg);

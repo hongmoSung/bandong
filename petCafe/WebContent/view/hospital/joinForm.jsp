@@ -10,6 +10,7 @@
 <script src="//apis.daum.net/maps/maps3.js?apikey=b3aef8f92a8bdd9510a7905608389df3&libraries=services"></script>
 
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
 <!-- sweet -->
@@ -54,13 +55,14 @@
 	<jsp:include page="/view/include/topMenu.jsp"/>
 </div>
 <div class="container">
-	<input type="text" value="${msg}" id="zz">
+	<input type="hidden" value="${msg}" id="zz">
 	<script>
 		console.log($("#zz").value);
-		if($("#zz").attr("value") == "실패") {
+		var zz = document.querySelector("#zz").value;
+		if(zz == "실패") {
 			swal("병원등록에 실패하였습니다.", "다시 시도해주세요", "error");
 		} 
-		if($("#zz").attr("value") == "성공") {
+		if(zz == "성공") {
 			swal("병원등록에 성공하였습니다.", "환영합니다^^", "success");
 		} 
 	</script>
@@ -107,8 +109,8 @@
 							<input class="form-control" type="text" id="memberId" name="memberId" value="${member.memberId}" readonly="readonly">
 					</div>
 					</div>
-					<div class="text-center">
-						<button class="btn btn-primary btn-lg" style="margin-top: 20px;">등록하기</button>
+					<div class="center-block text-center" style="width: 500px;">
+						<button class="btn btn-primary btn-lg" style="margin-left: 200px;">등록하기</button>
 					</div>
 				</form>
 				<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>

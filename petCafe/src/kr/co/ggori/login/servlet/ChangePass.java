@@ -43,6 +43,7 @@ public class ChangePass extends HttpServlet{
 				int result = mapper.updateMemberPass(member);
 				if (result == 1) {
 					session.commit();
+					request.setAttribute("loginSuccess", "비밀번호 변경이 완료되었습니다.");
 					RequestDispatcher rd = request.getRequestDispatcher("/main/Main");
 					rd.forward(request, response);
 				}

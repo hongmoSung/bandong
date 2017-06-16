@@ -33,10 +33,10 @@
 			}
 		</script>
 		<div class="col-md-10">
-			<div class="center-block" style="width: 500px; margin-bottom: 25px;">
+			<div class="center-block text-center" style="width: 500px; margin-bottom: 25px;">
 				<h1 class="text-center">로그인</h1>
 				<form class="form-horizontal" method="POST" action="login" onsubmit="return doAction()" id="mForm">
-					<div class="form-group">
+					<div class="form-group text-center">
 						<label class="control-label col-sm-3" for="memberId">id</label>
 						<div class="col-sm-9">
 							<input class="form-control" type="text" name="memberId" id="memberId"><br>
@@ -46,14 +46,14 @@
 							<input class="form-control" type="text" name="pass" id="pass"><br>
 						</div>
 					</div>
-						<div class="text-center">
-							<button class="btn btn-primary btn-lg">로그인 하기</button>
-						</div>
-						<div class="row" style="margin-top: 100px;">
-							<a class="col-sm-6" href="${pageContext.request.contextPath}/login/findForm">id, password 가 기억안나냐?</a>
+					<div class="text-center center-block" style="width: 500px;">
+						<button class="btn btn-primary btn-lg" style="margin: 0 auto;">로그인 하기</button>
+					</div>
+					<div class="row" style="margin-top: 100px;">
+						<a class="col-sm-6" href="${pageContext.request.contextPath}/login/findForm">id, password 가 기억안나냐?</a>
 <%-- 							<a class="col-sm-6" href="${pageContext.request.contextPath}/member/authForm">아이디가 아직도 없어?!</a> --%>
-							<a class="col-sm-6" href="${pageContext.request.contextPath}/member/join2">아이디가 아직도 없어?!</a>
-						</div>
+						<a class="col-sm-6" href="${pageContext.request.contextPath}/member/join2">아이디가 아직도 없어?!</a>
+					</div>
 				</form>
 			</div>
 		</div>
@@ -67,7 +67,7 @@
 <script>
 	var result = document.querySelector("#result");
 	if (result.value != "") {
-		alert(result.value);
+		swal(result.value);
 	}
 </script>
 <script>

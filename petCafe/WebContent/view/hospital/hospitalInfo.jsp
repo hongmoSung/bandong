@@ -10,24 +10,25 @@
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 </head>
 <body>
+<div>
+	<jsp:include page="/view/include/topMenu.jsp"/>
+</div>
 <div class="container">
 	<div class="row" id="firstDiv">
-		<div>
-			<jsp:include page="/view/include/topMenu.jsp"/>
+		<div class="col-md-2">
+			<c:import url="/view/include/leftMenu.jsp"/>
 		</div>
-	</div>
-	<div class="col-md-2">
-		<c:import url="/view/include/leftMenu.jsp"/>
-	</div>
-	<div>
-		<c:forEach items="${hospitals}" var="hospital">
-				<input type="text" value="${hospital.hospitalId}" hidden="true"><br>
-				<input type="text" value="${hospital.longitude}" id="longitude" hidden="true"><br>
-				<input type="text" value="${hospital.latitude}" id="latitude" hidden="true"><br>
-		</c:forEach>
+		<div class="col-md-10">
 			<div class="center-block text-center" style="width: 500px;">
 				<h1>나의 병원정보</h1>
 			</div>
+			<div class="center-block" id="map" style="width:1000px;height:350px;"></div>
+			<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=b3aef8f92a8bdd9510a7905608389df3"></script>
+				<c:forEach items="${hospitals}" var="hospital">
+						<input type="text" value="${hospital.hospitalId}" hidden="true"><br>
+						<input type="text" value="${hospital.longitude}" id="longitude" hidden="true"><br>
+						<input type="text" value="${hospital.latitude}" id="latitude" hidden="true"><br>
+				</c:forEach>
 			<div class="center-block text-center" style="width: 500px;">
 				<table style="width: 100%">
 					<tr>
@@ -51,12 +52,7 @@
 				</table>
 			</div>
 			
-			
-			<div class="center-block" id="map" style="width:1000px;height:350px;"></div>
-			
-			<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=b3aef8f92a8bdd9510a7905608389df3"></script>
 			<script>
-			
 			var latitude = document.querySelector("#latitude");
 			var longitude = document.querySelector("#longitude");
 			
@@ -99,6 +95,7 @@
 			</script>
 		</div>
 	</div>
+</div>
 <div>
 	<jsp:include page="/view/include/footer.jsp"/>
 </div>

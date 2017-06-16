@@ -60,6 +60,7 @@ public class FindPass extends HttpServlet{
 				new SendMail().requestTempPass(email, memberId, tempPass);
 				request.setAttribute("memberId", memberId);
 				request.setAttribute("email", email);
+				request.setAttribute("smsg", "s");
 				rd = request.getRequestDispatcher("changePassForm");
 			} else {
 				rd = request.getRequestDispatcher("findPass");
