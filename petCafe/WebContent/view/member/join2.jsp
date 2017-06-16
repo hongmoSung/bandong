@@ -105,9 +105,10 @@
 		<div class="col-md-10 center-block" style="width:800px;">
 			<div class="center-block text-center" style="width: 500px;">
 				<h1>회원 가입</h1>
-				<label for="a">email</label>
-				<input type="text" id="email"><button onclick="authEmail();" id="authBtn" type="button" class="btn btn-primary btn-xl" style="margin-left: 5px;">인증하기</button><br>
-				
+				<div style="margin-left: 100px;">
+					<label for="a" style="float: left;">email</label>
+					<input type="text" id="email" style="float: left;"><button onclick="authEmail();" id="authBtn" class="btn-primary btn-xl" type="button" style="float: left;">인증하기</button><br>
+				</div>
 				<div class="form-group has-success has-feedback" id="authS" hidden="true">
 				  <label class="control-label" for="inputSuccess2">인증 성공</label>
 				  <input type="text" class="form-control" id="inputSuccess2" aria-describedby="inputSuccess2Status">
@@ -150,7 +151,7 @@
 				<div class="col-sm-9">
 					<input class="form-control" type="text" name="phoneNum" id="phoneNum">
 				</div>
-				<div class="text-center">
+				<div class="text-center" style="margin-left: 250px;">
 				<button class="btn btn-primary btn-lg">가입하기</button>
 				</div>
 			</div>
