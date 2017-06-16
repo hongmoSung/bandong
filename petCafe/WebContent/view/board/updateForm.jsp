@@ -42,7 +42,30 @@
 		color : navy;
 	}
 	#file, #title, #content{
-		margin: 20px;
+		margin: 30px;
+	}
+	
+		#file, textarea {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+
+		padding:5px 0px 0px 10px;
+		border-radius: 4px;
+	}
+	input:focus, textarea:focus {
+		outline: none;
+	}
+	.reBo, .reset, #list {
+			background-color: #CFFFEE;
+			width: 50px;
+			padding: 5px 5px;
+			border: 0.5px solid navy;
+			border-radius: 4px;
+			margin: 5px;
+			float: left;
+			font-size: 13px;
+			font-weight: 600;
+			color : navy;
 	}
 	
 	</style>
@@ -60,7 +83,7 @@
 		<div class="col-md-10 cont">
 <!-- 본문 -->
 			<div>
-			<p class="topTitle"> 게시물 등록 </p>
+			<p class="topTitle"> 게시물 수정 </p>
 			<hr>
 				<c:set var="type" value="${board.boardType}"/>
 				<form name= "bForm" action="boardUpdate" method='post' onsubmit="return chkForm();" enctype="multipart/form-data">
@@ -82,9 +105,9 @@
 								</select>
 							</td>
 					  	</tr>
-					  	<tr>
-						  	<td id="title">제목</td>
-						  	<td><input type='text' name='title' value='<c:out value="${board.title}"/>'/></td>
+					  	<tr id="title">
+						  	<td>제목</td>	
+							<td><textarea name="title" rows="1" cols="20" style="resize: none;"><c:out value="${board.title}"/></textarea></td>
 					  	</tr>
 					  	<tr id="content">
 						  	<td>내용</td>
@@ -97,20 +120,20 @@
 						수정할 이미지 : <input type='file' id="file" name='attachFile'/><br>
 				  	</c:if>
 				  	<span id='file'></span>
-				  	<input type="submit" value="수정"/>
-				  	<input type='reset' value='재입력'/>
+				  	<input type="submit" class="reBo" value="수정"/>
+				  	<input type='reset' class="reset" value='재입력'/>
 					<c:choose>
 						<c:when test="${type eq 'notice'}">
-							<a href="noticeList">목록</a>
+							<a id="list" href="noticeList">목록</a>
 						</c:when>
 						<c:when test="${type eq 'sale'}">
-							<a href="saleList">목록</a>
+							<a id="list" href="saleList">목록</a>
 						</c:when>
 						<c:when test="${type eq 'tip'}">
-							<a href="tipList">목록</a>
+							<a id="list" href="tipList">목록</a>
 						</c:when>
 						<c:when test="${type eq 'image'}">
-							<a href="imageList">목록</a>
+							<a id="list" href="imageList">목록</a>
 						</c:when>
 					</c:choose>
 				</form>

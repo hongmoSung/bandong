@@ -53,7 +53,6 @@
 	}
 	input:focus, textarea:focus {
 		outline: none;
-	
 	}
 </style>
 </head>
@@ -94,21 +93,7 @@
 				<input class="reBo" type="submit" value="등록" />
 				<input class="reset" type='reset' value='재입력'/>
 		</form>
-		<c:set var="type" value="${board.boardType}"/>
-				<c:choose>
-					<c:when test="${type eq 'notice'}">
-					<a href="noticeList">목록</a>
-					</c:when>
-					<c:when test="${type eq 'sale'}">
-					<a href="saleList">목록</a>
-					</c:when>
-					<c:when test="${type eq 'tip'}">
-					<a href="tipList">목록</a>
-					</c:when>
-					<c:when test="${type eq 'image'}">
-						<a href="imageList">목록</a>
-					</c:when>
-				</c:choose>
+
 	</div>
 </div>
 

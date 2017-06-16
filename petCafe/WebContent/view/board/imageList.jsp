@@ -22,8 +22,7 @@
 		}
 		img{
 			width: 150px;
-			height: auto;
-			overflow:hidden;
+			overflow: hidden;
 		}
 		#nickName, #title {
 			margin : 5px;
@@ -43,7 +42,8 @@
 			position:relative;
 			padding: 0;
 			width: 150px;
-			height: 180px;
+			height: 200px;
+			overflow: hidden;
 		}
 		#title { font-size: 20px;}
 		#nickName {
@@ -94,6 +94,9 @@
 		    border: 14px solid transparent;
 		    border-left-color: white;
 		}
+		.col-md-10 cont{
+			width:100%;
+		}
 	</style>
 </head>
 <body>
@@ -109,7 +112,7 @@
 		<c:import url="/view/include/leftMenu.jsp"/>
 	</div>
 		
-	<div class="col-md-10 cont">
+	<div class="col-md-10 cont" style="width:930px;">
 <!-- 본문-->
 		<div>
 			<a href="boardInsertForm" class="write">글쓰기</a>
@@ -124,9 +127,9 @@
 				<c:forEach var="index" begin="0" end="${fn:length(file)-2}">
 					<ul>
 						<li>
-							<table id="img">
+							<table>
 								<tbody>
-									<tr>
+									<tr id="img">
 										<td>
 											<a href='imageDetail?boardNo=<c:out value="${file[index].boardNo}"/>'><img src="${uploadPath}${file[index].filePath}/${file[index].systemName}"/></a>
 										</td>
