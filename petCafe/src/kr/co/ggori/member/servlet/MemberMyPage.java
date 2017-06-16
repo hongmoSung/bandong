@@ -38,11 +38,13 @@ public class MemberMyPage extends HttpServlet{
 		FileVO file = new FileVO();
 		try {
 			member = mapper.selectMemberOne(member);
-			file = bmapper.selectUserProfile(member.getMemberId());
-			String imgSrc = "/upload/userProfile/" + file.getSystemName();
-			System.out.println(imgSrc);
-			request.setAttribute("file", file);
-			request.setAttribute("imgSrc", imgSrc);
+			if(file != null) {
+				file = bmapper.selectUserProfile(member.getMemberId());
+				String imgSrc = "/upload/userProfile/" + file.getSystemName();
+				System.out.println(imgSrc);
+				request.setAttribute("file", file);
+				request.setAttribute("imgSrc", imgSrc);
+			}
 			request.setAttribute("member", member);
 			RequestDispatcher rd = request.getRequestDispatcher("/view/member/myPage.jsp");
 			rd.forward(request, response);
