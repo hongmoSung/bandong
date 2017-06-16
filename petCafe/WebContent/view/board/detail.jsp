@@ -11,6 +11,10 @@
 	<script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 	
+	<!-- sweet -->
+	<script src="${pageContext.request.contextPath}/sweet/sweetalert.min.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/sweet/sweetalert.css"/>
+	
 	<style>
 		.table > thead > tr > th, td {
 			margin-left:10px;
@@ -154,7 +158,7 @@
 						<table width="100%">
 							<tr id="replyPo">
 								<td><input type="text" name="nickName" value="${member.nickName}" disabled="disabled"/></td>
-								<td><textarea name="content" rows="2" cols="60"></textarea></td>
+								<td><textarea name="content" rows="2" cols="60" style="resize: none;"></textarea></td>
 								<td><button class="sub" type="submit">등록</button></td>
 							</tr>	
 						</table>
@@ -184,7 +188,7 @@
 									<tr>
 										<td><c:out value="${reply.replyId}"/></td>
 								 	 	<td><c:out value="${reply.nickName}" /></td>
-								 	 	<td><textarea name="content" rows="2" cols="60"><c:out value="${reply.content}" /></textarea></td>
+								 	 	<td><textarea name="content" rows="2" cols="60" style="resize: none;"><c:out value="${reply.content}" /></textarea></td>
 									  	<td><fmt:formatDate var="regDate" value="${reply.regDate}" pattern="yyyy-MM-dd HH:mm:ss" />
 								  		<c:out value="${regDate}" /></td>
 										<c:if test="${member.nickName eq reply.nickName}">
@@ -203,7 +207,7 @@
 								  		<c:out value="${regDate}" /></td>
 										<c:if test="${member.nickName eq reply.nickName}">
 								  			<td colspan="2">
-									  			<a href="${board.boardType}Detail?replyId=${reply.replyId}&boardNo=${board.boardNo}">수정</a>
+									  			<a href="${board.boardType}Detail?replyId=${reply.replyId}&boardNo=${board.boardNo}" >수정</a>
 									  			<a href="replyDelete?boardType=${board.boardType}&replyId=${reply.replyId}&boardNo=${board.boardNo}">삭제</a>
 								 			</td>
 							 			</c:if>
@@ -229,12 +233,13 @@
 </div>
 <!-- script -->
 	<script>
+	
 		function regChk() {
 			var reg = document.registForm;
 			var content = reg.content;
 			
 			if(content.value == "") {
-				alert("댓글을 입력하세요");
+				swal("댓글을 입력하세요");
 				content.focus();
 				return false;
 			}
@@ -244,7 +249,7 @@
 			var content = update.content;
 			
 			if(content.value == "") {
-				alert("댓글을 입력하세요");
+				swal("댓글을 입력하세요");
 				content.focus();
 				return false;
 			}

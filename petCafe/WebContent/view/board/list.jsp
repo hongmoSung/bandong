@@ -35,6 +35,7 @@
 			border-radius: 4px;
 			padding: 6px 12px;
 			color : navy;
+			font-weight: 550;
 			border: 1px solid navy;
 		}
 		.topTitle {
