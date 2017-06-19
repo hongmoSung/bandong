@@ -153,9 +153,9 @@
 						<td colspan="4"><c:out value="등록된 게시물이 없습니다"/></td></tr>
 				</c:otherwise>
 			</c:choose>
-			<div>
-				<a href="boardInsertForm" class="write">글쓰기</a>
-			</div>
+<!-- 			<div> -->
+<!-- 				<a href="boardInsertForm" class="write">글쓰기</a> -->
+<!-- 			</div> -->
 		</div>
 	</div>
 	<div><c:import url="/view/include/footer.jsp"/> </div>

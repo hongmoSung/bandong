@@ -40,7 +40,7 @@
 			<a href="${pageContext.request.contextPath}/board/boardInsertForm" class="btn btn-primary btn-xl page-scroll">카페 글쓰기</a>
 		</c:when>
 		<c:otherwise>
-			<a href="${pageContext.request.contextPath}/member/authForm" class="btn btn-primary btn-xl page-scroll">카페 가입하기</a>
+			<a href="${pageContext.request.contextPath}/member/join2" class="btn btn-primary btn-xl page-scroll">카페 가입하기</a>
 		</c:otherwise>
 	</c:choose>
 </div>

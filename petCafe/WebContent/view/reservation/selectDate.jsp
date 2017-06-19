@@ -242,6 +242,7 @@
 				</div>
 				<div id="calendar" class="col-md-10 cont">
 					<div>
+						<label style="font-size: 12px; color: red;">*예약일을 클릭해 주세요</label>
 						<button class="btn btn-primary btn-xl page-scroll" disabled="true" id="reserBtn"
 								data-toggle="modal" data-target="#reserModal">예약하기</button>
 					</div>

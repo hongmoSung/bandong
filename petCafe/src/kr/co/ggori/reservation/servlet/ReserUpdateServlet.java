@@ -50,7 +50,7 @@ public class ReserUpdateServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/main/Main");
+		RequestDispatcher rd = request.getRequestDispatcher("/reservation/reservationList");
 		rd.forward(request, response);
 		
 	}

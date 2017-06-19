@@ -43,7 +43,7 @@
 						</div>
 						<label class="control-label col-sm-3" for="pass">pass</label>
 						<div class="col-sm-9">
-							<input class="form-control" type="text" name="pass" id="pass"><br>
+							<input class="form-control" type="password" name="pass" id="pass"><br>
 						</div>
 					</div>
 					<div class="text-center center-block" style="width: 500px;">

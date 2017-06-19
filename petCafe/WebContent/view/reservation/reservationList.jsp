@@ -22,6 +22,9 @@
 		
 		<link href="${pageContext.request.contextPath}/css/reservation.css" rel="stylesheet">
 		
+		<script src="${pageContext.request.contextPath}/sweet/sweetalert.min.js"></script>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/sweet/sweetalert.css"/>
+		
 		<style type="text/css">
 			body {
 				margin : 40px 10px;
@@ -39,6 +42,15 @@
 		    .fc-day-top.fc-sun.fc-past, .fc-day-top.fc-sun.fc-future { 
 		    	color:#FF0000; 
 		    }
+
+			tr:first-child > td > .fc-day-grid-event {
+				border: none;
+			}
+
+			tr:first-child > td > .fc-day-grid-event:hover {
+				background: #f7695d;
+				cursor: help;
+			}
 		</style>
 
 		<script type="text/javascript">
@@ -160,6 +172,9 @@
 					<c:import url="/view/include/leftMenu.jsp"/>
 				</div>
 				<div id="calendar" class="col-md-10 cont">
+					<div>
+						<label style="font-size: 12px; color: red;">*예약 일정을 클릭해 주세요</label>
+					</div>
 				</div>
 			</div>
 			
@@ -222,7 +237,7 @@
 				);
 			}
 			else {
-				swal("예약자 이름을 형식에 맞게 입력해 주세요!", "warning");
+				swal("예약자 이름을 형식에 맞게 입력해 주세요!", "error");
 				reserName.focus();
 				return ;
 			}
